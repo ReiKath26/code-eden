@@ -8,6 +8,8 @@
 import SwiftUI
 import CoreData
 
+//navigationBarBackButton.hidden = true
+
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 

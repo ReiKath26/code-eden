@@ -1,9 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Chapter" representedClassName="Chapter" syncable="YES" codeGenerationType="class">
+        <attribute name="icon" optional="YES" attributeType="String"/>
+        <attribute name="progress" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="level" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Level" inverseName="chapter" inverseEntity="Level"/>
+    </entity>
+    <entity name="Glossary" representedClassName="Glossary" syncable="YES" codeGenerationType="class">
+        <attribute name="cover" optional="YES" attributeType="String"/>
+        <attribute name="isUnlocked" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="material" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="level" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Level" inverseName="glossary" inverseEntity="Level"/>
+    </entity>
+    <entity name="Level" representedClassName="Level" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="isDone" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="stars" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="chapter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Chapter" inverseName="level" inverseEntity="Chapter"/>
+        <relationship name="glossary" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Glossary" inverseName="level" inverseEntity="Glossary"/>
+    </entity>
+    <entity name="Player" representedClassName="Player" syncable="YES" codeGenerationType="class">
+        <attribute name="avatar" optional="YES" attributeType="String"/>
+        <attribute name="hint" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="stars" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="Player" positionX="-63" positionY="-18" width="128" height="104"/>
+        <element name="Glossary" positionX="-54" positionY="27" width="128" height="104"/>
+        <element name="Chapter" positionX="-36" positionY="54" width="128" height="89"/>
+        <element name="Level" positionX="-18" positionY="72" width="128" height="104"/>
     </elements>
 </model>
