@@ -12,18 +12,52 @@ import CoreData
 
 struct ContentView: View {
     
+    @AppStorage("userStatus") var status: Bool = false
+    @State var animate = false
+    @State var dissolve = false
+    
     var body: some View
     {
         ZStack
         {
-            Image("iPhone Background").resizable().scaledToFill().edgesIgnoringSafeArea(.all)
-            VStack
+            
+            if status
             {
-                Image("Code Eden Logo ").resizable().frame(width: 400, height: 200)
-                
-                Text("Tap anywhere to continue...").font(Font.custom("Silom", size: 24))
+                MainView()
             }
+            
+            else
+            {
+                OnboardingViewFirst()
+            }
+            
+            ZStack
+            {
+                
+                Image("iPhone Background").resizable().scaledToFill().edgesIgnoringSafeArea(.all)
+                VStack
+                {
+                    Image("Code Eden Logo ").resizable().frame(width: 400, height: 200).scaleEffect(animate ? 3:1)
+                    
+                    Text("Tap anywhere to continue...").font(Font.custom("Silom", size:16)).foregroundColor(Color("whiteAccent"))
+                }
+               
+            }.opacity(dissolve ? 0:1)
            
+        }.onTapGesture(perform: animateSplash)
+    }
+    
+    func animateSplash()
+    {
+        DispatchQueue.main.async {
+            
+            withAnimation (Animation.easeOut(duration: 0.45)) {
+                animate.toggle()
+            }
+            
+            withAnimation (Animation.easeOut(duration: 0.35)) {
+                dissolve.toggle()
+            }
         }
     }
 //    @Environment(\.managedObjectContext) private var viewContext

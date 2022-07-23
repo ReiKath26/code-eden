@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1419A233288BD32C0002A83A /* Silom.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1419A232288BD32C0002A83A /* Silom.ttf */; };
+		1419A23B288BD6860002A83A /* OnboardingViewFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419A23A288BD6860002A83A /* OnboardingViewFirst.swift */; };
+		1419A23D288BD6A00002A83A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419A23C288BD6A00002A83A /* MainView.swift */; };
 		149614CE288AA68A003E7396 /* CodeEdenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149614CD288AA68A003E7396 /* CodeEdenApp.swift */; };
 		149614D0288AA68A003E7396 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149614CF288AA68A003E7396 /* ContentView.swift */; };
 		149614D2288AA68B003E7396 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 149614D1288AA68B003E7396 /* Assets.xcassets */; };
@@ -18,7 +21,9 @@
 
 /* Begin PBXFileReference section */
 		1419A22E288BCADC0002A83A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		1419A231288BCEBC0002A83A /* Silom.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Silom.ttf; sourceTree = "<group>"; };
+		1419A232288BD32C0002A83A /* Silom.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Silom.ttf; sourceTree = "<group>"; };
+		1419A23A288BD6860002A83A /* OnboardingViewFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewFirst.swift; sourceTree = "<group>"; };
+		1419A23C288BD6A00002A83A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		149614CA288AA68A003E7396 /* CodeEden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeEden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		149614CD288AA68A003E7396 /* CodeEdenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEdenApp.swift; sourceTree = "<group>"; };
 		149614CF288AA68A003E7396 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,9 +58,59 @@
 		1419A230288BCE9F0002A83A /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				1419A231288BCEBC0002A83A /* Silom.ttf */,
+				1419A232288BD32C0002A83A /* Silom.ttf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		1419A234288BD60E0002A83A /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				1419A239288BD65D0002A83A /* Profile */,
+				1419A238288BD6570002A83A /* Main Game */,
+				1419A237288BD6310002A83A /* Glossary */,
+				1419A236288BD6270002A83A /* Onboarding */,
+				1419A235288BD61D0002A83A /* Splashscreen */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		1419A235288BD61D0002A83A /* Splashscreen */ = {
+			isa = PBXGroup;
+			children = (
+				149614CF288AA68A003E7396 /* ContentView.swift */,
+			);
+			path = Splashscreen;
+			sourceTree = "<group>";
+		};
+		1419A236288BD6270002A83A /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				1419A23A288BD6860002A83A /* OnboardingViewFirst.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		1419A237288BD6310002A83A /* Glossary */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Glossary;
+			sourceTree = "<group>";
+		};
+		1419A238288BD6570002A83A /* Main Game */ = {
+			isa = PBXGroup;
+			children = (
+				1419A23C288BD6A00002A83A /* MainView.swift */,
+			);
+			path = "Main Game";
+			sourceTree = "<group>";
+		};
+		1419A239288BD65D0002A83A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		149614C1288AA68A003E7396 = {
@@ -79,7 +134,7 @@
 			children = (
 				1419A22E288BCADC0002A83A /* Info.plist */,
 				149614CD288AA68A003E7396 /* CodeEdenApp.swift */,
-				149614CF288AA68A003E7396 /* ContentView.swift */,
+				1419A234288BD60E0002A83A /* Features */,
 				1419A22F288BCE910002A83A /* Assets */,
 				149614D6288AA68B003E7396 /* Persistence.swift */,
 				149614D8288AA68B003E7396 /* CodeEden.xcdatamodeld */,
@@ -155,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				149614D5288AA68B003E7396 /* Preview Assets.xcassets in Resources */,
+				1419A233288BD32C0002A83A /* Silom.ttf in Resources */,
 				149614D2288AA68B003E7396 /* Assets.xcassets in Resources */,
 				149614E1288AAA11003E7396 /* Art.scnassets in Resources */,
 			);
@@ -168,6 +224,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				149614DA288AA68B003E7396 /* CodeEden.xcdatamodeld in Sources */,
+				1419A23D288BD6A00002A83A /* MainView.swift in Sources */,
+				1419A23B288BD6860002A83A /* OnboardingViewFirst.swift in Sources */,
 				149614D7288AA68B003E7396 /* Persistence.swift in Sources */,
 				149614D0288AA68A003E7396 /* ContentView.swift in Sources */,
 				149614CE288AA68A003E7396 /* CodeEdenApp.swift in Sources */,
