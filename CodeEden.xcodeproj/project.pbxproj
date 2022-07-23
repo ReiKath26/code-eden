@@ -17,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1419A22E288BCADC0002A83A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1419A231288BCEBC0002A83A /* Silom.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Silom.ttf; sourceTree = "<group>"; };
 		149614CA288AA68A003E7396 /* CodeEden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeEden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		149614CD288AA68A003E7396 /* CodeEdenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEdenApp.swift; sourceTree = "<group>"; };
 		149614CF288AA68A003E7396 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -38,6 +40,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1419A22F288BCE910002A83A /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				1419A230288BCE9F0002A83A /* Font */,
+				149614D1288AA68B003E7396 /* Assets.xcassets */,
+				149614E0288AAA11003E7396 /* Art.scnassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		1419A230288BCE9F0002A83A /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				1419A231288BCEBC0002A83A /* Silom.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		149614C1288AA68A003E7396 = {
 			isa = PBXGroup;
 			children = (
@@ -57,12 +77,12 @@
 		149614CC288AA68A003E7396 /* CodeEden */ = {
 			isa = PBXGroup;
 			children = (
+				1419A22E288BCADC0002A83A /* Info.plist */,
 				149614CD288AA68A003E7396 /* CodeEdenApp.swift */,
 				149614CF288AA68A003E7396 /* ContentView.swift */,
-				149614D1288AA68B003E7396 /* Assets.xcassets */,
+				1419A22F288BCE910002A83A /* Assets */,
 				149614D6288AA68B003E7396 /* Persistence.swift */,
 				149614D8288AA68B003E7396 /* CodeEden.xcdatamodeld */,
-				149614E0288AAA11003E7396 /* Art.scnassets */,
 				149614D3288AA68B003E7396 /* Preview Content */,
 			);
 			path = CodeEden;
@@ -282,9 +302,9 @@
 				DEVELOPMENT_TEAM = 4C96B7697Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CodeEden/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -311,9 +331,9 @@
 				DEVELOPMENT_TEAM = 4C96B7697Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CodeEden/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
