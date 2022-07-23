@@ -10,6 +10,9 @@
 		1419A233288BD32C0002A83A /* Silom.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1419A232288BD32C0002A83A /* Silom.ttf */; };
 		1419A23B288BD6860002A83A /* OnboardingViewFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419A23A288BD6860002A83A /* OnboardingViewFirst.swift */; };
 		1419A23D288BD6A00002A83A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419A23C288BD6A00002A83A /* MainView.swift */; };
+		1419A243288BE8BA0002A83A /* CustomProgressStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419A242288BE8BA0002A83A /* CustomProgressStyle.swift */; };
+		1419A248288BFA7D0002A83A /* ChooseModeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419A247288BFA7D0002A83A /* ChooseModeCardView.swift */; };
+		1419A24B288BFE220002A83A /* ModeMockStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419A24A288BFE220002A83A /* ModeMockStore.swift */; };
 		149614CE288AA68A003E7396 /* CodeEdenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149614CD288AA68A003E7396 /* CodeEdenApp.swift */; };
 		149614D0288AA68A003E7396 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149614CF288AA68A003E7396 /* ContentView.swift */; };
 		149614D2288AA68B003E7396 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 149614D1288AA68B003E7396 /* Assets.xcassets */; };
@@ -24,6 +27,9 @@
 		1419A232288BD32C0002A83A /* Silom.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Silom.ttf; sourceTree = "<group>"; };
 		1419A23A288BD6860002A83A /* OnboardingViewFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewFirst.swift; sourceTree = "<group>"; };
 		1419A23C288BD6A00002A83A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		1419A242288BE8BA0002A83A /* CustomProgressStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressStyle.swift; sourceTree = "<group>"; };
+		1419A247288BFA7D0002A83A /* ChooseModeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseModeCardView.swift; sourceTree = "<group>"; };
+		1419A24A288BFE220002A83A /* ModeMockStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeMockStore.swift; sourceTree = "<group>"; };
 		149614CA288AA68A003E7396 /* CodeEden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeEden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		149614CD288AA68A003E7396 /* CodeEdenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEdenApp.swift; sourceTree = "<group>"; };
 		149614CF288AA68A003E7396 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -48,6 +54,7 @@
 		1419A22F288BCE910002A83A /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				1419A241288BE8A40002A83A /* Style */,
 				1419A230288BCE9F0002A83A /* Font */,
 				149614D1288AA68B003E7396 /* Assets.xcassets */,
 				149614E0288AAA11003E7396 /* Art.scnassets */,
@@ -78,7 +85,7 @@
 		1419A235288BD61D0002A83A /* Splashscreen */ = {
 			isa = PBXGroup;
 			children = (
-				149614CF288AA68A003E7396 /* ContentView.swift */,
+				1419A23E288BE8440002A83A /* View */,
 			);
 			path = Splashscreen;
 			sourceTree = "<group>";
@@ -86,7 +93,8 @@
 		1419A236288BD6270002A83A /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				1419A23A288BD6860002A83A /* OnboardingViewFirst.swift */,
+				1419A249288BFE160002A83A /* Model */,
+				1419A23F288BE84E0002A83A /* View */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -113,6 +121,55 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		1419A23E288BE8440002A83A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				149614CF288AA68A003E7396 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1419A23F288BE84E0002A83A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1419A23A288BD6860002A83A /* OnboardingViewFirst.swift */,
+				1419A247288BFA7D0002A83A /* ChooseModeCardView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1419A240288BE8810002A83A /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				149614D6288AA68B003E7396 /* Persistence.swift */,
+				149614D8288AA68B003E7396 /* CodeEden.xcdatamodeld */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		1419A241288BE8A40002A83A /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				1419A242288BE8BA0002A83A /* CustomProgressStyle.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+		1419A246288BF4250002A83A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1419A249288BFE160002A83A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1419A24A288BFE220002A83A /* ModeMockStore.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		149614C1288AA68A003E7396 = {
 			isa = PBXGroup;
 			children = (
@@ -136,8 +193,8 @@
 				149614CD288AA68A003E7396 /* CodeEdenApp.swift */,
 				1419A234288BD60E0002A83A /* Features */,
 				1419A22F288BCE910002A83A /* Assets */,
-				149614D6288AA68B003E7396 /* Persistence.swift */,
-				149614D8288AA68B003E7396 /* CodeEden.xcdatamodeld */,
+				1419A240288BE8810002A83A /* Utilities */,
+				1419A246288BF4250002A83A /* ViewModel */,
 				149614D3288AA68B003E7396 /* Preview Content */,
 			);
 			path = CodeEden;
@@ -226,8 +283,11 @@
 				149614DA288AA68B003E7396 /* CodeEden.xcdatamodeld in Sources */,
 				1419A23D288BD6A00002A83A /* MainView.swift in Sources */,
 				1419A23B288BD6860002A83A /* OnboardingViewFirst.swift in Sources */,
+				1419A24B288BFE220002A83A /* ModeMockStore.swift in Sources */,
 				149614D7288AA68B003E7396 /* Persistence.swift in Sources */,
+				1419A243288BE8BA0002A83A /* CustomProgressStyle.swift in Sources */,
 				149614D0288AA68A003E7396 /* ContentView.swift in Sources */,
+				1419A248288BFA7D0002A83A /* ChooseModeCardView.swift in Sources */,
 				149614CE288AA68A003E7396 /* CodeEdenApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

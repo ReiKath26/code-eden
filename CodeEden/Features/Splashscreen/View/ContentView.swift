@@ -13,8 +13,10 @@ import CoreData
 struct ContentView: View {
     
     @AppStorage("userStatus") var status: Bool = false
+    
     @State var animate = false
     @State var dissolve = false
+    @State var tap = false
     
     var body: some View
     {
@@ -35,16 +37,32 @@ struct ContentView: View {
             {
                 
                 Image("iPhone Background").resizable().scaledToFill().edgesIgnoringSafeArea(.all)
-                VStack
-                {
-                    Image("Code Eden Logo ").resizable().frame(width: 400, height: 200).scaleEffect(animate ? 3:1)
+            
+                    GeometryReader
+                    {
+                        geometry in
+                        
+                        VStack
+                        {
+                            Image("Code Eden Logo ").resizable().frame(width: geometry.size.width, height: geometry.size.height * 0.25).scaleEffect(animate ? 3:1)
+                            
+                            Text("Tap anywhere to continue...").font(Font.custom("Silom", size: geometry.size.width * 0.04)).foregroundColor(Color("whiteAccent")).opacity(tap ? 0.5:1).onAppear(perform: tapAnimate)
+                        }.position(x: geometry.size.width/2, y: geometry.size.height/2)
                     
-                    Text("Tap anywhere to continue...").font(Font.custom("Silom", size:16)).foregroundColor(Color("whiteAccent"))
-                }
+                    }
                
             }.opacity(dissolve ? 0:1)
            
         }.onTapGesture(perform: animateSplash)
+    }
+    
+    func tapAnimate()
+    {
+        DispatchQueue.main.async {
+            withAnimation(Animation.easeInOut(duration: 1).repeatForever()) {
+                tap.toggle()
+            }
+        }
     }
     
     func animateSplash()
@@ -134,6 +152,10 @@ private let itemFormatter: DateFormatter = {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext).previewDevice("iPhone 13")
+        
+        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext).previewDevice("iPhone 12")
+        
+        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext).previewDevice("iPhone 11")
     }
 }
