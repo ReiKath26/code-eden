@@ -26,11 +26,12 @@ struct ChooseModeCardView: View {
                 HStack
                 {
                     Image(icon).resizable().frame(width: geo.size.width * 0.3, height: geo.size.height * 0.7)
+                    
                     VStack
                     {
                         Text(title).foregroundColor(Color("mainPurple")).font(Font.custom("Silom", size: geo.size.width * 0.07))
                         Text(desc).foregroundColor(Color("darkGreyAccent")).font(Font.custom("Silom", size: geo.size.height * 0.06))
-                    }
+                    }.frame(width: geo.size.width * 0.5, height: geo.size.height * 0.7)
                 }
             }
         }

@@ -19,13 +19,21 @@ struct OnboardingViewFirst: View {
     
     @State private var index = 0
     @State private var name : String = ""
-    @State private var count = 2
+    @State private var count = 1
+    
+    @AppStorage("userStatus") var status: Bool = false
     
     let modes: [mode] = ModeMockStore.modes
     
     var avatar = ["Mascot - Adira", "Mascot - Eva"]
     
+    
     var body: some View {
+        
+        ZStack
+        {
+            MainView()
+        
         ZStack
         {
             Image("iPhone Background").resizable().scaledToFill().edgesIgnoringSafeArea(.all)
@@ -55,6 +63,9 @@ struct OnboardingViewFirst: View {
                         HStack
                         {
                             Button {
+                                withAnimation {
+                                    index = 0
+                                }
                                 
                             } label: {
                                 Image(systemName: "arrowtriangle.backward.fill").foregroundColor(Color("mainPurple"))
@@ -65,7 +76,9 @@ struct OnboardingViewFirst: View {
                             
                             
                             Button {
-                                
+                                withAnimation {
+                                    index = 1
+                                }
                             } label: {
                                 Image(systemName: "arrowtriangle.forward.fill").foregroundColor(Color("mainPurple"))
                             }
@@ -76,7 +89,9 @@ struct OnboardingViewFirst: View {
                         TextField("Enter your name here...", text: $name).background().textFieldStyle(RoundedBorderTextFieldStyle()).frame(width: geo.size.width * 0.8, height: geo.size.width * 0.1).font(Font.custom("Silom", size: 16))
                         
                         Button {
-                            
+                            withAnimation {
+                                count = 2
+                            }
                         } label: {
                             
                             ZStack
@@ -86,7 +101,7 @@ struct OnboardingViewFirst: View {
                                 Text("Continue").font(Font.custom("Silom", size: 16)).foregroundColor(Color("whiteAccent"))
                             }
                            
-                        }
+                        }.disabled(!name.isEmpty ? false: true)
                     }
                     
                     if count == 2
@@ -96,7 +111,11 @@ struct OnboardingViewFirst: View {
                             i in
                             
                             Button {
-                                
+                                withAnimation(Animation.easeOut(duration: 0.45)) {
+                                    status = true
+                                    
+                                    //MARK: add core data save user logic
+                                }
                             } label: {
                                 ChooseModeCardView(title: modes[i].title, icon: modes[i].icon, desc: modes[i].desc).frame(width: geo.size.width * 0.85, height: geo.size.height * 0.2)
                             }
@@ -110,6 +129,8 @@ struct OnboardingViewFirst: View {
                 }.position(x: geo.size.width/2, y: geo.size.height/2)
             }
            
+        }.opacity(status ? 0 : 1)
+            
         }
     }
 }

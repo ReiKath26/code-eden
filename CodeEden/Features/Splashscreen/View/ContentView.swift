@@ -46,14 +46,14 @@ struct ContentView: View {
                         {
                             Image("Code Eden Logo ").resizable().frame(width: geometry.size.width, height: geometry.size.height * 0.25).scaleEffect(animate ? 3:1)
                             
-                            Text("Tap anywhere to continue...").font(Font.custom("Silom", size: geometry.size.width * 0.04)).foregroundColor(Color("whiteAccent")).opacity(tap ? 0.5:1).onAppear(perform: tapAnimate)
+                            Text("Tap to continue...").font(Font.custom("Silom", size: geometry.size.width * 0.04)).foregroundColor(Color("whiteAccent")).opacity(tap ? 0.5:1).onAppear(perform: tapAnimate).onTapGesture(perform: animateSplash)
                         }.position(x: geometry.size.width/2, y: geometry.size.height/2)
                     
                     }
                
             }.opacity(dissolve ? 0:1)
            
-        }.onTapGesture(perform: animateSplash)
+        }
     }
     
     func tapAnimate()
