@@ -102,14 +102,14 @@ class DataMockStore: ObservableObject
             
             let levelNormal1 = Level(context: context)
             levelNormal1.isDone = false
-            levelNormal1.id = 110 + x
+            levelNormal1.levelID = 110 + x
             levelNormal1.stars = 0
             levelNormal1.mode = "Normal"
             chapter1.addToLevel(levelNormal1)
             
             let levelHard = Level(context: context)
             levelHard.isDone = false
-            levelHard.id = 210 + x
+            levelHard.levelID = 210 + x
             levelHard.stars = 0
             levelHard.mode = "Hard"
             chapter1.addToLevel(levelHard)
@@ -124,14 +124,14 @@ class DataMockStore: ObservableObject
             
             let levelNormal1 = Level(context: context)
             levelNormal1.isDone = false
-            levelNormal1.id = 120 + x
+            levelNormal1.levelID = 120 + x
             levelNormal1.stars = 0
             levelNormal1.mode = "Normal"
             chapter2.addToLevel(levelNormal1)
             
             let levelHard = Level(context: context)
             levelHard.isDone = false
-            levelHard.id = 220 + x
+            levelHard.levelID = 220 + x
             levelHard.stars = 0
             levelHard.mode = "Hard"
             chapter2.addToLevel(levelHard)
@@ -144,6 +144,7 @@ class DataMockStore: ObservableObject
         mockStore.append(chapter1)
         mockStore.append(chapter2)
         
+        save(context: context)
         
         return mockStore
     }
