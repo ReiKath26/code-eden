@@ -33,6 +33,7 @@
 		149614D7288AA68B003E7396 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149614D6288AA68B003E7396 /* Persistence.swift */; };
 		149614DA288AA68B003E7396 /* CodeEden.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 149614D8288AA68B003E7396 /* CodeEden.xcdatamodeld */; };
 		149614E1288AAA11003E7396 /* Art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 149614E0288AAA11003E7396 /* Art.scnassets */; };
+		14C1884E288D4038005A68EE /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1884D288D4038005A68EE /* CoreDataHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		149614D6288AA68B003E7396 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		149614D9288AA68B003E7396 /* CodeEden.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CodeEden.xcdatamodel; sourceTree = "<group>"; };
 		149614E0288AAA11003E7396 /* Art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Art.scnassets; sourceTree = "<group>"; };
+		14C1884D288D4038005A68EE /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 			children = (
 				149614D6288AA68B003E7396 /* Persistence.swift */,
 				149614D8288AA68B003E7396 /* CodeEden.xcdatamodeld */,
+				14C1884D288D4038005A68EE /* CoreDataHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1419A25B288C1EBD0002A83A /* EditProfileView.swift in Sources */,
+				14C1884E288D4038005A68EE /* CoreDataHelper.swift in Sources */,
 				149614DA288AA68B003E7396 /* CodeEden.xcdatamodeld in Sources */,
 				1419A256288C1AC60002A83A /* GlossaryCardView.swift in Sources */,
 				1419A25D288C2D6D0002A83A /* CircularProgressBar.swift in Sources */,
