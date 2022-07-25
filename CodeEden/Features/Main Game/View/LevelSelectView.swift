@@ -10,7 +10,7 @@ import SwiftUI
 struct LevelSelectView: View {
     
     @State var mode = "Normal"
-    
+    @Binding var levels: [Level]
     
     var body: some View {
         ZStack

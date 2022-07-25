@@ -113,11 +113,16 @@ struct OnboardingViewFirst: View {
                             i in
                             
                             Button {
-                                withAnimation(Animation.easeOut(duration: 0.45)) {
-                                    status = true
-                                    
-                                    newPlayer = DataMockStore().newPlayer(name: name, avatar: avatar[index], context: managedObjectContext)
+                                if i == 0
+                                {
+                                    withAnimation(Animation.easeOut(duration: 0.45)) {
+                                        status = true
+                                        
+                                        newPlayer = DataMockStore().newPlayer(name: name, avatar: avatar[index], context: managedObjectContext)
+                                    }
                                 }
+                                
+                                
                             } label: {
                                 ChooseModeCardView(title: modes[i].title, icon: modes[i].icon, desc: modes[i].desc).frame(width: geo.size.width * 0.85, height: geo.size.height * 0.2)
                             }

@@ -10,6 +10,9 @@ import SwiftUI
 struct LevelView: View {
     
     
+    @Binding var level: Level?
+    
+    
     var body: some View {
        GeometryReader
         {
@@ -23,14 +26,21 @@ struct LevelView: View {
                     
                     VStack(spacing: -30)
                     {
-                        Text("1").foregroundColor(Color("mainPurple")).font(Font.custom("Silom", size: geo.size.width * 0.3))
+                        Text("\(Int(level?.levelID ?? 1))").foregroundColor(Color("mainPurple")).font(Font.custom("Silom", size: geo.size.width * 0.3))
                         
-                        Image("star").resizable().frame(width: geo.size.width * 0.2, height: geo.size.width * 0.2)
+
+                        if level?.isDone == true
+                        {
+                            Image("star").resizable().frame(width: geo.size.width * 0.2, height: geo.size.width * 0.2)
+
+                        }
+
+                     
                     }
                   
                 }
                 
-                Text("3/3").foregroundColor(Color("whiteAccent")).font(Font.custom("Silom", size: geo.size.width * 0.1))
+                Text("\(Int(level?.stars ?? 0))/3").foregroundColor(Color("whiteAccent")).font(Font.custom("Silom", size: geo.size.width * 0.1))
             }
             
         }
@@ -39,6 +49,6 @@ struct LevelView: View {
 
 struct LevelView_Previews: PreviewProvider {
     static var previews: some View {
-        LevelView()
+        LevelView(level: .constant(DataMockStore().levelOfChapter(chapter: DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext).chapters.first!).first))
     }
 }

@@ -12,7 +12,6 @@ import SwiftUI
 struct gameMockStore
 {
     var chapters: [Chapter]
-    var levels: [Level]
     var glossaries: [Glossary]
 }
 
@@ -94,27 +93,31 @@ class DataMockStore: ObservableObject
         save(context: context)
     }
     
+    func levelOfChapter(chapter: Chapter) -> [Level]
+    {
+        return chapter.level?.allObjects as! [Level]
+    }
+    
     func gamePlayMockStore(context: NSManagedObjectContext) -> gameMockStore
     {
         var allChapters: [Chapter] = []
-        var allLevels: [Level] = []
         var allGlossaries: [Glossary] = []
         
         let chapters = [(title: "Introduction", icon: "Mascot - Cody", progress: 0), (title: "Data Structure I", icon:"loupe", progress: 0)]
         let chapter1Levels = [
-            (levelID: 111, isDone: false, levelMode: "Normal", stars: 0),
-            (levelID: 112, isDone: false, levelMode: "Normal", stars: 0),
-            (levelID: 113, isDone: false, levelMode: "Normal", stars: 0),
-            (levelID: 114, isDone: false, levelMode: "Normal", stars: 0)
+            (levelID: 1, isDone: false, levelMode: "Normal", stars: 0),
+            (levelID: 2, isDone: false, levelMode: "Normal", stars: 0),
+            (levelID: 3, isDone: false, levelMode: "Normal", stars: 0),
+            (levelID: 4, isDone: false, levelMode: "Normal", stars: 0)
         ]
         
         let chapter2Levels = [
-            (levelID: 211, isDone: false, levelMode: "Normal", stars: 0),
-            (levelID: 212, isDone: false, levelMode: "Normal", stars: 0),
-            (levelID: 213, isDone: false, levelMode: "Normal", stars: 0),
-            (levelID: 214, isDone: false, levelMode: "Normal", stars: 0),
-            (levelID: 215, isDone: false, levelMode: "Normal", stars: 0),
-            (levelID: 216, isDone: false, levelMode: "Normal", stars: 0)
+            (levelID: 5, isDone: false, levelMode: "Normal", stars: 0),
+            (levelID: 6, isDone: false, levelMode: "Normal", stars: 0),
+            (levelID: 7, isDone: false, levelMode: "Normal", stars: 0),
+            (levelID: 8, isDone: false, levelMode: "Normal", stars: 0),
+            (levelID: 9, isDone: false, levelMode: "Normal", stars: 0),
+            (levelID: 10, isDone: false, levelMode: "Normal", stars: 0)
         ]
         
         let chapter1Glossary = [
@@ -351,8 +354,6 @@ class DataMockStore: ObservableObject
                         allGlossaries.append(newGlossary)
                     }
                     
-                    allLevels.append(newLevel)
-                    
                 }
             }
             
@@ -388,8 +389,6 @@ class DataMockStore: ObservableObject
                         
                         allGlossaries.append(newGlossary)
                     }
-                    
-                    allLevels.append(newLevel)
                 }
             }
             
@@ -397,7 +396,7 @@ class DataMockStore: ObservableObject
 
         }
         
-        let mockStore: gameMockStore = gameMockStore(chapters: allChapters, levels: allLevels, glossaries: allGlossaries)
+        let mockStore: gameMockStore = gameMockStore(chapters: allChapters, glossaries: allGlossaries)
         
         save(context: context)
         

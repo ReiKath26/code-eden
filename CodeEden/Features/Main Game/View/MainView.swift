@@ -26,7 +26,7 @@ struct MainView: View {
         {
             if currentState == .main
             {
-                MainMenu()
+                MainMenu(chapters: .constant(chapters))
             }
             
             else if currentState == .glossary
