@@ -10,7 +10,7 @@ import SwiftUI
 struct EditProfileView: View {
     
     @State var name = ""
-    @State var index = 0
+    @Binding var index: Int
     var avatar = ["Mascot - Adira", "Mascot - Eva"]
     @Binding var player : Player?
     
@@ -83,6 +83,6 @@ struct EditProfileView: View {
 
 struct EditProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfileView(player: .constant(DataMockStore().newPlayer(name: "User", avatar: "Mascot - Adira", context: DataMockStore().container.viewContext)))
+        EditProfileView(index: .constant(0), player: .constant(DataMockStore().newPlayer(name: "User", avatar: "Mascot - Adira", context: DataMockStore().container.viewContext)))
     }
 }
