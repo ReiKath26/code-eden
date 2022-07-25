@@ -32,6 +32,6 @@ struct LevelSelectView: View {
 
 struct LevelSelectView_Previews: PreviewProvider {
     static var previews: some View {
-        LevelSelectView()
+        LevelSelectView(levels: .constant(DataMockStore().levelOfChapter(chapter: DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext).chapters.first!)))
     }
 }
