@@ -152,10 +152,7 @@ private let itemFormatter: DateFormatter = {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext).previewDevice("iPhone 13")
+        ContentView().previewDevice("iPhone 13")
         
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext).previewDevice("iPhone 12")
-        
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext).previewDevice("iPhone 11")
     }
 }

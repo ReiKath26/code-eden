@@ -30,7 +30,6 @@
 		149614D0288AA68A003E7396 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149614CF288AA68A003E7396 /* ContentView.swift */; };
 		149614D2288AA68B003E7396 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 149614D1288AA68B003E7396 /* Assets.xcassets */; };
 		149614D5288AA68B003E7396 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 149614D4288AA68B003E7396 /* Preview Assets.xcassets */; };
-		149614D7288AA68B003E7396 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149614D6288AA68B003E7396 /* Persistence.swift */; };
 		149614DA288AA68B003E7396 /* CodeEden.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 149614D8288AA68B003E7396 /* CodeEden.xcdatamodeld */; };
 		149614E1288AAA11003E7396 /* Art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 149614E0288AAA11003E7396 /* Art.scnassets */; };
 		14C1884E288D4038005A68EE /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1884D288D4038005A68EE /* CoreDataHelper.swift */; };
@@ -62,7 +61,6 @@
 		149614CF288AA68A003E7396 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		149614D1288AA68B003E7396 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		149614D4288AA68B003E7396 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		149614D6288AA68B003E7396 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		149614D9288AA68B003E7396 /* CodeEden.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CodeEden.xcdatamodel; sourceTree = "<group>"; };
 		149614E0288AAA11003E7396 /* Art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Art.scnassets; sourceTree = "<group>"; };
 		14C1884D288D4038005A68EE /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
@@ -171,7 +169,6 @@
 		1419A240288BE8810002A83A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				149614D6288AA68B003E7396 /* Persistence.swift */,
 				149614D8288AA68B003E7396 /* CodeEden.xcdatamodeld */,
 				14C1884D288D4038005A68EE /* CoreDataHelper.swift */,
 			);
@@ -359,7 +356,6 @@
 				1419A265288C30930002A83A /* LevelView.swift in Sources */,
 				1419A254288C0F6F0002A83A /* ProfileView.swift in Sources */,
 				1419A258288C1B060002A83A /* LockedCardView.swift in Sources */,
-				149614D7288AA68B003E7396 /* Persistence.swift in Sources */,
 				1419A269288C355D0002A83A /* ReadGlossary.swift in Sources */,
 				1419A24F288C0F470002A83A /* MainMenu.swift in Sources */,
 				1419A252288C0F630002A83A /* GlossaryView.swift in Sources */,
