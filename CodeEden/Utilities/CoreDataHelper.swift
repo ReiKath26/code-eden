@@ -74,10 +74,11 @@ class DataMockStore: ObservableObject
         save(context: context)
     }
     
-    func addStars(player: Player, stars: Int, context: NSManagedObjectContext)
+    func levelCleared(player: Player, chapter: Chapter, level: Level, stars: Int, context: NSManagedObjectContext)
     {
         player.stars += Double(stars)
-        
+        level.stars += Double(stars)
+        chapter.progress += Float(1/(chapter.level?.count ?? 4))
         save(context: context)
     }
     
@@ -278,10 +279,21 @@ class DataMockStore: ObservableObject
         
         3. Set
         
+        var studentID: Set = [21, 32, 43, 57]
+        
+        A set is a collection of unique data. That is, elements of a set cannot be duplicate. You can use '
+        sets instead of arrays if ordering of elements is not an issue, or if you want to ensure that there
+        are no duplicate values. There are several action you can do with Swift's set like union,
+        intersection, and substracting.
+        
+        Choosing the right Data Structure to use will affect a lot of things in your program. Let's see
+        how well you understand the difference between each data structure in the next challenge!
+        
         Reference:
         
         https://www.swiftbysundell.com/articles/picking-the-right-data-structure-in-swift/
         https://www.tutorialspoint.com/swift/swift_dictionaries.htm
+        https://www.tutorialspoint.com/swift/swift_sets.htm
         
         """
         
