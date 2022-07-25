@@ -9,6 +9,13 @@ import Foundation
 import CoreData
 import SwiftUI
 
+struct gameMockStore
+{
+    var chapters: [Chapter]
+    var levels: [Level]
+    var glossaries: [Glossary]
+}
+
 class DataMockStore: ObservableObject
 {
     let container = NSPersistentContainer(name: "CodeEden")
@@ -78,13 +85,20 @@ class DataMockStore: ObservableObject
     {
         player.stars += Double(stars)
         level.stars += Double(stars)
+        if level.glossary != nil
+        {
+            level.glossary?.isUnlocked = true
+        }
+        
         chapter.progress += Float(1/(chapter.level?.count ?? 4))
         save(context: context)
     }
     
-    func gamePlayMockStore(context: NSManagedObjectContext) -> [Chapter]
+    func gamePlayMockStore(context: NSManagedObjectContext) -> gameMockStore
     {
-        var mockStore: [Chapter] = []
+        var allChapters: [Chapter] = []
+        var allLevels: [Level] = []
+        var allGlossaries: [Glossary] = []
         
         let chapters = [(title: "Introduction", icon: "Mascot - Cody", progress: 0), (title: "Data Structure I", icon:"loupe", progress: 0)]
         let chapter1Levels = [
@@ -104,12 +118,8 @@ class DataMockStore: ObservableObject
         ]
         
         let chapter1Glossary = [
-            (title: "What is an Algorithm?", isUnlocked: false, material: """
-                An algorithm is a procedure used for solving a problem or performing a computation.
-                Algorithms act as an exact list of instructions that conduct specified actions step by step.
-                In computer programming terms, an algorithm is a set of well-defined instructions to
-                solve a particular problem. It takes a set of input(s) and produces the desired output.
-                For example, an algorithm to add two numbers would be:
+            (title: "What is an Algorithm?", isUnlocked: false, cover: "Intro Cover", material: """
+                An algorithm is a procedure used for solving a problem or performing a computation. Algorithms act as an exact list of instructions that conduct specified actions step by step. In computer programming terms, an algorithm is a set of well-defined instructions to solve a particular problem. It takes a set of input(s) and produces the desired output. For example, an algorithm to add two numbers would be:
 
                 Take two number inputs
 
@@ -131,16 +141,12 @@ class DataMockStore: ObservableObject
                 https://www.techtarget.com/whatis/definition/algorithm
                 https://www.programiz.com/dsa/algorithm
                 https://www.geeksforgeeks.org/introduction-to-algorithms/
-        """),  (title: "Searching Algorithm", isUnlocked: false, material: """
-                Searching algorithms refers to algorithms used to search or find one or more than one element from a
-                certain dataset. It's an algorithm that allows you to find your favorite book from the stacks of
-                books in the cupboard. There are several type of searching algorithm, but let's look at simple
-                explanation to the two most common: Linear and Binary Search
+        """),  (title: "Searching Algorithm", isUnlocked: false, cover: "Intro Cover", material: """
+                Searching algorithms refers to algorithms used to search or find one or more than on element from a certain dataset. It's an algorithm that allows you to find your favorite book from the stacks of books in the cupboard. There are several type of searching algorithm, but let's look at simple explanation to the two most common: Linear and Binary Search
                         
                 1. Linear Search
                         
-                Linear search starts from one side of the dataset and compare the data one by one until it found
-                the searched item. It works as such
+                Linear search starts from one side of the dataset and compare the data one by one until it found the searched item. It works as such
                         
                 - Start from the leftmost element
                 - If the item matches the searched item, return it's position
@@ -165,11 +171,8 @@ class DataMockStore: ObservableObject
                 https://www.tutorialspoint.com/introduction-to-searching-algorithms
                 https://www.geeksforgeeks.org/linear-search/
                 https://www.geeksforgeeks.org/binary-search/
-        """), (title: "Pathfinding Algorithm", isUnlocked: false, material: """
-                Pathfinding algorithms address the problem of finding a path from a source to a destination avoiding
-                obstacles and minimizing the costs (time, distance, risks, fuel, price, etc.). Example of such
-                problem is how to find the closest way to go from your house to your office/school. Here is an
-                example on how the algorithm works by putting a cost in each step it takes:
+        """), (title: "Pathfinding Algorithm", isUnlocked: false, cover: "Intro Cover", material: """
+                Pathfinding algorithms address the problem of finding a path from a source to a destination avoiding obstacles and minimizing the costs (time, distance, risks, fuel, price, etc.). Example of such problem is how to find the closest way to go from your house to your office/school. Here is an example on how the algorithm works by putting a cost in each step it takes:
                         
                 1. Start on the goal square. How far is the goal from the goal? Zero steps, mark the goal with the number 0.
                 2. Find all squares in the maze that are exactly one step away from the goal. Mark them with the number 1. In this maze, if the goal is the exit square, then there is only one square that is exactly one step away.
@@ -188,7 +191,7 @@ class DataMockStore: ObservableObject
         ]
         
         let chapter2Glossary = [
-            (title: "Intro to Data Structure", isUnlocked: false, material:"""
+            (title: "Intro to Data Structure", isUnlocked: false, cover: "Data Structure Cover", material:"""
                 Data structure is a storage that is used to store and organize data. It is a way of arranging data
                 on a computer so that it can be accessed and updated efficiently. Once again, the data structure is
                 not a programming language, but rather a set of algorithms that we can use in any programming
@@ -211,7 +214,7 @@ class DataMockStore: ObservableObject
                 https://www.javatpoint.com/data-structure-tutorial
             """
             ),
-            (title: "Data Structure in Swift", isUnlocked: false, material:"""
+            (title: "Data Structure in Swift", isUnlocked: false, cover: "Data Structure Cover", material:"""
                     
                 The Swift standard library ships with three main data structures — Array, Dictionary and Set — that
                 each comes with a different set of optimizations, pros and cons.
@@ -258,7 +261,7 @@ class DataMockStore: ObservableObject
             """
                  
             ),
-            (title: "Stacks & Queue", isUnlocked: false, material:"""
+            (title: "Stacks & Queue", isUnlocked: false, cover: "Data Structure Cover", material:"""
                 Stacks and Queue are another type of linear data structure. Let's take a look at their differences!
                     
                 Stacks
@@ -311,6 +314,8 @@ class DataMockStore: ObservableObject
                         newGlossary.isUnlocked = chapter1Glossary[0].isUnlocked
                         newGlossary.material = chapter1Glossary[0].material
                         newGlossary.level = newLevel
+                        
+                        allGlossaries.append(newGlossary)
                     }
                     else if level.levelID == 112
                     {
@@ -319,6 +324,9 @@ class DataMockStore: ObservableObject
                         newGlossary.isUnlocked = chapter1Glossary[1].isUnlocked
                         newGlossary.material = chapter1Glossary[1].material
                         newGlossary.level = newLevel
+                        
+                        allGlossaries.append(newGlossary)
+                        
                     }
                     
                     else if level.levelID == 113
@@ -328,6 +336,8 @@ class DataMockStore: ObservableObject
                         newGlossary.isUnlocked = chapter1Glossary[2].isUnlocked
                         newGlossary.material = chapter1Glossary[2].material
                         newGlossary.level = newLevel
+                        
+                        allGlossaries.append(newGlossary)
                     }
                     
                     else
@@ -337,7 +347,12 @@ class DataMockStore: ObservableObject
                         newGlossary.isUnlocked = chapter2Glossary[0].isUnlocked
                         newGlossary.material = chapter2Glossary[0].material
                         newGlossary.level = newLevel
+                        
+                        allGlossaries.append(newGlossary)
                     }
+                    
+                    allLevels.append(newLevel)
+                    
                 }
             }
             
@@ -358,6 +373,9 @@ class DataMockStore: ObservableObject
                         newGlossary.isUnlocked = chapter2Glossary[1].isUnlocked
                         newGlossary.material = chapter2Glossary[1].material
                         newGlossary.level = newLevel
+                        
+                        allGlossaries.append(newGlossary)
+                        
                     }
                     
                     else if level.levelID == 213
@@ -367,18 +385,42 @@ class DataMockStore: ObservableObject
                         newGlossary.isUnlocked = chapter2Glossary[2].isUnlocked
                         newGlossary.material = chapter2Glossary[2].material
                         newGlossary.level = newLevel
+                        
+                        allGlossaries.append(newGlossary)
                     }
+                    
+                    allLevels.append(newLevel)
                 }
             }
             
-            mockStore.append(newChapter)
+            allChapters.append(newChapter)
+
         }
         
+        let mockStore: gameMockStore = gameMockStore(chapters: allChapters, levels: allLevels, glossaries: allGlossaries)
         
         save(context: context)
         
         return mockStore
     }
+
+    func allGlossary(chapters: [Chapter]) -> [Glossary]
+    {
+        var glossaries: [Glossary] = []
+        for chapter in chapters {
+            let levels = chapter.level?.allObjects as! [Level]
+            
+            for level in levels {
+                if level.glossary != nil
+                {
+                    glossaries.append(level.glossary!)
+                }
+            }
+        }
+        
+        return glossaries
+    }
+    
     
     func achievementMockStore(context: NSManagedObjectContext) -> [Achievement]
     {

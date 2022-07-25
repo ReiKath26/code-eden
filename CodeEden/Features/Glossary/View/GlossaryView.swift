@@ -8,7 +8,16 @@
 import SwiftUI
 
 struct GlossaryView: View {
+
+    @Binding var glossaries: [Glossary]
+    @State var alertShown = false
+    @State var readGlossary = false
+    
+    @State var index = 0
+    
     var body: some View {
+        
+       
         ZStack
         {
             Image("iPhone Background").resizable().scaledToFill().edgesIgnoringSafeArea(.all)
@@ -17,7 +26,7 @@ struct GlossaryView: View {
             {
                 geo in
                 
-                VStack
+                VStack (spacing: 30)
                 {
                     ZStack
                     {
@@ -32,10 +41,53 @@ struct GlossaryView: View {
                     }
                     
                     ScrollView(.vertical, showsIndicators: false) {
-                        //MARK: add material collectionview & logic
+                        
+                    VStack(spacing: 30)
+                    {
+                        ForEach(0..<glossaries.count)
+                        {
+                            i in
+                                Button {
+                                    if glossaries[i].isUnlocked
+                                    {
+                                        withAnimation {
+                                            readGlossary.toggle()
+                                            index = i
+                                        }
+                                    }
+                                    else
+                                    {
+                                        withAnimation {
+                                            alertShown.toggle()
+                                        }
+                                       
+                                    }
+                                } label: {
+                                    if glossaries[i].isUnlocked
+                                    {
+                                        GlossaryCardView(title: glossaries[i].title ?? "Loading title...", cover: glossaries[i].cover ?? "Intro Cover")
+                                    }
+                                    
+                                    else
+                                    {
+                                        LockedCardView(title: "Chapter \((glossaries[i].level?.levelID ?? 111) - 100)").frame(width: geo.size.width * 0.8, height: geo.size.height * 0.2)
+                                    }
+                                }.alert("Complete presequite challenge to unlock!", isPresented: $alertShown) {
+                                    Button("Okay", role: .cancel) {}
+                                }
+                            }
+                           
+                        }
+                        
+
                     }
                 }.position(x: geo.size.width/2, y: geo.size.height/2).frame( height: geo.size.height * 0.9)
                 
+            }
+            
+            if readGlossary
+            {
+                ReadGlossary(thisGlossary: .constant(glossaries[index]))
             }
         }
     }
@@ -43,6 +95,6 @@ struct GlossaryView: View {
 
 struct GlossaryView_Previews: PreviewProvider {
     static var previews: some View {
-        GlossaryView()
+        GlossaryView(glossaries: .constant(DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext).glossaries))
     }
 }

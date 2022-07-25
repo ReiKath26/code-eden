@@ -19,6 +19,8 @@ struct MainView: View {
     @State var currentState: state = .main
     @Binding var player: Player?
     
+    let chapters = DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext).chapters
+    
     var body: some View {
         ZStack
         {
@@ -29,7 +31,7 @@ struct MainView: View {
             
             else if currentState == .glossary
             {
-                GlossaryView()
+                GlossaryView(glossaries: .constant(DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext).glossaries))
             }
             
             else

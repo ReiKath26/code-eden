@@ -25,6 +25,7 @@
 		1419A265288C30930002A83A /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419A264288C30930002A83A /* LevelView.swift */; };
 		1419A267288C314E0002A83A /* LockedLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419A266288C314E0002A83A /* LockedLevelView.swift */; };
 		1419A269288C355D0002A83A /* ReadGlossary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419A268288C355D0002A83A /* ReadGlossary.swift */; };
+		1483D1DD288ED5F600DED005 /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1483D1DC288ED5F600DED005 /* TextToSpeech.swift */; };
 		149614CE288AA68A003E7396 /* CodeEdenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149614CD288AA68A003E7396 /* CodeEdenApp.swift */; };
 		149614D0288AA68A003E7396 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149614CF288AA68A003E7396 /* ContentView.swift */; };
 		149614D2288AA68B003E7396 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 149614D1288AA68B003E7396 /* Assets.xcassets */; };
@@ -54,6 +55,7 @@
 		1419A264288C30930002A83A /* LevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
 		1419A266288C314E0002A83A /* LockedLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedLevelView.swift; sourceTree = "<group>"; };
 		1419A268288C355D0002A83A /* ReadGlossary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadGlossary.swift; sourceTree = "<group>"; };
+		1483D1DC288ED5F600DED005 /* TextToSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
 		149614CA288AA68A003E7396 /* CodeEden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeEden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		149614CD288AA68A003E7396 /* CodeEdenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEdenApp.swift; sourceTree = "<group>"; };
 		149614CF288AA68A003E7396 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		1419A240288BE8810002A83A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				1483D1DB288ED5EB00DED005 /* TextToSpeech */,
 				149614D8288AA68B003E7396 /* CodeEden.xcdatamodeld */,
 				14C1884D288D4038005A68EE /* CoreDataHelper.swift */,
 			);
@@ -228,6 +231,14 @@
 				1419A25A288C1EBD0002A83A /* EditProfileView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1483D1DB288ED5EB00DED005 /* TextToSpeech */ = {
+			isa = PBXGroup;
+			children = (
+				1483D1DC288ED5F600DED005 /* TextToSpeech.swift */,
+			);
+			path = TextToSpeech;
 			sourceTree = "<group>";
 		};
 		149614C1288AA68A003E7396 = {
@@ -359,6 +370,7 @@
 				1419A267288C314E0002A83A /* LockedLevelView.swift in Sources */,
 				149614D0288AA68A003E7396 /* ContentView.swift in Sources */,
 				1419A248288BFA7D0002A83A /* ChooseModeCardView.swift in Sources */,
+				1483D1DD288ED5F600DED005 /* TextToSpeech.swift in Sources */,
 				149614CE288AA68A003E7396 /* CodeEdenApp.swift in Sources */,
 				1419A263288C30780002A83A /* ChapterView.swift in Sources */,
 			);

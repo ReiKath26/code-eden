@@ -6,9 +6,15 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct ReadGlossary: View {
     
+    @Binding var thisGlossary: Glossary?
+    @State var isPlaying = false
+    @Environment(\.dismiss) var dismiss
+    
+    let synth = AVSpeechSynthesizer()
     
     var body: some View {
         ZStack
@@ -25,24 +31,50 @@ struct ReadGlossary: View {
                     
                     VStack
                     {
-                        Image("Mascot - Eva").resizable().frame(width: geo.size.width * 0.9, height: geo.size.height * 0.2)
+                        Image(thisGlossary?.cover ?? "Intro Cover").resizable().frame(width: geo.size.width * 0.8, height: geo.size.height * 0.1)
                         
-                        Text("Title").font(Font.custom("Silom", size: 30)).foregroundColor(Color("mainPurple"))
+                        Text(thisGlossary?.title ?? "Loading title...").font(Font.custom("Silom", size: geo.size.width * 0.07)).foregroundColor(Color("mainPurple"))
                         
-                        Text("Desc").font(Font.custom("Silom", size: 18)).foregroundColor(Color("mainPurple")).frame(width: geo.size.width * 0.7, height: geo.size.height * 0.3)
+                        ScrollView(.vertical, showsIndicators: false) {
+                            Text(thisGlossary?.material ?? "Loading material...").font(Font.custom("Silom", size: geo.size.width * 0.03)).foregroundColor(Color("mainPurple"))
+                        }.frame(width: geo.size.width * 0.8, height: geo.size.height * 0.5)
+                        
                         
                         HStack(spacing: 50)
                         {
                             Button {
-                                
+                                dismiss()
                             } label: {
                                 Image(systemName: "arrowshape.turn.up.backward.fill").font(.system(size: 24)).foregroundColor(Color("mainPurple"))
                             }
                             
                             Button {
                                 
+                                if isPlaying
+                                {
+                                    synth.pauseSpeaking(at: .immediate)
+                                    isPlaying.toggle()
+                                }
+                                
+                                else
+                                {
+                                    isPlaying.toggle()
+                                    let utterance = AVSpeechUtterance(string: thisGlossary?.material ?? "Loading material")
+                                    utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+                                    
+                                    if !synth.isPaused
+                                    {
+                                        synth.speak(utterance)
+                                    }
+                                    
+                                    else
+                                    {
+                                        synth.continueSpeaking()
+                                    }
+                                }
+                                
                             } label: {
-                                Image(systemName: "headphones").font(.system(size: 24)).foregroundColor(Color("mainPurple"))
+                                Image(systemName: isPlaying ? "pause.fill" : "headphones").font(.system(size: 24)).foregroundColor(Color("mainPurple"))
                             }
                             
                             Button {
@@ -65,6 +97,6 @@ struct ReadGlossary: View {
 
 struct ReadGlossary_Previews: PreviewProvider {
     static var previews: some View {
-        ReadGlossary()
+        ReadGlossary(thisGlossary: .constant(DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext).glossaries.first))
     }
 }
