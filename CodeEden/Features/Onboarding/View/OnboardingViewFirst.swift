@@ -20,6 +20,7 @@ struct OnboardingViewFirst: View {
     @State private var index = 0
     @State private var name : String = ""
     @State private var count = 1
+    @State var newPlayer: Player?
     
     @AppStorage("userStatus") var status: Bool = false
     
@@ -27,12 +28,13 @@ struct OnboardingViewFirst: View {
     
     var avatar = ["Mascot - Adira", "Mascot - Eva"]
     
+    @Environment(\.managedObjectContext) var managedObjectContext
     
     var body: some View {
         
         ZStack
         {
-            MainView()
+            MainView(player: $newPlayer)
         
         ZStack
         {
@@ -114,7 +116,7 @@ struct OnboardingViewFirst: View {
                                 withAnimation(Animation.easeOut(duration: 0.45)) {
                                     status = true
                                     
-                                    //MARK: add core data save user logic
+                                    newPlayer = DataMockStore().newPlayer(name: name, avatar: avatar[index], context: managedObjectContext)
                                 }
                             } label: {
                                 ChooseModeCardView(title: modes[i].title, icon: modes[i].icon, desc: modes[i].desc).frame(width: geo.size.width * 0.85, height: geo.size.height * 0.2)

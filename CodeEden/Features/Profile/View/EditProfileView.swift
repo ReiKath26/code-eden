@@ -12,7 +12,10 @@ struct EditProfileView: View {
     @State var name = ""
     @State var index = 0
     var avatar = ["Mascot - Adira", "Mascot - Eva"]
+    @Binding var player : Player?
     
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         
         ZStack
@@ -57,9 +60,10 @@ struct EditProfileView: View {
                     TextField("Enter your name here...", text: $name).background().textFieldStyle(RoundedBorderTextFieldStyle()).frame(width: geo.size.width * 0.8, height: geo.size.width * 0.1).font(Font.custom("Silom", size: 16))
                     
                     Button {
-                        withAnimation {
-                           // MARK: save edited profile
-                        }
+                            
+                        DataMockStore().editProfile(player: player!, name: name, avatar: avatar[index], context: managedObjectContext)
+                        
+                        dismiss()
                     } label: {
                         
                         ZStack
@@ -79,6 +83,6 @@ struct EditProfileView: View {
 
 struct EditProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfileView()
+        EditProfileView(player: .constant(DataMockStore().newPlayer(name: "User", avatar: "Mascot - Adira", context: DataMockStore().container.viewContext)))
     }
 }

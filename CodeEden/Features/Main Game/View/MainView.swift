@@ -17,6 +17,7 @@ enum state
 struct MainView: View {
     
     @State var currentState: state = .main
+    @Binding var player: Player?
     
     var body: some View {
         ZStack
@@ -33,7 +34,7 @@ struct MainView: View {
             
             else
             {
-                ProfileView()
+                ProfileView(player: $player)
             }
             
             GeometryReader
@@ -99,6 +100,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(player: .constant(DataMockStore().newPlayer(name: "User", avatar: "Mascot - Adira", context: DataMockStore().container.viewContext)))
     }
 }

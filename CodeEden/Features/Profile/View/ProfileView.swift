@@ -10,6 +10,9 @@ import SwiftUI
 struct ProfileView: View {
     
     @State var edit = false
+    @Binding var player: Player?
+    
+    var achievement : [Achievement] = DataMockStore().achievementMockStore(context: DataMockStore().container.viewContext)
     var body: some View {
         ZStack
         {
@@ -23,9 +26,9 @@ struct ProfileView: View {
                 {
                     VStack
                     {
-                        Image("Mascot - Cody").resizable().frame(width: geo.size.width * 0.4, height: geo.size.width * 0.4)
+                        Image(player?.avatar ?? "Mascot - Cody").resizable().frame(width: geo.size.width * 0.4, height: geo.size.width * 0.4)
                         
-                        Text("User").font(Font.custom("Silom", size: 24)).foregroundColor(Color("whiteAccent"))
+                        Text(player?.name ?? "Loading name...").font(Font.custom("Silom", size: 24)).foregroundColor(Color("whiteAccent"))
                         
                         ZStack
                         {
@@ -34,7 +37,7 @@ struct ProfileView: View {
                             {
                                 Image("star").resizable().frame(width: geo.size.width * 0.1, height: geo.size.width * 0.1)
                                 
-                                Text("20").font(Font.custom("Silom", size: 20)).foregroundColor(Color("mainPurple"))
+                                Text("\(Int(player?.stars ?? 0))").font(Font.custom("Silom", size: 20)).foregroundColor(Color("mainPurple"))
                             }
                         }
                         
@@ -42,7 +45,7 @@ struct ProfileView: View {
                         {
                             RoundedRectangle(cornerRadius: 10).frame(width: geo.size.width * 0.9, height: geo.size.height * 0.45).foregroundColor(Color("whiteAccent"))
                             
-                            VStack
+                            VStack(spacing: 20)
                             {
                                 ZStack
                                 {
@@ -50,11 +53,23 @@ struct ProfileView: View {
                                     Text("My Achievement").foregroundColor(Color("whiteAccent")).font(Font.custom("Silom", size: 20))
                                 }
                              
+                                    ScrollView(.vertical, showsIndicators:false)
+                                    {
+                                        ForEach(0..<achievement.count)
+                                        {
+                                            i in
+                                            
+                                            HStack
+                                            {
+                                                CircularProgressBar(progress: .constant(achievement[i].progress), icon: achievement[i].icon ?? "star").frame(width: geo.size.width * 0.3, height: geo.size.width * 0.3)
+                                                
+                                                Text(achievement[i].desc ?? "Loading desc...").font(Font.custom("Silom", size: geo.size.width * 0.04)).foregroundColor(Color("mainPurple")).frame(width: geo.size.width * 0.4)
+                                            }
+                                        }
+                                    }
                                 
-                                ScrollView(.vertical, showsIndicators:false)
-                                {
-                                    //MARK: add achievement view and logic
-                                }
+                                
+                               
                             }
                         }.frame(width: geo.size.width * 0.9, height: geo.size.height * 0.45)
                        
@@ -85,12 +100,10 @@ struct ProfileView: View {
                 }
               
                
+            }.sheet(isPresented: $edit) {
+                EditProfileView(name: player?.name ?? "", player: $player)
             }
-            
-            if edit
-            {
-                EditProfileView()
-            }
+
 
         }
     }
@@ -98,6 +111,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(player: .constant(DataMockStore().newPlayer(name: "User", avatar: "Mascot - Adira", context: DataMockStore().container.viewContext)))
     }
 }

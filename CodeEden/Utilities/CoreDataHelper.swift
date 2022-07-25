@@ -357,19 +357,18 @@ class DataMockStore: ObservableObject
     {
         var mockstore: [Achievement] = []
         
-        let achievement = Achievement(context: context)
-        achievement.progress = 0
-        achievement.desc = "Collect 10 Stars"
-        achievement.icon = "star"
-        
-        let anotherAchievement = Achievement(context: context)
-        achievement.progress = 0
-        achievement.desc = "Complete 5 levels without using hints"
-        achievement.icon = "loupe"
-        
-        mockstore.append(achievement)
-        mockstore.append(anotherAchievement)
-        
+        let achievements = [(progress: 0.0, desc: "Collect 10 Stars", icon: "star"), (progress: 0.0, desc: "Complete 5 levels without using hints", icon: "loupe")]
+    
+        for achieve in achievements
+        {
+            let newAchievements = NSEntityDescription.insertNewObject(forEntityName: "Achievement", into: context) as! Achievement
+            newAchievements.progress = Float(achieve.progress)
+            newAchievements.desc = achieve.desc
+            newAchievements.icon = achieve.icon
+            
+            mockstore.append(newAchievements)
+        }
+    
         save(context: context)
         
         return mockstore
