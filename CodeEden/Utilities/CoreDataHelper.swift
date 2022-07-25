@@ -243,6 +243,26 @@ class DataMockStore: ObservableObject
         gl_4.isUnlocked = false
         gl_4.material = """
         
+        Data structure is a storage that is used to store and organize data. It is a way of arranging data
+        on a computer so that it can be accessed and updated efficiently. Once again, the data structure is
+        not a programming language, but rather a set of algorithms that we can use in any programming
+        language to structure the data in the memory. These set of algorithms can also be said to be set of
+        rules in a way to structure the data.
+        
+        For example, you want to arrange a data structure of the students in your school ordered based on
+        their student ID. Using the common data structure array, you will then put such rule:
+        
+        "If student A's student ID is lower than student B's then it should be placed in an index in front
+        of student B, other wise put in on an index next to student B"
+        
+        There are several types of data structures out there, from the Linear Data Structures  to Non-linear
+        Data Structures. We'll discuss on some of these data structures later in the next challenges!
+        
+        
+        Reference:
+        
+        https://www.programiz.com/dsa/data-structure-types
+        https://www.javatpoint.com/data-structure-tutorial
         
         
         """
@@ -302,7 +322,24 @@ class DataMockStore: ObservableObject
         gl_6.isUnlocked = false
         gl_6.material = """
         
+        Stacks and Queue are another type of linear data structure. Let's take a look at their differences!
         
+        Stacks
+        
+        A stack is a linear data structure in which elements can be inserted and deleted only from one side
+        of the list, called the top. A stack follows the LIFO (Last In First Out) principle, i.e., the
+        element inserted at the last is the first element to come out. It's like stacking books, where if
+        you want to take some book out you will need to start from the top and not the bottom.
+        
+        Queue
+        
+        Queue is a linear data structure in which elements can be inserted only from one side of the list
+        called rear, and the elements can be deleted only from the other side called the front. The queue
+        data structure follows the FIFO (First In First Out) principle, i.e. the element inserted at first
+        in the list, is the first element to be removed from the list. It works just like a queue in real
+        life where someone will get in from the rear and get out once they reached the front.
+        
+        Now that you have read about stacks and queue, let's see the implementation on the next challenges!
         
         """
         
