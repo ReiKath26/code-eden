@@ -343,6 +343,13 @@ class DataMockStore: ObservableObject
         
         """
         
+        mockStore.append(gl_1)
+        mockStore.append(gl_2)
+        mockStore.append(gl_3)
+        mockStore.append(gl_4)
+        mockStore.append(gl_5)
+        mockStore.append(gl_6)
+        
         return mockStore
     }
     
