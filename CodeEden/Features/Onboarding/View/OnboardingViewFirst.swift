@@ -23,7 +23,6 @@ struct OnboardingViewFirst: View {
     @State var newPlayer: Player?
     
     @AppStorage("userStatus") var status: Bool = false
-    
     let modes: [mode] = ModeMockStore.modes
     
     var avatar = ["Mascot - Adira", "Mascot - Eva"]

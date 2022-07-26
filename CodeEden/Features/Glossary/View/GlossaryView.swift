@@ -70,7 +70,7 @@ struct GlossaryView: View {
                                     
                                     else
                                     {
-                                        LockedCardView(title: "Chapter \((glossaries[i].level?.levelID ?? 111) - 100)").frame(width: geo.size.width * 0.8, height: geo.size.height * 0.2)
+                                        LockedCardView(title: "Chapter \(glossaries[i].level?.levelID ?? 1)").frame(width: geo.size.width * 0.8, height: geo.size.height * 0.2)
                                     }
                                 }.alert("Complete presequite challenge to unlock!", isPresented: $alertShown) {
                                     Button("Okay", role: .cancel) {}

@@ -24,7 +24,6 @@
 		1419A265288C30930002A83A /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419A264288C30930002A83A /* LevelView.swift */; };
 		1419A267288C314E0002A83A /* LockedLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419A266288C314E0002A83A /* LockedLevelView.swift */; };
 		1419A269288C355D0002A83A /* ReadGlossary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419A268288C355D0002A83A /* ReadGlossary.swift */; };
-		1483D1DD288ED5F600DED005 /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1483D1DC288ED5F600DED005 /* TextToSpeech.swift */; };
 		149614CE288AA68A003E7396 /* CodeEdenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149614CD288AA68A003E7396 /* CodeEdenApp.swift */; };
 		149614D0288AA68A003E7396 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149614CF288AA68A003E7396 /* ContentView.swift */; };
 		149614D2288AA68B003E7396 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 149614D1288AA68B003E7396 /* Assets.xcassets */; };
@@ -58,7 +57,6 @@
 		1419A264288C30930002A83A /* LevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
 		1419A266288C314E0002A83A /* LockedLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedLevelView.swift; sourceTree = "<group>"; };
 		1419A268288C355D0002A83A /* ReadGlossary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadGlossary.swift; sourceTree = "<group>"; };
-		1483D1DC288ED5F600DED005 /* TextToSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
 		149614CA288AA68A003E7396 /* CodeEden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeEden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		149614CD288AA68A003E7396 /* CodeEdenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEdenApp.swift; sourceTree = "<group>"; };
 		149614CF288AA68A003E7396 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +70,7 @@
 		14EC61AE288FC044001EA2FD /* Level2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level2.swift; sourceTree = "<group>"; };
 		14EC61B0288FC04B001EA2FD /* Level3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level3.swift; sourceTree = "<group>"; };
 		14EC61B2288FC055001EA2FD /* Level4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level4.swift; sourceTree = "<group>"; };
+		14EC61B5288FF327001EA2FD /* TextToSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,7 +176,6 @@
 		1419A240288BE8810002A83A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				1483D1DB288ED5EB00DED005 /* TextToSpeech */,
 				149614D8288AA68B003E7396 /* CodeEden.xcdatamodeld */,
 				14C1884D288D4038005A68EE /* CoreDataHelper.swift */,
 			);
@@ -212,6 +210,7 @@
 		1419A24C288C0F2E0002A83A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				14EC61B6288FF621001EA2FD /* Scene */,
 				14EC61A7288F9B42001EA2FD /* Levels */,
 				1419A23C288BD6A00002A83A /* MainView.swift */,
 				1419A24E288C0F470002A83A /* MainMenu.swift */,
@@ -242,14 +241,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		1483D1DB288ED5EB00DED005 /* TextToSpeech */ = {
-			isa = PBXGroup;
-			children = (
-				1483D1DC288ED5F600DED005 /* TextToSpeech.swift */,
-			);
-			path = TextToSpeech;
-			sourceTree = "<group>";
-		};
 		149614C1288AA68A003E7396 = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +264,7 @@
 				149614CD288AA68A003E7396 /* CodeEdenApp.swift */,
 				1419A234288BD60E0002A83A /* Features */,
 				1419A22F288BCE910002A83A /* Assets */,
+				14EC61B4288FF327001EA2FD /* TextToSpeech */,
 				1419A240288BE8810002A83A /* Utilities */,
 				1419A246288BF4250002A83A /* ViewModel */,
 				149614D3288AA68B003E7396 /* Preview Content */,
@@ -313,6 +305,21 @@
 			children = (
 			);
 			path = "Chapter 2";
+			sourceTree = "<group>";
+		};
+		14EC61B4288FF327001EA2FD /* TextToSpeech */ = {
+			isa = PBXGroup;
+			children = (
+				14EC61B5288FF327001EA2FD /* TextToSpeech.swift */,
+			);
+			path = TextToSpeech;
+			sourceTree = "<group>";
+		};
+		14EC61B6288FF621001EA2FD /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Scene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,7 +418,6 @@
 				14EC61B1288FC04B001EA2FD /* Level3.swift in Sources */,
 				149614D0288AA68A003E7396 /* ContentView.swift in Sources */,
 				1419A248288BFA7D0002A83A /* ChooseModeCardView.swift in Sources */,
-				1483D1DD288ED5F600DED005 /* TextToSpeech.swift in Sources */,
 				149614CE288AA68A003E7396 /* CodeEdenApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

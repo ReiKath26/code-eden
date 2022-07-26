@@ -6,11 +6,27 @@
 //
 
 import SwiftUI
+import SceneKit
 
 struct Level1: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+    
+    var scene = SCNScene(named: "Art.scnassets/LevelScene.scn")!
+    var cameraNode: SCNNode? {
+        scene.rootNode.childNode(withName: "camera", recursively: false)
+            }
+            
+            var body: some View {
+                
+                ZStack
+                {
+                    SceneView(
+                            scene: scene,
+                            pointOfView: cameraNode,
+                            options: [.allowsCameraControl]
+                    )
+                }
+                    
+            }
 }
 
 struct Level1_Previews: PreviewProvider {

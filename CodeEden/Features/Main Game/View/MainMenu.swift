@@ -9,8 +9,10 @@ import SwiftUI
 
 struct MainMenu: View {
     
-    @Binding var chapters: [Chapter]
-    @Binding var player: Player?
+    var mockStore: gameMockStore
+    var player: Player?
+    
+    @ObservedObject var gameSetting: GamePlayState
     @State var index = 0
     @State var showLevelSelect = false
     @State var mode = "Normal"
@@ -40,7 +42,7 @@ struct MainMenu: View {
                                 HStack
                                 {
                                     
-                                        ForEach(0..<chapters.count)
+                                    ForEach(0..<mockStore.chapters.count)
                                         {
                                             i in
                                             
@@ -53,9 +55,9 @@ struct MainMenu: View {
                                                 
                                                 VStack
                                                {
-                                                   CircularProgressBar(progress: .constant(chapters[i].progress), icon: chapters[i].icon ?? "Mascot - Cody").frame(width: geo.size.width * 0.4, height: geo.size.width * 0.4)
+                                                   CircularProgressBar(progress: .constant(mockStore.chapters[i].progress), icon: mockStore.chapters[i].icon ?? "Mascot - Cody").frame(width: geo.size.width * 0.4, height: geo.size.width * 0.4)
                                                    
-                                                   Text(chapters[i].title ?? "Loading chapter...").font(Font.custom("Silom", size: geo.size.width * 0.035)).foregroundColor(Color("whiteAccent"))
+                                                   Text(mockStore.chapters[i].title ?? "Loading chapter...").font(Font.custom("Silom", size: geo.size.width * 0.035)).foregroundColor(Color("whiteAccent"))
                                                 }
                                             }
 
@@ -77,10 +79,7 @@ struct MainMenu: View {
           
             if showLevelSelect
             {
-                LevelSelectView(levels: .constant(DataMockStore().levelOfChapter(chapter: chapters[index]).sorted
-                {
-                    $0.levelID < $1.levelID
-                }), player: .constant(player) )
+                LevelSelectView(setUp: gameSetting, levels: mockStore.levels, chapters: mockStore.chapters)
             }
         }
     }
@@ -88,6 +87,7 @@ struct MainMenu: View {
 
 struct MainMenu_Previews: PreviewProvider {
     static var previews: some View {
-        MainMenu(chapters: .constant(DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext).chapters), player: .constant(DataMockStore().newPlayer(name: "User", avatar: "Mascot - Adira", context: DataMockStore().container.viewContext)))
+        MainMenu(mockStore: DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext), gameSetting: GamePlayState())
     }
 }
+

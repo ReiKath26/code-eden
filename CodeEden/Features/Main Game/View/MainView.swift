@@ -16,11 +16,11 @@ enum state
 
 struct MainView: View {
     
-    @EnvironmentObject var gameState: GamePlayState
+    @StateObject var gameState = GamePlayState()
     @State var currentState: state = .main
     @Binding var player: Player?
     
-    let chapters = DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext).chapters
+    let mockStore = DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext)
     
     var body: some View {
         ZStack
@@ -29,7 +29,7 @@ struct MainView: View {
             {
                 if currentState == .main
                 {
-                    MainMenu(chapters: .constant(chapters), player: .constant(player))
+                    MainMenu(mockStore: mockStore, gameSetting: gameState)
                 }
                 
                 else if currentState == .glossary

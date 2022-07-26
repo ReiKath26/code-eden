@@ -9,13 +9,15 @@ import SwiftUI
 
 struct LevelSelectView: View {
     
-    @StateObject var setUp = GamePlayState()
     
+    @ObservedObject var setUp: GamePlayState
     @State var mode = "Normal"
     @State var levelIsLocked = false
     
-    @Binding var levels: [Level]
-    @Binding var player: Player?
+    var levels: [Level]
+    var chapters: [Chapter]
+    @State var index = 0
+    var player: Player?
     
     @Environment(\.dismiss) var dismiss
     
@@ -60,9 +62,9 @@ struct LevelSelectView: View {
                         ScrollView(.vertical, showsIndicators: false) {
                             VStack
                             {
-                                CircularProgressBar(progress: .constant(levels[0].chapter?.progress ?? 0), icon: levels[0].chapter?.icon ?? "Mascot - Cody").frame(width: geo.size.width * 0.4, height: geo.size.width * 0.4)
+                                CircularProgressBar(progress: .constant(chapters[index].progress ), icon: chapters[index].icon ?? "Mascot - Cody").frame(width: geo.size.width * 0.4, height: geo.size.width * 0.4)
                                 
-                                Text(levels[0].chapter?.title ?? "Loading chapter...").font(Font.custom("Silom", size: geo.size.width * 0.035)).foregroundColor(Color("whiteAccent"))
+                                Text(chapters[index].title ?? "Loading chapter...").font(Font.custom("Silom", size: geo.size.width * 0.035)).foregroundColor(Color("whiteAccent"))
                                 
                                 Button {
                                     
@@ -81,49 +83,15 @@ struct LevelSelectView: View {
                                 {
                                     i in
                                     
-                                    if i == 0
-                                    {
                                         Button {
                                             withAnimation {
                                                 setUp.currentState = .play
-//                                                setUp.levelID = levels[i].levelID
                                             }
                                         } label: {
                                             LevelView(level: .constant(levels[i])).frame(width: geo.size.width * 0.6, height: geo.size.width * 0.6)
                                         }
 
-                                        
-                                    }
                                     
-                                    else
-                                    {
-                                        if !levels[i-1].isDone
-                                        {
-                                            Button {
-                                                levelIsLocked.toggle()
-                                            } label: {
-                                                LockedLevelView().frame(width: geo.size.width * 0.6, height: geo.size.width * 0.6)
-                                            }.alert("Complete presequite level to unlock!", isPresented: $levelIsLocked) {
-                                                Button("Okay", role: .cancel) {}
-                                            }
-
-                                           
-                                        }
-                                        
-                                        else
-                                        {
-                                            Button {
-                                                withAnimation {
-                                                    setUp.currentState = .play
-//                                                    setUp.levelID = levels[i].levelID
-                                                }
-                                            } label: {
-                                                LevelView(level: .constant(levels[i])).frame(width: geo.size.width * 0.6, height: geo.size.width * 0.6)
-                                            }
-
-                                            
-                                        }
-                                    }
                                 }
 
                             }
@@ -137,9 +105,6 @@ struct LevelSelectView: View {
 
 struct LevelSelectView_Previews: PreviewProvider {
     static var previews: some View {
-        LevelSelectView(levels: .constant(DataMockStore().levelOfChapter(chapter: DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext).chapters.first!).sorted
-                                          {
-            $0.levelID < $1.levelID
-        }), player: .constant(DataMockStore().newPlayer(name: "User", avatar: "Mascot - Adira", context: DataMockStore().container.viewContext)))
+        LevelSelectView(setUp: GamePlayState(), levels: DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext).levels, chapters: DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext).chapters)
     }
 }

@@ -13,6 +13,7 @@ struct gameMockStore
 {
     var chapters: [Chapter]
     var glossaries: [Glossary]
+    var levels: [Level]
 }
 
 class DataMockStore: ObservableObject
@@ -93,14 +94,10 @@ class DataMockStore: ObservableObject
         save(context: context)
     }
     
-    func levelOfChapter(chapter: Chapter) -> [Level]
-    {
-        return chapter.level?.allObjects as! [Level]
-    }
-    
     func gamePlayMockStore(context: NSManagedObjectContext) -> gameMockStore
     {
         var allChapters: [Chapter] = []
+        var allLevels: [Level] = []
         var allGlossaries: [Glossary] = []
         
         let chapters = [(title: "Introduction", icon: "Mascot - Cody", progress: 0), (title: "Data Structure I", icon:"loupe", progress: 0)]
@@ -308,19 +305,18 @@ class DataMockStore: ObservableObject
                     newLevel.isDone = level.isDone
                     newLevel.mode = level.levelMode
                     newLevel.stars = Double(level.stars)
-                    newLevel.chapter = newChapter
                     
-                    if level.levelID == 111
+                    if level.levelID == 1
                     {
                         let newGlossary = NSEntityDescription.insertNewObject(forEntityName: "Glossary", into: context) as! Glossary
                         newGlossary.title = chapter1Glossary[0].title
-                        newGlossary.isUnlocked = chapter1Glossary[0].isUnlocked
+                        newGlossary.isUnlocked = true
                         newGlossary.material = chapter1Glossary[0].material
                         newGlossary.level = newLevel
                         
                         allGlossaries.append(newGlossary)
                     }
-                    else if level.levelID == 112
+                    else if level.levelID == 2
                     {
                         let newGlossary = NSEntityDescription.insertNewObject(forEntityName: "Glossary", into: context) as! Glossary
                         newGlossary.title = chapter1Glossary[1].title
@@ -332,7 +328,7 @@ class DataMockStore: ObservableObject
                         
                     }
                     
-                    else if level.levelID == 113
+                    else if level.levelID == 3
                     {
                         let newGlossary = NSEntityDescription.insertNewObject(forEntityName: "Glossary", into: context) as! Glossary
                         newGlossary.title = chapter1Glossary[2].title
@@ -354,6 +350,9 @@ class DataMockStore: ObservableObject
                         allGlossaries.append(newGlossary)
                     }
                     
+                    newChapter.addToLevel(newLevel)
+                    allLevels.append(newLevel)
+                    
                 }
             }
             
@@ -365,9 +364,8 @@ class DataMockStore: ObservableObject
                     newLevel.isDone = level.isDone
                     newLevel.mode = level.levelMode
                     newLevel.stars = Double(level.stars)
-                    newLevel.chapter = newChapter
                     
-                    if level.levelID == 211
+                    if level.levelID == 5
                     {
                         let newGlossary = NSEntityDescription.insertNewObject(forEntityName: "Glossary", into: context) as! Glossary
                         newGlossary.title = chapter2Glossary[1].title
@@ -379,7 +377,7 @@ class DataMockStore: ObservableObject
                         
                     }
                     
-                    else if level.levelID == 213
+                    else if level.levelID == 7
                     {
                         let newGlossary = NSEntityDescription.insertNewObject(forEntityName: "Glossary", into: context) as! Glossary
                         newGlossary.title = chapter2Glossary[2].title
@@ -389,6 +387,9 @@ class DataMockStore: ObservableObject
                         
                         allGlossaries.append(newGlossary)
                     }
+                    
+                    newChapter.addToLevel(newLevel)
+                    allLevels.append(newLevel)
                 }
             }
             
@@ -396,28 +397,14 @@ class DataMockStore: ObservableObject
 
         }
         
-        let mockStore: gameMockStore = gameMockStore(chapters: allChapters, glossaries: allGlossaries)
-        
+        let mockStore: gameMockStore = gameMockStore(chapters: allChapters, glossaries: allGlossaries, levels: allLevels)
+        print(mockStore.chapters.count)
+        print(mockStore.levels.count)
+        print(mockStore.glossaries.count)
+        print(mockStore.glossaries)
         save(context: context)
         
         return mockStore
-    }
-
-    func allGlossary(chapters: [Chapter]) -> [Glossary]
-    {
-        var glossaries: [Glossary] = []
-        for chapter in chapters {
-            let levels = chapter.level?.allObjects as! [Level]
-            
-            for level in levels {
-                if level.glossary != nil
-                {
-                    glossaries.append(level.glossary!)
-                }
-            }
-        }
-        
-        return glossaries
     }
     
     
