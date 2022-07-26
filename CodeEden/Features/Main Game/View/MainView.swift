@@ -16,6 +16,7 @@ enum state
 
 struct MainView: View {
     
+    @EnvironmentObject var gameState: GamePlayState
     @State var currentState: state = .main
     @Binding var player: Player?
     
@@ -24,19 +25,39 @@ struct MainView: View {
     var body: some View {
         ZStack
         {
-            if currentState == .main
+            if gameState.currentState == .main
             {
-                MainMenu(chapters: .constant(chapters), player: .constant(player))
-            }
-            
-            else if currentState == .glossary
-            {
-                GlossaryView(glossaries: .constant(DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext).glossaries))
+                if currentState == .main
+                {
+                    MainMenu(chapters: .constant(chapters), player: .constant(player))
+                }
+                
+                else if currentState == .glossary
+                {
+                    GlossaryView(glossaries: .constant(DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext).glossaries))
+                }
+                
+                else
+                {
+                    ProfileView(player: $player)
+                }
             }
             
             else
             {
-                ProfileView(player: $player)
+                switch gameState.levelID
+                {
+                    case 1:
+                        Level1()
+                    case 2:
+                        Level2()
+                    case 3:
+                        Level3()
+                    case 4:
+                        Level4()
+                default:
+                    Level1()
+                }
             }
             
             GeometryReader
@@ -50,44 +71,77 @@ struct MainView: View {
                     HStack(spacing: 30)
                     {
                         Button {
-                            withAnimation(Animation.easeOut(duration: 0.3)) {
-                                currentState = .glossary
+                            
+                            if gameState.currentState == .main
+                            {
+                                withAnimation(Animation.easeOut(duration: 0.3)) {
+                                    currentState = .glossary
                             }
+                                
+                            }
+                                
+                            else
+                            {
+                                //MARK: Reset game logic
+                            }
+                                
+                            
+    
                         } label: {
                             
                             ZStack
                             {
                                 RoundedRectangle(cornerRadius: 10).frame(width: geo.size.width * 0.22, height: currentState == .glossary ? geo.size.height * 0.07 : geo.size.height * 0.05).foregroundColor(Color(currentState == .glossary ? "mainPurple" : "whiteAccent"))
                                 
-                                Image(systemName: "books.vertical.fill").font(.system(size: currentState == .glossary ? geo.size.width * 0.1 : geo.size.width * 0.05)).foregroundColor(Color(currentState == .glossary ? "whiteAccent" : "mainPurple"))
+                                Image(systemName: gameState.currentState == .main ?  "books.vertical.fill" : "arrow.clockwise").font(.system(size: currentState == .glossary ? geo.size.width * 0.1 : geo.size.width * 0.05)).foregroundColor(Color(currentState == .glossary ? "whiteAccent" : "mainPurple"))
                             }
                         }
                         
                         Button {
-                            withAnimation(Animation.easeOut(duration: 0.3)) {
-                                currentState = .main
+                            
+                            if gameState.currentState == .main
+                            {
+                                withAnimation(Animation.easeOut(duration: 0.3)) {
+                                    currentState = .main
+                                }
                             }
+                            
+                            else
+                            {
+                                //MARK: play code result
+                            }
+                            
                         } label: {
                             
                             ZStack
                             {
                                 RoundedRectangle(cornerRadius: 10).frame(width: geo.size.width * 0.22, height: currentState == .main ? geo.size.height * 0.07 : geo.size.height * 0.05).foregroundColor(Color(currentState == .main ? "mainPurple" : "whiteAccent"))
                                 
-                                Image(systemName: "play.circle.fill").font(.system(size: currentState == .main ? geo.size.width * 0.1 : geo.size.width * 0.05)).foregroundColor(Color(currentState == .main ? "whiteAccent" : "mainPurple"))
+                                Image(systemName: gameState.currentState == .main ?  "play.circle.fill" : "play.square.fill").font(.system(size: currentState == .main ? geo.size.width * 0.1 : geo.size.width * 0.05)).foregroundColor(Color(currentState == .main ? "whiteAccent" : "mainPurple"))
                             }
                         }
                         
                         Button {
-                            withAnimation(Animation.easeOut(duration: 0.3)) {
-                                currentState = .profile
+                            
+                            if gameState.currentState == .main
+                            {
+                                withAnimation(Animation.easeOut(duration: 0.3)) {
+                                    currentState = .profile
+                                }
                             }
+                            
+                            else
+                            {
+                                //MARK: open code editor
+                            }
+                            
                         } label: {
                             
                             ZStack
                             {
                                 RoundedRectangle(cornerRadius: 10).frame(width: geo.size.width * 0.22, height: currentState == .profile ? geo.size.height * 0.07 : geo.size.height * 0.05).foregroundColor(Color(currentState == .profile ? "mainPurple" : "whiteAccent"))
                                 
-                                Image(systemName: "person.fill").font(.system(size: currentState == .profile ? geo.size.width * 0.1 : geo.size.width * 0.07)).foregroundColor(Color(currentState == .profile ? "whiteAccent" : "mainPurple"))
+                                Image(systemName: gameState.currentState == .main ?  "person.fill" : "chevron.left.forwardslash.chevron.right").font(.system(size: currentState == .profile ? geo.size.width * 0.1 : geo.size.width * 0.07)).foregroundColor(Color(currentState == .profile ? "whiteAccent" : "mainPurple"))
                             }
                         }
                         

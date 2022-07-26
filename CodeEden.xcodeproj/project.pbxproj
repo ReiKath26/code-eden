@@ -33,6 +33,10 @@
 		149614E1288AAA11003E7396 /* Art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 149614E0288AAA11003E7396 /* Art.scnassets */; };
 		14C1884E288D4038005A68EE /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1884D288D4038005A68EE /* CoreDataHelper.swift */; };
 		14EC61AB288FAC81001EA2FD /* Level1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EC61AA288FAC81001EA2FD /* Level1.swift */; };
+		14EC61AD288FBDD9001EA2FD /* GamePlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EC61AC288FBDD9001EA2FD /* GamePlayState.swift */; };
+		14EC61AF288FC044001EA2FD /* Level2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EC61AE288FC044001EA2FD /* Level2.swift */; };
+		14EC61B1288FC04B001EA2FD /* Level3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EC61B0288FC04B001EA2FD /* Level3.swift */; };
+		14EC61B3288FC055001EA2FD /* Level4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EC61B2288FC055001EA2FD /* Level4.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +68,10 @@
 		149614E0288AAA11003E7396 /* Art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Art.scnassets; sourceTree = "<group>"; };
 		14C1884D288D4038005A68EE /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		14EC61AA288FAC81001EA2FD /* Level1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level1.swift; sourceTree = "<group>"; };
+		14EC61AC288FBDD9001EA2FD /* GamePlayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayState.swift; sourceTree = "<group>"; };
+		14EC61AE288FC044001EA2FD /* Level2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level2.swift; sourceTree = "<group>"; };
+		14EC61B0288FC04B001EA2FD /* Level3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level3.swift; sourceTree = "<group>"; };
+		14EC61B2288FC055001EA2FD /* Level4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level4.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +196,7 @@
 		1419A246288BF4250002A83A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				14EC61AC288FBDD9001EA2FD /* GamePlayState.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -292,6 +301,9 @@
 			isa = PBXGroup;
 			children = (
 				14EC61AA288FAC81001EA2FD /* Level1.swift */,
+				14EC61AE288FC044001EA2FD /* Level2.swift */,
+				14EC61B0288FC04B001EA2FD /* Level3.swift */,
+				14EC61B2288FC055001EA2FD /* Level4.swift */,
 			);
 			path = "Chapter 1";
 			sourceTree = "<group>";
@@ -379,10 +391,13 @@
 				14C1884E288D4038005A68EE /* CoreDataHelper.swift in Sources */,
 				14EC61AB288FAC81001EA2FD /* Level1.swift in Sources */,
 				149614DA288AA68B003E7396 /* CodeEden.xcdatamodeld in Sources */,
+				14EC61AD288FBDD9001EA2FD /* GamePlayState.swift in Sources */,
 				1419A256288C1AC60002A83A /* GlossaryCardView.swift in Sources */,
 				1419A25D288C2D6D0002A83A /* CircularProgressBar.swift in Sources */,
 				1419A23D288BD6A00002A83A /* MainView.swift in Sources */,
 				1419A25F288C2F810002A83A /* LevelSelectView.swift in Sources */,
+				14EC61B3288FC055001EA2FD /* Level4.swift in Sources */,
+				14EC61AF288FC044001EA2FD /* Level2.swift in Sources */,
 				1419A23B288BD6860002A83A /* OnboardingViewFirst.swift in Sources */,
 				1419A24B288BFE220002A83A /* ModeMockStore.swift in Sources */,
 				1419A265288C30930002A83A /* LevelView.swift in Sources */,
@@ -393,6 +408,7 @@
 				1419A252288C0F630002A83A /* GlossaryView.swift in Sources */,
 				1419A243288BE8BA0002A83A /* CustomProgressStyle.swift in Sources */,
 				1419A267288C314E0002A83A /* LockedLevelView.swift in Sources */,
+				14EC61B1288FC04B001EA2FD /* Level3.swift in Sources */,
 				149614D0288AA68A003E7396 /* ContentView.swift in Sources */,
 				1419A248288BFA7D0002A83A /* ChooseModeCardView.swift in Sources */,
 				1483D1DD288ED5F600DED005 /* TextToSpeech.swift in Sources */,

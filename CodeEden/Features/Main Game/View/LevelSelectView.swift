@@ -9,6 +9,8 @@ import SwiftUI
 
 struct LevelSelectView: View {
     
+    @StateObject var setUp = GamePlayState()
+    
     @State var mode = "Normal"
     @State var levelIsLocked = false
     
@@ -82,7 +84,10 @@ struct LevelSelectView: View {
                                     if i == 0
                                     {
                                         Button {
-                                            
+                                            withAnimation {
+                                                setUp.currentState = .play
+//                                                setUp.levelID = levels[i].levelID
+                                            }
                                         } label: {
                                             LevelView(level: .constant(levels[i])).frame(width: geo.size.width * 0.6, height: geo.size.width * 0.6)
                                         }
@@ -108,7 +113,10 @@ struct LevelSelectView: View {
                                         else
                                         {
                                             Button {
-                                                
+                                                withAnimation {
+                                                    setUp.currentState = .play
+//                                                    setUp.levelID = levels[i].levelID
+                                                }
                                             } label: {
                                                 LevelView(level: .constant(levels[i])).frame(width: geo.size.width * 0.6, height: geo.size.width * 0.6)
                                             }
