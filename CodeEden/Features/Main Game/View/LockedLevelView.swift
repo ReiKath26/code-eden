@@ -17,7 +17,7 @@ struct LockedLevelView: View {
             {
                 Circle().frame(width: geo.size.width * 0.5, height: geo.size.width * 0.5).foregroundColor(Color("darkGreyAccent"))
                 Image(systemName: "lock.fill").foregroundColor(Color("whiteAccent")).font(.system(size: 60))
-            }
+            }.position(x: geo.size.width/2, y: geo.size.height/2)
         }
     }
 }

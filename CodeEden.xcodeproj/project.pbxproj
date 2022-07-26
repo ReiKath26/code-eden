@@ -32,6 +32,7 @@
 		149614DA288AA68B003E7396 /* CodeEden.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 149614D8288AA68B003E7396 /* CodeEden.xcdatamodeld */; };
 		149614E1288AAA11003E7396 /* Art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 149614E0288AAA11003E7396 /* Art.scnassets */; };
 		14C1884E288D4038005A68EE /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1884D288D4038005A68EE /* CoreDataHelper.swift */; };
+		14EC61AB288FAC81001EA2FD /* Level1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EC61AA288FAC81001EA2FD /* Level1.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		149614D9288AA68B003E7396 /* CodeEden.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CodeEden.xcdatamodel; sourceTree = "<group>"; };
 		149614E0288AAA11003E7396 /* Art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Art.scnassets; sourceTree = "<group>"; };
 		14C1884D288D4038005A68EE /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		14EC61AA288FAC81001EA2FD /* Level1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level1.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +203,7 @@
 		1419A24C288C0F2E0002A83A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				14EC61A7288F9B42001EA2FD /* Levels */,
 				1419A23C288BD6A00002A83A /* MainView.swift */,
 				1419A24E288C0F470002A83A /* MainMenu.swift */,
 				1419A25E288C2F810002A83A /* LevelSelectView.swift */,
@@ -274,6 +277,30 @@
 				149614D4288AA68B003E7396 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		14EC61A7288F9B42001EA2FD /* Levels */ = {
+			isa = PBXGroup;
+			children = (
+				14EC61A8288F9B48001EA2FD /* Chapter 1 */,
+				14EC61A9288F9B50001EA2FD /* Chapter 2 */,
+			);
+			path = Levels;
+			sourceTree = "<group>";
+		};
+		14EC61A8288F9B48001EA2FD /* Chapter 1 */ = {
+			isa = PBXGroup;
+			children = (
+				14EC61AA288FAC81001EA2FD /* Level1.swift */,
+			);
+			path = "Chapter 1";
+			sourceTree = "<group>";
+		};
+		14EC61A9288F9B50001EA2FD /* Chapter 2 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Chapter 2";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,6 +377,7 @@
 			files = (
 				1419A25B288C1EBD0002A83A /* EditProfileView.swift in Sources */,
 				14C1884E288D4038005A68EE /* CoreDataHelper.swift in Sources */,
+				14EC61AB288FAC81001EA2FD /* Level1.swift in Sources */,
 				149614DA288AA68B003E7396 /* CodeEden.xcdatamodeld in Sources */,
 				1419A256288C1AC60002A83A /* GlossaryCardView.swift in Sources */,
 				1419A25D288C2D6D0002A83A /* CircularProgressBar.swift in Sources */,

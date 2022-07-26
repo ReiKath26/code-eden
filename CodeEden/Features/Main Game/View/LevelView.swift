@@ -41,7 +41,7 @@ struct LevelView: View {
                 }
                 
                 Text("\(Int(level?.stars ?? 0))/3").foregroundColor(Color("whiteAccent")).font(Font.custom("Silom", size: geo.size.width * 0.1))
-            }
+            }.position(x: geo.size.width/2, y: geo.size.height/2)
             
         }
     }

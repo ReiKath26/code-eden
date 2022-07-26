@@ -10,6 +10,7 @@ import SwiftUI
 struct MainMenu: View {
     
     @Binding var chapters: [Chapter]
+    @Binding var player: Player?
     @State var index = 0
     @State var showLevelSelect = false
     @State var mode = "Normal"
@@ -34,7 +35,7 @@ struct MainMenu: View {
                         
                         ScrollView(.vertical, showsIndicators: false) {
                             
-                            VStack
+                            VStack(spacing: 60)
                             {
                                 HStack
                                 {
@@ -63,6 +64,8 @@ struct MainMenu: View {
                                         }
                                     
                                 }
+                                
+                                Text("More Coming Soon").font(Font.custom("Silom", size: geo.size.width * 0.07)).foregroundColor(Color("whiteAccent")).multilineTextAlignment(.center).opacity(0.5).frame(width: geo.size.width * 0.6)
                             }
                            
                             
@@ -74,7 +77,10 @@ struct MainMenu: View {
           
             if showLevelSelect
             {
-                LevelSelectView(levels: .constant(DataMockStore().levelOfChapter(chapter: chapters[index])) )
+                LevelSelectView(levels: .constant(DataMockStore().levelOfChapter(chapter: chapters[index]).sorted
+                {
+                    $0.levelID < $1.levelID
+                }), player: .constant(player) )
             }
         }
     }
@@ -82,6 +88,6 @@ struct MainMenu: View {
 
 struct MainMenu_Previews: PreviewProvider {
     static var previews: some View {
-        MainMenu(chapters: .constant(DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext).chapters))
+        MainMenu(chapters: .constant(DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext).chapters), player: .constant(DataMockStore().newPlayer(name: "User", avatar: "Mascot - Adira", context: DataMockStore().container.viewContext)))
     }
 }

@@ -49,7 +49,7 @@ class DataMockStore: ObservableObject
         let player = Player(context: context)
         player.name = name
         player.avatar = avatar
-        player.hint = 0
+        player.hint = 3
         player.stars = 0
         player.timestamp = Date()
         
