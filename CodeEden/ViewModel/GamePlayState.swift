@@ -16,5 +16,5 @@ enum gameState
 class GamePlayState: ObservableObject
 {
     @Published var currentState: gameState = .main
-    @Published var levelID: Int = 1
+    
 }

@@ -23,8 +23,8 @@ struct MainView: View {
     var body: some View {
         ZStack
         {
-            if gameState.currentState == .main
-            {
+           
+            
                 if currentState == .main
                 {
                     MainMenu(gameSetting: gameState)
@@ -39,24 +39,6 @@ struct MainView: View {
                 {
                     ProfileView()
                 }
-            }
-            
-            else
-            {
-                switch gameState.levelID
-                {
-                    case 1:
-                        Level1(playerInstruction: givenInstruction())
-                    case 2:
-                        Level2()
-                    case 3:
-                        Level3()
-                    case 4:
-                        Level4()
-                default:
-                    Level1(playerInstruction: givenInstruction())
-                }
-            }
             
             if gameState.currentState == .main
             {
