@@ -31,13 +31,12 @@
 		149614DA288AA68B003E7396 /* CodeEden.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 149614D8288AA68B003E7396 /* CodeEden.xcdatamodeld */; };
 		149614E1288AAA11003E7396 /* Art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 149614E0288AAA11003E7396 /* Art.scnassets */; };
 		14C1884E288D4038005A68EE /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1884D288D4038005A68EE /* CoreDataHelper.swift */; };
+		14E0F6AC2890C48F00DCFFFA /* GameLogicHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E0F6AB2890C48F00DCFFFA /* GameLogicHelper.swift */; };
 		14EC61AB288FAC81001EA2FD /* Level1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EC61AA288FAC81001EA2FD /* Level1.swift */; };
 		14EC61AD288FBDD9001EA2FD /* GamePlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EC61AC288FBDD9001EA2FD /* GamePlayState.swift */; };
 		14EC61AF288FC044001EA2FD /* Level2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EC61AE288FC044001EA2FD /* Level2.swift */; };
 		14EC61B1288FC04B001EA2FD /* Level3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EC61B0288FC04B001EA2FD /* Level3.swift */; };
 		14EC61B3288FC055001EA2FD /* Level4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EC61B2288FC055001EA2FD /* Level4.swift */; };
-		14EC61E42890288C001EA2FD /* GamePlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EC61E32890288C001EA2FD /* GamePlay.swift */; };
-		14EC61E62890289B001EA2FD /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EC61E52890289B001EA2FD /* Achievement.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,14 +66,13 @@
 		149614D9288AA68B003E7396 /* CodeEden.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CodeEden.xcdatamodel; sourceTree = "<group>"; };
 		149614E0288AAA11003E7396 /* Art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Art.scnassets; sourceTree = "<group>"; };
 		14C1884D288D4038005A68EE /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		14E0F6AB2890C48F00DCFFFA /* GameLogicHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogicHelper.swift; sourceTree = "<group>"; };
 		14EC61AA288FAC81001EA2FD /* Level1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level1.swift; sourceTree = "<group>"; };
 		14EC61AC288FBDD9001EA2FD /* GamePlayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayState.swift; sourceTree = "<group>"; };
 		14EC61AE288FC044001EA2FD /* Level2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level2.swift; sourceTree = "<group>"; };
 		14EC61B0288FC04B001EA2FD /* Level3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level3.swift; sourceTree = "<group>"; };
 		14EC61B2288FC055001EA2FD /* Level4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level4.swift; sourceTree = "<group>"; };
 		14EC61B5288FF327001EA2FD /* TextToSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
-		14EC61E32890288C001EA2FD /* GamePlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlay.swift; sourceTree = "<group>"; };
-		14EC61E52890289B001EA2FD /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,7 +262,7 @@
 		149614CC288AA68A003E7396 /* CodeEden */ = {
 			isa = PBXGroup;
 			children = (
-				14EC61E028902867001EA2FD /* Model */,
+				14E0F6AA2890C47F00DCFFFA /* Helper */,
 				1419A22E288BCADC0002A83A /* Info.plist */,
 				149614CD288AA68A003E7396 /* CodeEdenApp.swift */,
 				1419A234288BD60E0002A83A /* Features */,
@@ -283,6 +281,14 @@
 				149614D4288AA68B003E7396 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		14E0F6AA2890C47F00DCFFFA /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				14E0F6AB2890C48F00DCFFFA /* GameLogicHelper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		14EC61A7288F9B42001EA2FD /* Levels */ = {
@@ -325,15 +331,6 @@
 			children = (
 			);
 			path = Scene;
-			sourceTree = "<group>";
-		};
-		14EC61E028902867001EA2FD /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				14EC61E32890288C001EA2FD /* GamePlay.swift */,
-				14EC61E52890289B001EA2FD /* Achievement.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -416,14 +413,13 @@
 				1419A256288C1AC60002A83A /* GlossaryCardView.swift in Sources */,
 				1419A25D288C2D6D0002A83A /* CircularProgressBar.swift in Sources */,
 				1419A23D288BD6A00002A83A /* MainView.swift in Sources */,
+				14E0F6AC2890C48F00DCFFFA /* GameLogicHelper.swift in Sources */,
 				1419A25F288C2F810002A83A /* LevelSelectView.swift in Sources */,
-				14EC61E62890289B001EA2FD /* Achievement.swift in Sources */,
 				14EC61B3288FC055001EA2FD /* Level4.swift in Sources */,
 				14EC61AF288FC044001EA2FD /* Level2.swift in Sources */,
 				1419A23B288BD6860002A83A /* OnboardingViewFirst.swift in Sources */,
 				1419A24B288BFE220002A83A /* ModeMockStore.swift in Sources */,
 				1419A265288C30930002A83A /* LevelView.swift in Sources */,
-				14EC61E42890288C001EA2FD /* GamePlay.swift in Sources */,
 				1419A254288C0F6F0002A83A /* ProfileView.swift in Sources */,
 				1419A258288C1B060002A83A /* LockedCardView.swift in Sources */,
 				1419A269288C355D0002A83A /* ReadGlossary.swift in Sources */,

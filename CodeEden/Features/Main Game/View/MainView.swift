@@ -48,7 +48,7 @@ struct MainView: View {
                 switch gameState.levelID
                 {
                     case 1:
-                        Level1()
+                        Level1(playerInstruction: givenInstruction())
                     case 2:
                         Level2()
                     case 3:
@@ -56,7 +56,7 @@ struct MainView: View {
                     case 4:
                         Level4()
                 default:
-                    Level1()
+                    Level1(playerInstruction: givenInstruction())
                 }
             }
             

@@ -8,15 +8,20 @@
 import SwiftUI
 import SceneKit
 
-struct Level1: View {
+struct Level1: View{
     
     @State var codySpeech = false
     @State var openTutorial = false
     @State var starsCollected: Int = 0
     @State var levelCleared = false
     @State var rockCollision = false
+    @State var openCodeEditor = true
     
     @State var initialPlayerPosition: SCNVector3 = SCNVector3(x: 0, y: 0, z: 0)
+    
+    @ObservedObject var playerInstruction: givenInstruction
+    
+    let choice: [instruction] = [instruction(id: 0, function: .step, direct: .forward), instruction(id: 1, function: .step, direct: .backward), instruction(id: 2, function: .step, direct: .left), instruction(id:3, function: .step, direct: .right)]
     
     var scene = SCNScene(named: "Art.scnassets/Level1Scene.scn")!
     var cameraNode: SCNNode? {
@@ -24,7 +29,7 @@ struct Level1: View {
             }
     var playerNode: SCNNode?
     {
-        scene.rootNode.childNode(withName: "pasted_pSphere8", recursively: true)
+        scene.rootNode.childNode(withName: "adira", recursively: true)
     }
     
     var coinNode: SCNNode?
@@ -63,7 +68,10 @@ struct Level1: View {
                             HStack(spacing: 30)
                             {
                                 Button {
-                                    print("Woohoo")
+                                    reset(player: playerNode!, coin: coinNode!, playerInitialPosition: initialPlayerPosition)
+                                    
+                                    starsCollected = 0
+                                    playerInstruction.reset()
                                 } label: {
                                     
                                     ZStack
@@ -75,7 +83,7 @@ struct Level1: View {
                                 }
                                 
                                 Button {
-                                    print("Woohoo")
+                                    execute(instructions: playerInstruction.instructionList, player: playerNode!)
                                 } label: {
                                     
                                     ZStack
@@ -87,8 +95,10 @@ struct Level1: View {
                                 }
                                 
                                 Button {
-                                    
-                                    print("Woohoo")
+                                    withAnimation {
+                                        openCodeEditor.toggle()
+                                    }
+                                   
                     
                                 } label: {
                                     
@@ -103,6 +113,70 @@ struct Level1: View {
                              
                             }
                         }.frame(width: geo.size.width, height: geo.size.height * 0.06, alignment: .bottom).position(x: geo.size.width/2, y: geo.size.height * 0.96)
+                        
+                       if openCodeEditor
+                        {
+                           ZStack
+                           {
+                               RoundedRectangle(cornerRadius: 10).foregroundColor(Color("whiteAccent"))
+                               
+                               
+                               VStack
+                               {
+                                   ZStack
+                                   {
+                                       RoundedRectangle(cornerRadius: 10).foregroundColor(Color("mainPurple")).frame( height: geo.size.height * 0.1)
+                                       Text("My Code").foregroundColor(Color("whiteAccent")).font(Font.custom("Silom", size: 20))
+                                   }
+                                    
+                                   
+                                   ExtractedView(playerInstruction: playerInstruction)
+                                   
+                                   ScrollView(.horizontal, showsIndicators: false) {
+                                       HStack
+                                       {
+                                           ForEach(0..<choice.count)
+                                           {
+                                               i in
+                                               
+                                               ZStack
+                                               {
+                                                   RoundedRectangle(cornerRadius: 10).foregroundColor(Color("mainPurple")).frame(width: geo.size.width * 0.3, height: geo.size.height * 0.05)
+                                                   
+                                                   if choice[i].function == .step
+                                                   {
+                                                       if self.choice[i].direct == .forward
+                                                       {
+                                                           Text("Step Forward").font(Font.custom("Silom", size: geo.size.width * 0.03)).foregroundColor(Color("whiteAccent"))
+                                                       }
+                                                       
+                                                       else if self.choice[i].direct == .backward
+                                                       {
+                                                           Text("Step Backward").font(Font.custom("Silom", size: geo.size.width * 0.03)).foregroundColor(Color("whiteAccent"))
+                                                       }
+                                                       
+                                                       else if self.choice[i].direct == .left
+                                                       {
+                                                           Text("Step Left").font(Font.custom("Silom", size: geo.size.width * 0.03)).foregroundColor(Color("whiteAccent"))
+                                                       }
+                                                       
+                                                       else if self.choice[i].direct == .right
+                                                       {
+                                                           Text("Step Right").font(Font.custom("Silom", size: geo.size.width * 0.03)).foregroundColor(Color("whiteAccent"))
+                                                       }
+                                                   }
+                                               }.gesture(TapGesture().onEnded({ _ in
+                                                   playerInstruction.addToList(ins: choice[i])
+                                               }))
+                                              
+                                           }
+                                       }
+                                   }
+                                   
+                                   
+                               }
+                           }.frame(width: geo.size.width * 0.9 , height: geo.size.height * 0.8).position(x: geo.size.width/2, y: geo.size.height/2)
+                       }
                     }
                 }.edgesIgnoringSafeArea(.all)
                     
@@ -111,6 +185,43 @@ struct Level1: View {
 
 struct Level1_Previews: PreviewProvider {
     static var previews: some View {
-        Level1()
+        Level1(playerInstruction: givenInstruction())
+    }
+}
+
+struct ExtractedView: View {
+    
+    @StateObject var playerInstruction = givenInstruction()
+    
+    var body: some View {
+        
+        List(playerInstruction.instructionList)
+        {
+            ins in
+                
+            if ins.function == .step
+                {
+                if ins.direct == .forward
+                    {
+                        Text("Step Forward")
+                    }
+                    
+                    else if ins.direct == .backward
+                    {
+                        Text("Step Backward")
+                    }
+                    
+                    else if ins.direct == .left
+                    {
+                        Text("Step Left")
+                    }
+                    
+                    else
+                    {
+                        Text("Step Right")
+                    }
+                }
+            
+        }
     }
 }

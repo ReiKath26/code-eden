@@ -34,7 +34,7 @@ struct ContentView: View {
 //                    MainView(player: .constant(items.first))
 //                }
                 
-                Level1()
+                Level1(playerInstruction: givenInstruction())
                 
             }
             
