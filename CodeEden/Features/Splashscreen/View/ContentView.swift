@@ -29,12 +29,12 @@ struct ContentView: View {
             
             if status
             {
-//                if !items.isEmpty
-//                {
-//                    MainView(player: .constant(items.first))
-//                }
+                if !items.isEmpty
+                {
+                    MainView(player: .constant(items.first))
+                }
                 
-                Level1(playerInstruction: givenInstruction())
+//                Level1(playerInstruction: givenInstruction())
                 
             }
             

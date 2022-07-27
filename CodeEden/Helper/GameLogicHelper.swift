@@ -71,19 +71,26 @@ func reset(player: SCNNode, coin: SCNNode, playerInitialPosition: SCNVector3)
 
 func step(direct: direction, player: SCNNode)
 {
+    let moveForward = SCNAction.moveBy(x: 0, y: 0, z: -4, duration: 1)
+    
+    let moveBackward = SCNAction.moveBy(x: 0, y: 0, z: 4, duration: 1)
+    
+    let moveLeft = SCNAction.moveBy(x: -4, y: 0, z: 0, duration: 1)
+    
+    let moveRight = SCNAction.moveBy(x: 4, y: 0, z: 0, duration: 1)
     switch direct
     {
         case .forward:
-            player.position.z -= 4
+            player.runAction( moveForward )
         case .backward:
             if player.position.z != 0
             {
-                player.position.z += 4
+                player.runAction(moveBackward)
             }
         case .left:
-            player.position.x += 4
+            player.runAction(moveLeft)
         case .right:
-            player.position.x -= 4
+            player.runAction(moveRight)
     }
     
 }
