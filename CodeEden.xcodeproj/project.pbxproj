@@ -22,9 +22,9 @@
 		1419A265288C30930002A83A /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419A264288C30930002A83A /* LevelView.swift */; };
 		1419A267288C314E0002A83A /* LockedLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419A266288C314E0002A83A /* LockedLevelView.swift */; };
 		1419A269288C355D0002A83A /* ReadGlossary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1419A268288C355D0002A83A /* ReadGlossary.swift */; };
-		1424E15E2890F501000D42DF /* CollissionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1424E15D2890F501000D42DF /* CollissionHelper.swift */; };
 		1424E165289112AB000D42DF /* Gameplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1424E164289112AB000D42DF /* Gameplay.swift */; };
 		1424E167289112BD000D42DF /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1424E166289112BD000D42DF /* Achievement.swift */; };
+		1424E16928916F05000D42DF /* gameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1424E16828916F05000D42DF /* gameScene.swift */; };
 		149614CE288AA68A003E7396 /* CodeEdenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149614CD288AA68A003E7396 /* CodeEdenApp.swift */; };
 		149614D0288AA68A003E7396 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149614CF288AA68A003E7396 /* ContentView.swift */; };
 		149614D2288AA68B003E7396 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 149614D1288AA68B003E7396 /* Assets.xcassets */; };
@@ -55,9 +55,9 @@
 		1419A264288C30930002A83A /* LevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
 		1419A266288C314E0002A83A /* LockedLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedLevelView.swift; sourceTree = "<group>"; };
 		1419A268288C355D0002A83A /* ReadGlossary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadGlossary.swift; sourceTree = "<group>"; };
-		1424E15D2890F501000D42DF /* CollissionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollissionHelper.swift; sourceTree = "<group>"; };
 		1424E164289112AB000D42DF /* Gameplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gameplay.swift; sourceTree = "<group>"; };
 		1424E166289112BD000D42DF /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
+		1424E16828916F05000D42DF /* gameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameScene.swift; sourceTree = "<group>"; };
 		149614CA288AA68A003E7396 /* CodeEden.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeEden.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		149614CD288AA68A003E7396 /* CodeEdenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEdenApp.swift; sourceTree = "<group>"; };
 		149614CF288AA68A003E7396 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -283,7 +283,6 @@
 			isa = PBXGroup;
 			children = (
 				14E0F6AB2890C48F00DCFFFA /* GameLogicHelper.swift */,
-				1424E15D2890F501000D42DF /* CollissionHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -326,6 +325,7 @@
 		14EC61B6288FF621001EA2FD /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				1424E16828916F05000D42DF /* gameScene.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -407,7 +407,6 @@
 				14EC61AD288FBDD9001EA2FD /* GamePlayState.swift in Sources */,
 				1419A256288C1AC60002A83A /* GlossaryCardView.swift in Sources */,
 				1419A25D288C2D6D0002A83A /* CircularProgressBar.swift in Sources */,
-				1424E15E2890F501000D42DF /* CollissionHelper.swift in Sources */,
 				1419A23D288BD6A00002A83A /* MainView.swift in Sources */,
 				14E0F6AC2890C48F00DCFFFA /* GameLogicHelper.swift in Sources */,
 				1424E165289112AB000D42DF /* Gameplay.swift in Sources */,
@@ -422,6 +421,7 @@
 				1419A24F288C0F470002A83A /* MainMenu.swift in Sources */,
 				1419A252288C0F630002A83A /* GlossaryView.swift in Sources */,
 				1419A243288BE8BA0002A83A /* CustomProgressStyle.swift in Sources */,
+				1424E16928916F05000D42DF /* gameScene.swift in Sources */,
 				1419A267288C314E0002A83A /* LockedLevelView.swift in Sources */,
 				14EC61B1288FC04B001EA2FD /* Level3.swift in Sources */,
 				149614D0288AA68A003E7396 /* ContentView.swift in Sources */,

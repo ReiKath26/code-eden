@@ -141,12 +141,12 @@ struct LevelSelectView: View {
                         }
                 }.position(x: geo.size.width/2, y: geo.size.height/2)
                     
-                    if playGame
+                    if playGame && setUp.currentState == .play
                     {
                         switch levelIndex
                         {
                             case 1:
-                                Level1(playerInstruction: givenInstruction())
+                            Level1(setUp: setUp, playerInstruction: givenInstruction())
                             case 2:
                                 Level2()
                             case 3:
@@ -154,7 +154,7 @@ struct LevelSelectView: View {
                             case 4:
                                 Level4()
                         default:
-                            Level1(playerInstruction: givenInstruction())
+                            Level1(setUp: setUp, playerInstruction: givenInstruction())
                         }
                     }
                    

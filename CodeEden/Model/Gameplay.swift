@@ -34,6 +34,12 @@ struct glossary: Codable
     var isUnlocked: Bool
 }
 
+struct tutorial
+{
+    var illustration: String
+    var instruction: String
+}
+
 func populateChapter() -> [chapter]
 {
     let chapters = [

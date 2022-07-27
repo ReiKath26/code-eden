@@ -8,11 +8,19 @@
 import Foundation
 import GameplayKit
 import SceneKit
+import SwiftUI
 
 enum algo
 {
     case step
     case jump
+}
+
+enum levelStat
+{
+    case cleared
+    case crash
+    case goalNotReached
 }
 
 class givenInstruction: ObservableObject
@@ -46,7 +54,63 @@ enum direction
     case right
 }
 
-func execute(instructions: [instruction], player: SCNNode) 
+func setLevelStatus(instructions: [instruction], levelID: Int) -> (levelStat, Int)
+{
+    var levelStatus : levelStat = .goalNotReached
+    var starCount = 0
+    switch levelID
+    {
+        case 1:
+        
+        let correct = [instruction(id: 0, function: .step, direct: .forward), instruction(id: 0, function: .step, direct: .forward), instruction(id: 0, function: .step, direct: .forward), instruction(id: 0, function: .step, direct: .forward)]
+        
+        let crash1 = [instruction(id: 2, function: .step, direct: .left)]
+        
+        let crash2 = [instruction(id: 0, function: .step, direct: .forward), instruction(id: 0, function: .step, direct: .forward), instruction(id: 3, function: .step, direct: .right)]
+        
+        let crash3 = [instruction(id: 0, function: .step, direct: .forward), instruction(id: 0, function: .step, direct: .forward), instruction(id: 0, function: .step, direct: .forward), instruction(id: 0, function: .step, direct: .left)]
+        
+        var check: (Bool, Bool, Bool, Bool) = (checkInstructions(instructions: instructions, sample: correct), checkInstructions(instructions: instructions, sample: crash1), checkInstructions(instructions: instructions, sample: crash2), checkInstructions(instructions: instructions, sample: crash3))
+        
+        if check.0
+        {
+            levelStatus = .cleared
+            starCount = 3
+            
+        }
+        
+        else if check.1 || check.2 || check.3
+        {
+            levelStatus = .crash
+        }
+        
+        else
+        {
+            levelStatus = .goalNotReached
+        }
+            
+    default:
+        levelStatus = .goalNotReached
+        starCount = 0
+    }
+    
+    return (levelStatus, starCount)
+}
+
+func checkInstructions(instructions: [instruction], sample: [instruction]) -> Bool
+{
+    for x in 0..<sample.count
+    {
+        if instructions[x].id != sample[x].id
+        {
+            return false
+        }
+    }
+    
+    return true
+}
+
+func execute(instructions: [instruction], player: SCNNode)
 {
     
         for instruction in instructions {
@@ -58,10 +122,11 @@ func execute(instructions: [instruction], player: SCNNode)
                 case .jump:
                 jump(direct: instruction.direct, player: player)
             }
-        }
 
+        }
     
 }
+
 
 func reset(player: SCNNode, coin: SCNNode, playerInitialPosition: SCNVector3)
 {
