@@ -15,26 +15,37 @@ struct Level1: View{
     @State var starsCollected: Int = 0
     @State var levelCleared = false
     @State var rockCollision = false
-    @State var openCodeEditor = true
+    @State var openCodeEditor = false
     
-    @State var initialPlayerPosition: SCNVector3 = SCNVector3(x: 0, y: 0, z: 0)
+    @State var initialPlayerPosition: SCNVector3 = SCNVector3(x: 0, y: -0.234, z: 0)
     
     @ObservedObject var playerInstruction: givenInstruction
     
     let choice: [instruction] = [instruction(id: 0, function: .step, direct: .forward), instruction(id: 1, function: .step, direct: .backward), instruction(id: 2, function: .step, direct: .left), instruction(id:3, function: .step, direct: .right)]
     
+    let coinCategory = 2
+    
+    let rockCategory = 4
+    
+    let finishCategory = 16
+    
     var scene = SCNScene(named: "Art.scnassets/Level1Scene.scn")!
+    
     var cameraNode: SCNNode? {
         scene.rootNode.childNode(withName: "camera", recursively: false)
             }
     var playerNode: SCNNode?
     {
-        scene.rootNode.childNode(withName: "adira", recursively: true)
+        var node: SCNNode
+        node = scene.rootNode.childNode(withName: "adira", recursively: true)!
+        node.physicsBody?.contactTestBitMask = coinCategory | rockCategory | finishCategory
+        
+        return node
     }
     
     var coinNode: SCNNode?
     {
-        scene.rootNode.childNode(withName: "pCylinder1", recursively: true)
+        scene.rootNode.childNode(withName: "coin", recursively: true)
     }
     
     var rocksNode: SCNNode?
@@ -126,7 +137,7 @@ struct Level1: View{
                                    ZStack
                                    {
                                        RoundedRectangle(cornerRadius: 10).foregroundColor(Color("mainPurple")).frame( height: geo.size.height * 0.1)
-                                       Text("My Code").foregroundColor(Color("whiteAccent")).font(Font.custom("Silom", size: 20))
+                                       Text("My Algo").foregroundColor(Color("whiteAccent")).font(Font.custom("Silom", size: 20))
                                    }
                                     
                                    

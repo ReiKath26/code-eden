@@ -46,18 +46,21 @@ enum direction
     case right
 }
 
-func execute(instructions: [instruction], player: SCNNode)
+func execute(instructions: [instruction], player: SCNNode) 
 {
-    for instruction in instructions {
-        
-        switch instruction.function
-        {
-            case .step:
-            step(direct: instruction.direct, player: player)
-            case .jump:
-            jump(direct: instruction.direct, player: player)
+    
+        for instruction in instructions {
+           
+            switch instruction.function
+            {
+                case .step:
+                step(direct: instruction.direct, player: player)
+                case .jump:
+                jump(direct: instruction.direct, player: player)
+            }
         }
-    }
+
+    
 }
 
 func reset(player: SCNNode, coin: SCNNode, playerInitialPosition: SCNVector3)
@@ -71,17 +74,18 @@ func step(direct: direction, player: SCNNode)
     switch direct
     {
         case .forward:
-            player.position.z -= 2
+            player.position.z -= 4
         case .backward:
             if player.position.z != 0
             {
-                player.position.z += 2
+                player.position.z += 4
             }
         case .left:
-            player.position.x += 2
+            player.position.x += 4
         case .right:
-            player.position.x -= 2
+            player.position.x -= 4
     }
+    
 }
 
 func jump(direct: direction, player: SCNNode)
