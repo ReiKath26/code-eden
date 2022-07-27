@@ -9,14 +9,13 @@ import SwiftUI
 
 struct MainMenu: View {
     
-    var mockStore: gameMockStore
-    var player: Player?
-    
     @ObservedObject var gameSetting: GamePlayState
     @State var index = 0
     @State var showLevelSelect = false
     @State var mode = "Normal"
     var modes = ["Normal", "Hard"]
+    
+    @AppStorage("chapters") var savedChapter: [chapter] = populateChapter()
     
     var body: some View {
        ZStack
@@ -42,7 +41,7 @@ struct MainMenu: View {
                                 HStack
                                 {
                                     
-                                    ForEach(0..<mockStore.chapters.count)
+                                    ForEach(0..<savedChapter.count)
                                         {
                                             i in
                                             
@@ -55,9 +54,9 @@ struct MainMenu: View {
                                                 
                                                 VStack
                                                {
-                                                   CircularProgressBar(progress: .constant(mockStore.chapters[i].progress), icon: mockStore.chapters[i].icon ?? "Mascot - Cody").frame(width: geo.size.width * 0.4, height: geo.size.width * 0.4)
+                                                   CircularProgressBar(progress: .constant(Float(savedChapter[i].levelDone / savedChapter[i].levelCount)), icon: savedChapter[i].icon).frame(width: geo.size.width * 0.4, height: geo.size.width * 0.4)
                                                    
-                                                   Text(mockStore.chapters[i].title ?? "Loading chapter...").font(Font.custom("Silom", size: geo.size.width * 0.035)).foregroundColor(Color("whiteAccent"))
+                                                   Text(savedChapter[i].title).font(Font.custom("Silom", size: geo.size.width * 0.035)).foregroundColor(Color("whiteAccent"))
                                                 }
                                             }
 
@@ -79,7 +78,7 @@ struct MainMenu: View {
           
             if showLevelSelect
             {
-                LevelSelectView(setUp: gameSetting, levels: mockStore.levels, chapters: mockStore.chapters)
+                LevelSelectView(setUp: gameSetting, index: index)
             }
         }
     }
@@ -87,7 +86,7 @@ struct MainMenu: View {
 
 struct MainMenu_Previews: PreviewProvider {
     static var previews: some View {
-        MainMenu(mockStore: DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext), gameSetting: GamePlayState())
+        MainMenu(gameSetting: GamePlayState())
     }
 }
 

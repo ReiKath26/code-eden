@@ -9,12 +9,10 @@ import SwiftUI
 
 @main
 struct CodeEdenApp: App {
-    
-    @StateObject private var dataMockStore = DataMockStore()
 
     var body: some Scene {
         WindowGroup {
-            ContentView().environment(\.managedObjectContext, dataMockStore.container.viewContext)
+            ContentView()
                
         }
     }

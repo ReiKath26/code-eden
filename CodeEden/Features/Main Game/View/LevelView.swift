@@ -9,9 +9,7 @@ import SwiftUI
 
 struct LevelView: View {
     
-    
-    @Binding var level: Level?
-    
+    var thisLevel: level?
     
     var body: some View {
        GeometryReader
@@ -26,10 +24,10 @@ struct LevelView: View {
                     
                     VStack(spacing: -30)
                     {
-                        Text("\(Int(level?.levelID ?? 1))").foregroundColor(Color("mainPurple")).font(Font.custom("Silom", size: geo.size.width * 0.3))
+                        Text("\(Int(thisLevel?.level_id ?? 1))").foregroundColor(Color("mainPurple")).font(Font.custom("Silom", size: geo.size.width * 0.3))
                         
 
-                        if level?.isDone == true
+                        if thisLevel?.cleared == true
                         {
                             Image("star").resizable().frame(width: geo.size.width * 0.2, height: geo.size.width * 0.2)
 
@@ -40,7 +38,7 @@ struct LevelView: View {
                   
                 }
                 
-                Text("\(Int(level?.stars ?? 0))/3").foregroundColor(Color("whiteAccent")).font(Font.custom("Silom", size: geo.size.width * 0.1))
+                Text("\(Int(thisLevel?.starsCount ?? 0))/3").foregroundColor(Color("whiteAccent")).font(Font.custom("Silom", size: geo.size.width * 0.1))
             }.position(x: geo.size.width/2, y: geo.size.height/2)
             
         }
@@ -49,6 +47,6 @@ struct LevelView: View {
 
 struct LevelView_Previews: PreviewProvider {
     static var previews: some View {
-        LevelView(level: .constant(DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext).levels.first))
+        LevelView()
     }
 }

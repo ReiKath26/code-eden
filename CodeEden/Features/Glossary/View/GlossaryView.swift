@@ -9,11 +9,12 @@ import SwiftUI
 
 struct GlossaryView: View {
 
-    @Binding var glossaries: [Glossary]
     @State var alertShown = false
     @State var readGlossary = false
     
     @State var index = 0
+    
+    @AppStorage("glossaries") var savedGlossaries: [glossary] = populateGlossaries()
     
     var body: some View {
         
@@ -44,11 +45,11 @@ struct GlossaryView: View {
                         
                     VStack(spacing: 30)
                     {
-                        ForEach(0..<glossaries.count)
+                        ForEach(0..<savedGlossaries.count)
                         {
                             i in
                                 Button {
-                                    if glossaries[i].isUnlocked
+                                    if savedGlossaries[i].isUnlocked
                                     {
                                         withAnimation {
                                             readGlossary.toggle()
@@ -63,14 +64,14 @@ struct GlossaryView: View {
                                        
                                     }
                                 } label: {
-                                    if glossaries[i].isUnlocked
+                                    if savedGlossaries[i].isUnlocked
                                     {
-                                        GlossaryCardView(title: glossaries[i].title ?? "Loading title...", cover: glossaries[i].cover ?? "Intro Cover")
+                                        GlossaryCardView(title: savedGlossaries[i].title, cover: savedGlossaries[i].cover)
                                     }
                                     
                                     else
                                     {
-                                        LockedCardView(title: "Chapter \(glossaries[i].level?.levelID ?? 1)").frame(width: geo.size.width * 0.8, height: geo.size.height * 0.2)
+                                        LockedCardView(title: "Chapter \(savedGlossaries[i].level_id)").frame(width: geo.size.width * 0.8, height: geo.size.height * 0.2)
                                     }
                                 }.alert("Complete presequite challenge to unlock!", isPresented: $alertShown) {
                                     Button("Okay", role: .cancel) {}
@@ -87,7 +88,7 @@ struct GlossaryView: View {
             
             if readGlossary
             {
-                ReadGlossary(thisGlossary: .constant(glossaries[index]))
+                ReadGlossary(thisGlossary: savedGlossaries[index])
             }
         }
     }
@@ -95,6 +96,6 @@ struct GlossaryView: View {
 
 struct GlossaryView_Previews: PreviewProvider {
     static var previews: some View {
-        GlossaryView(glossaries: .constant(DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext).glossaries))
+        GlossaryView()
     }
 }

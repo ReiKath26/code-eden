@@ -11,10 +11,11 @@ struct EditProfileView: View {
     
     @State var name = ""
     @Binding var index: Int
-    var avatar = ["Mascot - Adira", "Mascot - Eva"]
-    @Binding var player : Player?
     
-    @Environment(\.managedObjectContext) var managedObjectContext
+    @AppStorage("username") var playerName: String = ""
+    @AppStorage("userAvatar") var avatarName: String = ""
+    
+    var avatar = ["Mascot - Adira", "Mascot - Eva"]
     @Environment(\.dismiss) var dismiss
     var body: some View {
         
@@ -60,8 +61,9 @@ struct EditProfileView: View {
                     TextField("Enter your name here...", text: $name).background().textFieldStyle(RoundedBorderTextFieldStyle()).frame(width: geo.size.width * 0.8, height: geo.size.width * 0.1).font(Font.custom("Silom", size: 16))
                     
                     Button {
-                            
-                        DataMockStore().editProfile(player: player!, name: name, avatar: avatar[index], context: managedObjectContext)
+                        
+                        playerName = name
+                        avatarName = avatar[index]
                         
                         dismiss()
                     } label: {
@@ -83,6 +85,6 @@ struct EditProfileView: View {
 
 struct EditProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfileView(index: .constant(0), player: .constant(DataMockStore().newPlayer(name: "User", avatar: "Mascot - Adira", context: DataMockStore().container.viewContext)))
+        EditProfileView(index: .constant(1))
     }
 }

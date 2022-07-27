@@ -1,124 +1,75 @@
 //
-//  CoreDataHelper.swift
+//  Gameplay.swift
 //  CodeEden
 //
-//  Created by Kathleen Febiola Susanto on 24/07/22.
+//  Created by Kathleen Febiola Susanto on 27/07/22.
 //
 
 import Foundation
-import CoreData
-import SwiftUI
 
-struct gameMockStore
+struct chapter: Codable
 {
-    var chapters: [Chapter]
-    var glossaries: [Glossary]
-    var levels: [Level]
+    var id: Int
+    var title: String
+    var desc: String
+    var icon: String
+    var levelCount: Int
+    var levelDone: Int
 }
 
-class DataMockStore: ObservableObject
+struct level: Codable
 {
-    let container = NSPersistentContainer(name: "CodeEden")
+    var chapter_id: Int
+    var level_id: Int
+    var starsCount: Int
+    var cleared: Bool
+}
+
+struct glossary: Codable
+{
+    var level_id: Int
+    var title: String
+    var material: String
+    var cover: String
+    var isUnlocked: Bool
+}
+
+func populateChapter() -> [chapter]
+{
+    let chapters = [
+        
+        chapter(id: 1, title: "Introduction", desc: "This chapter will introduce you to basic logic of programming", icon: "Mascot - Cody", levelCount: 4, levelDone: 0),
+        chapter(id: 2, title: "Data Structure", desc: "This chapter will let you learn about data structures, their types, and how to implement them", icon: "loupe", levelCount: 6, levelDone: 0)
+    ]
     
-    init()
-    {
-        container.loadPersistentStores { desc, error in
-            if let error = error
-            {
-                print("Failed to load data: \(error.localizedDescription)")
-            }
-        }
-    }
+    return chapters
+}
+
+func populateLevel() -> [level]
+{
+    let levels = [
+        
+        level(chapter_id: 1, level_id: 1, starsCount: 0, cleared: false),
+        level(chapter_id: 1, level_id: 2, starsCount: 0, cleared: false),
+        level(chapter_id: 1, level_id: 3, starsCount: 0, cleared: false),
+        level(chapter_id: 1, level_id: 4, starsCount: 0, cleared: false),
+        level(chapter_id: 2, level_id: 5, starsCount: 0, cleared: false),
+        level(chapter_id: 2, level_id: 6, starsCount: 0, cleared: false),
+        level(chapter_id: 2, level_id: 7, starsCount: 0, cleared: false),
+        level(chapter_id: 2, level_id: 8, starsCount: 0, cleared: false),
+        level(chapter_id: 2, level_id: 9, starsCount: 0, cleared: false),
+        level(chapter_id: 2, level_id: 10, starsCount: 0, cleared: false)
+    ]
     
-    func save(context: NSManagedObjectContext)
-    {
-        do
-        {
-            try context.save()
-            
-        }
+    return levels
+}
+
+
+func populateGlossaries() -> [glossary]
+{
+    let glossaries = [
         
-        catch
-        {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-    }
-    
-    func newPlayer(name:String, avatar: String, context: NSManagedObjectContext) -> Player
-    {
-        let player = Player(context: context)
-        player.name = name
-        player.avatar = avatar
-        player.hint = 3
-        player.stars = 0
-        player.timestamp = Date()
-        
-        save(context: context)
-        
-        return player
-    }
-    
-    func editProfile(player: Player, name:String, avatar: String, context: NSManagedObjectContext)
-    {
-        player.name = name
-        player.avatar = avatar
-        
-        save(context: context)
-    }
-    
-    func addHint(player: Player, hint: Int, context: NSManagedObjectContext)
-    {
-        player.hint += Double(hint)
-        
-        save(context: context)
-    }
-    
-    func useHint(player: Player, hint: Int, context: NSManagedObjectContext)
-    {
-        player.hint -= Double(hint)
-        
-        save(context: context)
-    }
-    
-    func levelCleared(player: Player, chapter: Chapter, level: Level, stars: Int, context: NSManagedObjectContext)
-    {
-        player.stars += Double(stars)
-        level.stars += Double(stars)
-        if level.glossary != nil
-        {
-            level.glossary?.isUnlocked = true
-        }
-        
-        chapter.progress += Float(1/(chapter.level?.count ?? 4))
-        save(context: context)
-    }
-    
-    func gamePlayMockStore(context: NSManagedObjectContext) -> gameMockStore
-    {
-        var allChapters: [Chapter] = []
-        var allLevels: [Level] = []
-        var allGlossaries: [Glossary] = []
-        
-        let chapters = [(title: "Introduction", icon: "Mascot - Cody", progress: 0), (title: "Data Structure I", icon:"loupe", progress: 0)]
-        let chapter1Levels = [
-            (levelID: 1, isDone: false, levelMode: "Normal", stars: 0),
-            (levelID: 2, isDone: false, levelMode: "Normal", stars: 0),
-            (levelID: 3, isDone: false, levelMode: "Normal", stars: 0),
-            (levelID: 4, isDone: false, levelMode: "Normal", stars: 0)
-        ]
-        
-        let chapter2Levels = [
-            (levelID: 5, isDone: false, levelMode: "Normal", stars: 0),
-            (levelID: 6, isDone: false, levelMode: "Normal", stars: 0),
-            (levelID: 7, isDone: false, levelMode: "Normal", stars: 0),
-            (levelID: 8, isDone: false, levelMode: "Normal", stars: 0),
-            (levelID: 9, isDone: false, levelMode: "Normal", stars: 0),
-            (levelID: 10, isDone: false, levelMode: "Normal", stars: 0)
-        ]
-        
-        let chapter1Glossary = [
-            (title: "What is an Algorithm?", isUnlocked: false, cover: "Intro Cover", material: """
+        glossary(level_id: 1, title: "What is an Algorithm?", material: """
                 An algorithm is a procedure used for solving a problem or performing a computation. Algorithms act as an exact list of instructions that conduct specified actions step by step. In computer programming terms, an algorithm is a set of well-defined instructions to solve a particular problem. It takes a set of input(s) and produces the desired output. For example, an algorithm to add two numbers would be:
 
                 Take two number inputs
@@ -141,7 +92,8 @@ class DataMockStore: ObservableObject
                 https://www.techtarget.com/whatis/definition/algorithm
                 https://www.programiz.com/dsa/algorithm
                 https://www.geeksforgeeks.org/introduction-to-algorithms/
-        """),  (title: "Searching Algorithm", isUnlocked: false, cover: "Intro Cover", material: """
+        """, cover: "Intro Cover", isUnlocked: false),
+        glossary(level_id: 2, title: "Searching Algorithm", material: """
                 Searching algorithms refers to algorithms used to search or find one or more than on element from a certain dataset. It's an algorithm that allows you to find your favorite book from the stacks of books in the cupboard. There are several type of searching algorithm, but let's look at simple explanation to the two most common: Linear and Binary Search
                         
                 1. Linear Search
@@ -171,7 +123,8 @@ class DataMockStore: ObservableObject
                 https://www.tutorialspoint.com/introduction-to-searching-algorithms
                 https://www.geeksforgeeks.org/linear-search/
                 https://www.geeksforgeeks.org/binary-search/
-        """), (title: "Pathfinding Algorithm", isUnlocked: false, cover: "Intro Cover", material: """
+        """, cover: "Intro Cover", isUnlocked: false),
+        glossary(level_id: 3, title: "Pathfinding Algorithm", material: """
                 Pathfinding algorithms address the problem of finding a path from a source to a destination avoiding obstacles and minimizing the costs (time, distance, risks, fuel, price, etc.). Example of such problem is how to find the closest way to go from your house to your office/school. Here is an example on how the algorithm works by putting a cost in each step it takes:
                         
                 1. Start on the goal square. How far is the goal from the goal? Zero steps, mark the goal with the number 0.
@@ -186,12 +139,8 @@ class DataMockStore: ObservableObject
                 https://medium.com/@urna.hybesis/pathfinding-algorithms-the-four-pillars-1ebad85d4c6b
                 https://www.khanacademy.org/computing/computer-science/algorithms/intro-to-algorithms/a/route-finding
         
-        """)
-        
-        ]
-        
-        let chapter2Glossary = [
-            (title: "Intro to Data Structure", isUnlocked: false, cover: "Data Structure Cover", material:"""
+        """, cover: "Intro Cover", isUnlocked: false),
+        glossary(level_id: 4, title: "Intro to Data Structure", material: """
                 Data structure is a storage that is used to store and organize data. It is a way of arranging data
                 on a computer so that it can be accessed and updated efficiently. Once again, the data structure is
                 not a programming language, but rather a set of algorithms that we can use in any programming
@@ -212,9 +161,8 @@ class DataMockStore: ObservableObject
                         
                 https://www.programiz.com/dsa/data-structure-types
                 https://www.javatpoint.com/data-structure-tutorial
-            """
-            ),
-            (title: "Data Structure in Swift", isUnlocked: false, cover: "Data Structure Cover", material:"""
+            """, cover: "Data Structure Cover", isUnlocked: false),
+        glossary(level_id: 5, title: "Data Structures in Swift", material: """
                     
                 The Swift standard library ships with three main data structures — Array, Dictionary and Set — that
                 each comes with a different set of optimizations, pros and cons.
@@ -258,10 +206,8 @@ class DataMockStore: ObservableObject
                 https://www.swiftbysundell.com/articles/picking-the-right-data-structure-in-swift/
                 https://www.tutorialspoint.com/swift/swift_dictionaries.htm
                 https://www.tutorialspoint.com/swift/swift_sets.htm
-            """
-                 
-            ),
-            (title: "Stacks & Queue", isUnlocked: false, cover: "Data Structure Cover", material:"""
+            """, cover: "Data Structure Cover", isUnlocked: false),
+        glossary(level_id: 7, title: "Stacks and Queue", material: """
                 Stacks and Queue are another type of linear data structure. Let's take a look at their differences!
                     
                 Stacks
@@ -284,161 +230,34 @@ class DataMockStore: ObservableObject
                 Reference:
                 https://www.geeksforgeeks.org/difference-between-stack-and-queue-data-structures/
             
-            """
-            ),
-            
-        ]
-        
-        
-        for chapter in chapters
-        {
-            let newChapter = NSEntityDescription.insertNewObject(forEntityName: "Chapter", into: context) as! Chapter
-            newChapter.progress = Float(chapter.progress)
-            newChapter.icon = chapter.icon
-            newChapter.title = chapter.title
-            
-            if chapter.title == "Introduction"
-            {
-                for level in chapter1Levels {
-                    let newLevel = NSEntityDescription.insertNewObject(forEntityName: "Level", into: context) as! Level
-                    newLevel.levelID = Double(level.levelID)
-                    newLevel.isDone = level.isDone
-                    newLevel.mode = level.levelMode
-                    newLevel.stars = Double(level.stars)
-                    
-                    if level.levelID == 1
-                    {
-                        let newGlossary = NSEntityDescription.insertNewObject(forEntityName: "Glossary", into: context) as! Glossary
-                        newGlossary.title = chapter1Glossary[0].title
-                        newGlossary.isUnlocked = true
-                        newGlossary.material = chapter1Glossary[0].material
-                        newGlossary.level = newLevel
-                        
-                        allGlossaries.append(newGlossary)
-                    }
-                    else if level.levelID == 2
-                    {
-                        let newGlossary = NSEntityDescription.insertNewObject(forEntityName: "Glossary", into: context) as! Glossary
-                        newGlossary.title = chapter1Glossary[1].title
-                        newGlossary.isUnlocked = chapter1Glossary[1].isUnlocked
-                        newGlossary.material = chapter1Glossary[1].material
-                        newGlossary.level = newLevel
-                        
-                        allGlossaries.append(newGlossary)
-                        
-                    }
-                    
-                    else if level.levelID == 3
-                    {
-                        let newGlossary = NSEntityDescription.insertNewObject(forEntityName: "Glossary", into: context) as! Glossary
-                        newGlossary.title = chapter1Glossary[2].title
-                        newGlossary.isUnlocked = chapter1Glossary[2].isUnlocked
-                        newGlossary.material = chapter1Glossary[2].material
-                        newGlossary.level = newLevel
-                        
-                        allGlossaries.append(newGlossary)
-                    }
-                    
-                    else
-                    {
-                        let newGlossary = NSEntityDescription.insertNewObject(forEntityName: "Glossary", into: context) as! Glossary
-                        newGlossary.title = chapter2Glossary[0].title
-                        newGlossary.isUnlocked = chapter2Glossary[0].isUnlocked
-                        newGlossary.material = chapter2Glossary[0].material
-                        newGlossary.level = newLevel
-                        
-                        allGlossaries.append(newGlossary)
-                    }
-                    
-                    newChapter.addToLevel(newLevel)
-                    allLevels.append(newLevel)
-                    
-                }
-            }
-            
-            else
-            {
-                for level in chapter2Levels {
-                    let newLevel = NSEntityDescription.insertNewObject(forEntityName: "Level", into: context) as! Level
-                    newLevel.levelID = Double(level.levelID)
-                    newLevel.isDone = level.isDone
-                    newLevel.mode = level.levelMode
-                    newLevel.stars = Double(level.stars)
-                    
-                    if level.levelID == 5
-                    {
-                        let newGlossary = NSEntityDescription.insertNewObject(forEntityName: "Glossary", into: context) as! Glossary
-                        newGlossary.title = chapter2Glossary[1].title
-                        newGlossary.isUnlocked = chapter2Glossary[1].isUnlocked
-                        newGlossary.material = chapter2Glossary[1].material
-                        newGlossary.level = newLevel
-                        
-                        allGlossaries.append(newGlossary)
-                        
-                    }
-                    
-                    else if level.levelID == 7
-                    {
-                        let newGlossary = NSEntityDescription.insertNewObject(forEntityName: "Glossary", into: context) as! Glossary
-                        newGlossary.title = chapter2Glossary[2].title
-                        newGlossary.isUnlocked = chapter2Glossary[2].isUnlocked
-                        newGlossary.material = chapter2Glossary[2].material
-                        newGlossary.level = newLevel
-                        
-                        allGlossaries.append(newGlossary)
-                    }
-                    
-                    newChapter.addToLevel(newLevel)
-                    allLevels.append(newLevel)
-                }
-            }
-            
-            allChapters.append(newChapter)
-
-        }
-        
-        let mockStore: gameMockStore = gameMockStore(chapters: allChapters, glossaries: allGlossaries, levels: allLevels)
-        print(mockStore.chapters.count)
-        print(mockStore.levels.count)
-        print(mockStore.glossaries.count)
-        print(mockStore.glossaries)
-        save(context: context)
-        
-        return mockStore
-    }
+            """, cover: "Data Structure Cover", isUnlocked: false)
+    ]
     
-    
-    func achievementMockStore(context: NSManagedObjectContext) -> [Achievement]
-    {
-        var mockstore: [Achievement] = []
-        
-        let achievements = [(progress: 0.0, desc: "Collect 10 Stars", icon: "star"), (progress: 0.0, desc: "Complete 5 levels without using hints", icon: "loupe")]
-    
-        for achieve in achievements
-        {
-            let newAchievements = NSEntityDescription.insertNewObject(forEntityName: "Achievement", into: context) as! Achievement
-            newAchievements.progress = Float(achieve.progress)
-            newAchievements.desc = achieve.desc
-            newAchievements.icon = achieve.icon
-            
-            mockstore.append(newAchievements)
-        }
-    
-        save(context: context)
-        
-        return mockstore
-    }
-    
-    func updateAchievementProgress(player: Player, achievement: Achievement, progress: Float, context: NSManagedObjectContext)
-    {
-        achievement.progress = progress
-        
-        if achievement.progress == 1
-        {
-            player.addToAchievement(achievement)
-        }
-        
-        save(context: context)
-    }
+    return glossaries
 }
 
+extension Array: RawRepresentable where Element: Codable {
+    public init?(rawValue: String) {
+        guard let data = rawValue.data(using: .utf8) else {
+            return nil
+        }
+        do {
+            let result = try JSONDecoder().decode([Element].self, from: data)
+            print("Init from result: \(result)")
+            self = result
+        } catch {
+            print("Error: \(error)")
+            return nil
+        }
+    }
+
+    public var rawValue: String {
+        guard let data = try? JSONEncoder().encode(self),
+              let result = String(data: data, encoding: .utf8)
+        else {
+            return "[]"
+        }
+        print("Returning \(result)")
+        return result
+    }
+}

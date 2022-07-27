@@ -10,9 +10,10 @@ import AVFoundation
 
 struct ReadGlossary: View {
     
-    @Binding var thisGlossary: Glossary?
     @State var isPlaying = false
     @Environment(\.dismiss) var dismiss
+    
+    var thisGlossary: glossary?
     
     let synth = AVSpeechSynthesizer()
     
@@ -97,6 +98,6 @@ struct ReadGlossary: View {
 
 struct ReadGlossary_Previews: PreviewProvider {
     static var previews: some View {
-        ReadGlossary(thisGlossary: .constant(DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext).glossaries.first))
+        ReadGlossary()
     }
 }

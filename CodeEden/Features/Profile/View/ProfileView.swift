@@ -10,9 +10,11 @@ import SwiftUI
 struct ProfileView: View {
     
     @State var edit = false
-    @Binding var player: Player?
+    @AppStorage("username") var playerName: String = ""
+    @AppStorage("userAvatar") var avatarName: String = ""
+    @AppStorage("achievements") var achievementData: [achievement] = populateAchievement()
+    @AppStorage("stars") var playerStars: Int = 0
     
-    var achievement : [Achievement] = DataMockStore().achievementMockStore(context: DataMockStore().container.viewContext)
     var body: some View {
         ZStack
         {
@@ -26,9 +28,9 @@ struct ProfileView: View {
                 {
                     VStack
                     {
-                        Image(player?.avatar ?? "Mascot - Cody").resizable().frame(width: geo.size.width * 0.4, height: geo.size.width * 0.4)
+                        Image(avatarName).resizable().frame(width: geo.size.width * 0.4, height: geo.size.width * 0.4)
                         
-                        Text(player?.name ?? "Loading name...").font(Font.custom("Silom", size: 24)).foregroundColor(Color("whiteAccent"))
+                        Text(playerName).font(Font.custom("Silom", size: 24)).foregroundColor(Color("whiteAccent"))
                         
                         ZStack
                         {
@@ -37,7 +39,7 @@ struct ProfileView: View {
                             {
                                 Image("star").resizable().frame(width: geo.size.width * 0.1, height: geo.size.width * 0.1)
                                 
-                                Text("\(Int(player?.stars ?? 0))").font(Font.custom("Silom", size: 20)).foregroundColor(Color("mainPurple"))
+                                Text("\(Int(playerStars))").font(Font.custom("Silom", size: 20)).foregroundColor(Color("mainPurple"))
                             }
                         }
                         
@@ -55,15 +57,15 @@ struct ProfileView: View {
                              
                                     ScrollView(.vertical, showsIndicators:false)
                                     {
-                                        ForEach(0..<achievement.count)
+                                        ForEach(0..<achievementData.count)
                                         {
                                             i in
                                             
                                             HStack
                                             {
-                                                CircularProgressBar(progress: .constant(achievement[i].progress), icon: achievement[i].icon ?? "star").frame(width: geo.size.width * 0.3, height: geo.size.width * 0.3)
+                                                CircularProgressBar(progress: .constant(Float(achievementData[i].count / achievementData[i].need)), icon: achievementData[i].icon ?? "star").frame(width: geo.size.width * 0.3, height: geo.size.width * 0.3)
                                                 
-                                                Text(achievement[i].desc ?? "Loading desc...").font(Font.custom("Silom", size: geo.size.width * 0.04)).foregroundColor(Color("mainPurple")).frame(width: geo.size.width * 0.4)
+                                                Text(achievementData[i].title ?? "Loading desc...").font(Font.custom("Silom", size: geo.size.width * 0.04)).foregroundColor(Color("mainPurple")).frame(width: geo.size.width * 0.4)
                                             }
                                         }
                                     }
@@ -101,7 +103,7 @@ struct ProfileView: View {
               
                
             }.sheet(isPresented: $edit) {
-                EditProfileView(name: player?.name ?? "", index: .constant(player?.avatar == "Mascot - Adira" ? 0 : 1), player: $player)
+                EditProfileView(index: .constant(avatarName == "Mascot - Adira" ? 0: 1))
             }
 
 
@@ -111,6 +113,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(player: .constant(DataMockStore().newPlayer(name: "User", avatar: "Mascot - Adira", context: DataMockStore().container.viewContext)))
+        ProfileView()
     }
 }

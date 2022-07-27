@@ -18,9 +18,7 @@ struct MainView: View {
     
     @StateObject var gameState = GamePlayState()
     @State var currentState: state = .main
-    @Binding var player: Player?
     
-    let mockStore = DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext)
     
     var body: some View {
         ZStack
@@ -29,17 +27,17 @@ struct MainView: View {
             {
                 if currentState == .main
                 {
-                    MainMenu(mockStore: mockStore, gameSetting: gameState)
+                    MainMenu(gameSetting: gameState)
                 }
                 
                 else if currentState == .glossary
                 {
-                    GlossaryView(glossaries: .constant(DataMockStore().gamePlayMockStore(context: DataMockStore().container.viewContext).glossaries))
+                    GlossaryView()
                 }
                 
                 else
                 {
-                    ProfileView(player: $player)
+                    ProfileView()
                 }
             }
             
@@ -156,6 +154,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(player: .constant(DataMockStore().newPlayer(name: "User", avatar: "Mascot - Adira", context: DataMockStore().container.viewContext)))
+        MainView()
     }
 }

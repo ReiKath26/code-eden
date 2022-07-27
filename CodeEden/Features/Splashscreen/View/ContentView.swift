@@ -13,11 +13,7 @@ import CoreData
 struct ContentView: View {
     
     @AppStorage("userStatus") var status: Bool = false
-    @FetchRequest(
-            sortDescriptors: [NSSortDescriptor(keyPath: \Player.timestamp, ascending: true)],
-            animation: .default)
-        private var items: FetchedResults<Player>
-        
+    @AppStorage("username") var username: String = ""
     @State var animate = false
     @State var dissolve = false
     @State var tap = false
@@ -29,9 +25,10 @@ struct ContentView: View {
             
             if status
             {
-                if !items.isEmpty
+                
+                if !username.isEmpty
                 {
-                    MainView(player: .constant(items.first))
+                    MainView()
                 }
                 
 //                Level1(playerInstruction: givenInstruction())
