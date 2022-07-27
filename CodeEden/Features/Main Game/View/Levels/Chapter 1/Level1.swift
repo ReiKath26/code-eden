@@ -123,7 +123,7 @@ struct Level1: View{
                                             
                                             withAnimation{
                                                 
-                                                DispatchQueue.main.asyncAfter(deadline: .now() + 1)
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 3)
                                                 {
                                                     playerStars += status.1
                                                     savedLevel[0].starsCount += status.1
@@ -134,6 +134,8 @@ struct Level1: View{
                                                     savedGlossaries[0].isUnlocked = true
                                                     setUp.currentState = .main
                                                     levelCleared.toggle()
+                                                    
+                                                    print(Float(savedChapter[0].levelDone))
                                                 }
                                             }
                                         }

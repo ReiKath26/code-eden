@@ -63,9 +63,9 @@ struct ProfileView: View {
                                             
                                             HStack
                                             {
-                                                CircularProgressBar(progress: .constant(Float(achievementData[i].count / achievementData[i].need)), icon: achievementData[i].icon ?? "star").frame(width: geo.size.width * 0.3, height: geo.size.width * 0.3)
+                                                CircularProgressBar(progress: .constant(Float(Float(achievementData[i].count) / Float(achievementData[i].need))), icon: achievementData[i].icon).frame(width: geo.size.width * 0.3, height: geo.size.width * 0.3)
                                                 
-                                                Text(achievementData[i].title ?? "Loading desc...").font(Font.custom("Silom", size: geo.size.width * 0.04)).foregroundColor(Color("mainPurple")).frame(width: geo.size.width * 0.4)
+                                                Text(achievementData[i].title).font(Font.custom("Silom", size: geo.size.width * 0.04)).foregroundColor(Color("mainPurple")).frame(width: geo.size.width * 0.4)
                                             }
                                         }
                                     }

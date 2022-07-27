@@ -54,7 +54,7 @@ struct MainMenu: View {
                                                 
                                                 VStack
                                                {
-                                                   CircularProgressBar(progress: .constant(Float(savedChapter[i].levelDone / savedChapter[i].levelCount)), icon: savedChapter[i].icon).frame(width: geo.size.width * 0.4, height: geo.size.width * 0.4)
+                                                   CircularProgressBar(progress: .constant(Float(Float(savedChapter[i].levelDone) / Float(savedChapter[i].levelCount))), icon: savedChapter[i].icon).frame(width: geo.size.width * 0.4, height: geo.size.width * 0.4)
                                                    
                                                    Text(savedChapter[i].title).font(Font.custom("Silom", size: geo.size.width * 0.035)).foregroundColor(Color("whiteAccent"))
                                                 }

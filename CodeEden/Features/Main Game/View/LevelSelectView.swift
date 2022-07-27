@@ -66,7 +66,7 @@ struct LevelSelectView: View {
                             ScrollView(.vertical, showsIndicators: false) {
                                 VStack
                                 {
-                                    CircularProgressBar(progress: .constant(Float(savedChapter[index].levelDone/savedChapter[index].levelCount)), icon: savedChapter[index].icon).frame(width: geo.size.width * 0.4, height: geo.size.width * 0.4)
+                                    CircularProgressBar(progress: .constant(Float(Float(savedChapter[index].levelDone)/Float(savedChapter[index].levelCount))), icon: savedChapter[index].icon).frame(width: geo.size.width * 0.4, height: geo.size.width * 0.4)
                                     
                                     Text(savedChapter[index].title).font(Font.custom("Silom", size: geo.size.width * 0.035)).foregroundColor(Color("whiteAccent"))
                                     
