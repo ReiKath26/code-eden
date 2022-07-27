@@ -103,7 +103,7 @@ struct ProfileView: View {
               
                
             }.sheet(isPresented: $edit) {
-                EditProfileView(index: .constant(avatarName == "Mascot - Adira" ? 0: 1))
+                EditProfileView(index: avatarName == "Mascot - Adira" ? 0: 1)
             }
 
 

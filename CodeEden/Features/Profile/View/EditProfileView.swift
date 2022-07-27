@@ -10,7 +10,7 @@ import SwiftUI
 struct EditProfileView: View {
     
     @State var name = ""
-    @Binding var index: Int
+    @State var index: Int
     
     @AppStorage("username") var playerName: String = ""
     @AppStorage("userAvatar") var avatarName: String = ""
@@ -85,6 +85,6 @@ struct EditProfileView: View {
 
 struct EditProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfileView(index: .constant(1))
+        EditProfileView(index: 1)
     }
 }
