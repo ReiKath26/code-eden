@@ -11,7 +11,7 @@ import SceneKit
 struct Level1: View{
     
     @State var codySpeech = false
-    @State var openTutorial = true
+    @State var openTutorial = false
     @State var index = 0
     @State var levelCleared = false
     @State var goalNotReached = false
@@ -125,6 +125,14 @@ struct Level1: View{
                                                 
                                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1)
                                                 {
+                                                    playerStars += status.1
+                                                    savedLevel[0].starsCount += status.1
+                                                    savedLevel[0].cleared = true
+                                                    savedChapter[0].levelDone += 1
+                                                    achievementData[0].count += status.1
+                                                    achievementData[1].count += 1
+                                                    savedGlossaries[0].isUnlocked = true
+                                                    setUp.currentState = .main
                                                     levelCleared.toggle()
                                                 }
                                             }
