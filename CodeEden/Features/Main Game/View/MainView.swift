@@ -58,96 +58,78 @@ struct MainView: View {
                 }
             }
             
-            GeometryReader
+            if gameState.currentState == .main
             {
-                geo in
                 
-                ZStack
+            
+                GeometryReader
                 {
-                    Rectangle().foregroundColor(Color("darkPurpleAccent")).frame(width: geo.size.width, height: geo.size.height * 0.07)
+                    geo in
                     
-                    HStack(spacing: 30)
+                    ZStack
                     {
-                        Button {
-                            
-                            if gameState.currentState == .main
-                            {
-                                withAnimation(Animation.easeOut(duration: 0.3)) {
-                                    currentState = .glossary
-                            }
-                                
-                            }
-                                
-                            else
-                            {
-                                //MARK: Reset game logic
-                            }
-                                
-                            
-    
-                        } label: {
-                            
-                            ZStack
-                            {
-                                RoundedRectangle(cornerRadius: 10).frame(width: geo.size.width * 0.22, height: currentState == .glossary ? geo.size.height * 0.07 : geo.size.height * 0.05).foregroundColor(Color(currentState == .glossary ? "mainPurple" : "whiteAccent"))
-                                
-                                Image(systemName: gameState.currentState == .main ?  "books.vertical.fill" : "arrow.clockwise").font(.system(size: currentState == .glossary ? geo.size.width * 0.1 : geo.size.width * 0.05)).foregroundColor(Color(currentState == .glossary ? "whiteAccent" : "mainPurple"))
-                            }
-                        }
+                        Rectangle().foregroundColor(Color("darkPurpleAccent")).frame(width: geo.size.width, height: geo.size.height * 0.07)
                         
-                        Button {
-                            
-                            if gameState.currentState == .main
-                            {
+                        HStack(spacing: 30)
+                        {
+                            Button {
+                                
                                 withAnimation(Animation.easeOut(duration: 0.3)) {
-                                    currentState = .main
+                                        currentState = .glossary
+                                }
+                                    
+                            } label: {
+                                
+                                ZStack
+                                {
+                                    RoundedRectangle(cornerRadius: 10).frame(width: geo.size.width * 0.22, height: currentState == .glossary ? geo.size.height * 0.07 : geo.size.height * 0.05).foregroundColor(Color(currentState == .glossary ? "mainPurple" : "whiteAccent"))
+                                    
+                                    Image(systemName:   "books.vertical.fill").font(.system(size: currentState == .glossary ? geo.size.width * 0.1 : geo.size.width * 0.05)).foregroundColor(Color(currentState == .glossary ? "whiteAccent" : "mainPurple"))
                                 }
                             }
                             
-                            else
-                            {
-                                //MARK: play code result
-                            }
+                            Button {
                             
-                        } label: {
-                            
-                            ZStack
-                            {
-                                RoundedRectangle(cornerRadius: 10).frame(width: geo.size.width * 0.22, height: currentState == .main ? geo.size.height * 0.07 : geo.size.height * 0.05).foregroundColor(Color(currentState == .main ? "mainPurple" : "whiteAccent"))
+                            withAnimation(Animation.easeOut(duration: 0.3)) {
+                                        currentState = .main
+                                    }
                                 
-                                Image(systemName: gameState.currentState == .main ?  "play.circle.fill" : "play.square.fill").font(.system(size: currentState == .main ? geo.size.width * 0.1 : geo.size.width * 0.05)).foregroundColor(Color(currentState == .main ? "whiteAccent" : "mainPurple"))
-                            }
-                        }
-                        
-                        Button {
-                            
-                            if gameState.currentState == .main
-                            {
-                                withAnimation(Animation.easeOut(duration: 0.3)) {
-                                    currentState = .profile
+                            } label: {
+                                
+                                ZStack
+                                {
+                                    RoundedRectangle(cornerRadius: 10).frame(width: geo.size.width * 0.22, height: currentState == .main ? geo.size.height * 0.07 : geo.size.height * 0.05).foregroundColor(Color(currentState == .main ? "mainPurple" : "whiteAccent"))
+                                    
+                                    Image(systemName:  "play.circle.fill").font(.system(size: currentState == .main ? geo.size.width * 0.1 : geo.size.width * 0.05)).foregroundColor(Color(currentState == .main ? "whiteAccent" : "mainPurple"))
                                 }
                             }
                             
-                            else
-                            {
-                                //MARK: open code editor
-                            }
+                            Button {
                             
-                        } label: {
+                            withAnimation(Animation.easeOut(duration: 0.3)) {
+                                        currentState = .profile
+                                    }
+                             
                             
-                            ZStack
-                            {
-                                RoundedRectangle(cornerRadius: 10).frame(width: geo.size.width * 0.22, height: currentState == .profile ? geo.size.height * 0.07 : geo.size.height * 0.05).foregroundColor(Color(currentState == .profile ? "mainPurple" : "whiteAccent"))
                                 
-                                Image(systemName: gameState.currentState == .main ?  "person.fill" : "chevron.left.forwardslash.chevron.right").font(.system(size: currentState == .profile ? geo.size.width * 0.1 : geo.size.width * 0.07)).foregroundColor(Color(currentState == .profile ? "whiteAccent" : "mainPurple"))
+                            } label: {
+                                
+                                ZStack
+                                {
+                                    RoundedRectangle(cornerRadius: 10).frame(width: geo.size.width * 0.22, height: currentState == .profile ? geo.size.height * 0.07 : geo.size.height * 0.05).foregroundColor(Color(currentState == .profile ? "mainPurple" : "whiteAccent"))
+                                    
+                                    Image(systemName: "person.fill").font(.system(size: currentState == .profile ? geo.size.width * 0.1 : geo.size.width * 0.07)).foregroundColor(Color(currentState == .profile ? "whiteAccent" : "mainPurple"))
+                                }
                             }
+                            
+                         
                         }
-                        
-                     
-                    }
-                }.frame(width: geo.size.width, height: geo.size.height * 0.06, alignment: .bottom).position(x: geo.size.width/2, y: geo.size.height * 0.96)
+                    }.frame(width: geo.size.width, height: geo.size.height * 0.06, alignment: .bottom).position(x: geo.size.width/2, y: geo.size.height * 0.96)
+                    
+                }
                 
             }
+            
         }.edgesIgnoringSafeArea(.all)
     }
 }

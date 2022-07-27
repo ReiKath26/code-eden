@@ -74,7 +74,7 @@ struct ContentView: View {
     
     func animateSplash()
     {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async{
             
             withAnimation (Animation.easeOut(duration: 0.45)) {
                 animate.toggle()
