@@ -222,13 +222,12 @@ struct Level3: View {
                 {
                     ZStack
                     {
-                        RoundedRectangle(cornerRadius: 10).foregroundColor(Color("darkPurpleAccent")).frame(width: geo.size.width * 0.8, height: geo.size.height * 0.7)
+                        RoundedRectangle(cornerRadius: 10).foregroundColor(Color("darkPurpleAccent")).frame(width: geo.size.width, height: geo.size.height * 0.3)
                         
                         VStack(spacing: 30)
                         {
-                            Image(tut[index].illustration).resizable().frame(width: geo.size.width * 0.5, height: geo.size.height * 0.3)
                             
-                            Text(tut[index].instruction).foregroundColor(Color("whiteAccent")).font(Font.custom("Silom", size: geo.size.width * 0.03)).multilineTextAlignment(.center).frame(width: geo.size.width * 0.6)
+                            Text(tut[index].instruction).foregroundColor(Color("whiteAccent")).font(Font.custom("Silom", size: geo.size.width * 0.03)).multilineTextAlignment(.center).frame(width: geo.size.width * 0.8)
                             
                             if index < (tut.count - 1)
                             {
@@ -257,7 +256,7 @@ struct Level3: View {
                                 }
                             }
                         }
-                    }.frame(width: geo.size.width * 0.8, height: geo.size.height * 0.7).position(x: geo.size.width/2, y: geo.size.height/2)
+                    }.frame(width: geo.size.width * 0.8, height: geo.size.height * 0.3).position(x: geo.size.width/2, y: geo.size.height * 0.77)
                 }
                 
                if openCodeEditor
