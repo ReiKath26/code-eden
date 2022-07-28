@@ -18,3 +18,9 @@ class GamePlayState: ObservableObject
     @Published var currentState: gameState = .main
     
 }
+
+class levelToBePlayed: ObservableObject
+{
+    @Published var levelID = 0
+    @Published var playTime = false
+}

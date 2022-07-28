@@ -13,8 +13,7 @@ struct LevelSelectView: View {
     @ObservedObject var setUp: GamePlayState
     @State var mode = "Normal"
     @State var levelIsLocked = false
-    @State var playGame = false
-    @State var levelIndex = 1
+    @StateObject var playLevel = levelToBePlayed()
     @State var index = 0
     
     @Environment(\.dismiss) var dismiss
@@ -83,6 +82,7 @@ struct LevelSelectView: View {
                                      
                                     }
                                     
+                                    
                                     ForEach(0..<(savedLevel.count))
                                     {
                                         i in
@@ -91,28 +91,17 @@ struct LevelSelectView: View {
                                         {
                                             if i == 0
                                             {
-                                                Button {
-                                                    withAnimation {
-                                                        setUp.currentState = .play
-                                                        playGame.toggle()
-                                                    }
-                                                } label: {
-                                                    LevelView(thisLevel: savedLevel[i]).frame(width: geo.size.width * 0.6, height: geo.size.width * 0.6)
-                                                }
+                                                LevelView(thisLevel: savedLevel[i], levelID: playLevel, gameState: setUp).frame(width: geo.size.width * 0.6, height: geo.size.width * 0.6)
+                                                
                                             }
                                             
                                             else
                                             {
                                                 if savedLevel[i-1].cleared
                                                 {
-                                                    Button {
-                                                        withAnimation {
-                                                            setUp.currentState = .play
-                                                            playGame.toggle()
-                                                        }
-                                                    } label: {
-                                                        LevelView(thisLevel: savedLevel[i]).frame(width: geo.size.width * 0.6, height: geo.size.width * 0.6)
-                                                    }
+                                                    
+                                                    LevelView(thisLevel: savedLevel[i], levelID: playLevel, gameState: setUp).frame(width: geo.size.width * 0.6, height: geo.size.width * 0.6)
+                                                   
                                                 }
                                                 
                                                 else
@@ -127,11 +116,10 @@ struct LevelSelectView: View {
                                                         Button("Okay", role: .cancel) {}
 
                                                 }
+                                                }
+                                                
                                             }
-                                           
                                         }
-                                         
-                                     }
 
                                         
                                     }
@@ -141,14 +129,14 @@ struct LevelSelectView: View {
                         }
                 }.position(x: geo.size.width/2, y: geo.size.height/2)
                     
-                    if playGame && setUp.currentState == .play
+                    if playLevel.playTime && setUp.currentState == .play
                     {
-                        switch levelIndex
+                        switch playLevel.levelID
                         {
                             case 1:
                             Level1(setUp: setUp, playerInstruction: givenInstruction())
                             case 2:
-                                Level2()
+                                Level2(setUp: setUp, playerInstruction: givenInstruction())
                             case 3:
                                 Level3()
                             case 4:
@@ -162,6 +150,8 @@ struct LevelSelectView: View {
             }
         }
     }
+    
+
 }
 
 struct LevelSelectView_Previews: PreviewProvider {

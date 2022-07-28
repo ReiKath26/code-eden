@@ -18,7 +18,6 @@ enum algo
 enum levelStat
 {
     case cleared
-    case crash
     case goalNotReached
 }
 
@@ -63,17 +62,11 @@ func setLevelStatus(instructions: [instruction], levelID: Int) -> (levelStat, In
     {
         case 1:
         
-        let correct = [instruction(id: 0, function: .step, direct: .forward), instruction(id: 0, function: .step, direct: .forward), instruction(id: 0, function: .step, direct: .forward), instruction(id: 0, function: .step, direct: .forward)]
+        let correct = [0, 0, 0, 0]
         
-        let crash1 = [instruction(id: 2, function: .step, direct: .left)]
+        let check: Bool = checkInstructions(instructions: instructions, sample: correct)
         
-        let crash2 = [instruction(id: 0, function: .step, direct: .forward), instruction(id: 0, function: .step, direct: .forward), instruction(id: 3, function: .step, direct: .right)]
-        
-        let crash3 = [instruction(id: 0, function: .step, direct: .forward), instruction(id: 0, function: .step, direct: .forward), instruction(id: 0, function: .step, direct: .forward), instruction(id: 0, function: .step, direct: .left)]
-        
-        var check: (Bool, Bool, Bool, Bool) = (checkInstructions(instructions: instructions, sample: correct), checkInstructions(instructions: instructions, sample: crash1), checkInstructions(instructions: instructions, sample: crash2), checkInstructions(instructions: instructions, sample: crash3))
-        
-        if check.0
+        if check
         {
             levelStatus = .cleared
             starCount = 3
@@ -81,15 +74,40 @@ func setLevelStatus(instructions: [instruction], levelID: Int) -> (levelStat, In
             
         }
         
-        else if check.1 || check.2 || check.3
+        else
         {
-            levelStatus = .crash
+            levelStatus = .goalNotReached
+        }
+        
+        case 2:
+        
+        let correct1 = [0, 7, 0, 4, 3]
+        let correct2 = [0, 7, 0, 3, 0, 0]
+        
+        let check: (Bool, Bool) = (checkInstructions(instructions: instructions, sample: correct1), checkInstructions(instructions: instructions, sample: correct2))
+        
+        if check.0 || check.1
+        {
+            levelStatus = .cleared
+            
+            if check.0
+            {
+                starCount = 3
+            }
+            
+            else
+            {
+                starCount = 2
+            }
+            
+            lineCount = instructions.count
         }
         
         else
         {
             levelStatus = .goalNotReached
         }
+        
             
     default:
         levelStatus = .goalNotReached
@@ -99,11 +117,11 @@ func setLevelStatus(instructions: [instruction], levelID: Int) -> (levelStat, In
     return (levelStatus, starCount, lineCount)
 }
 
-func checkInstructions(instructions: [instruction], sample: [instruction]) -> Bool
+func checkInstructions(instructions: [instruction], sample: [Int]) -> Bool
 {
     for x in 0..<sample.count
     {
-        if instructions[x].id != sample[x].id
+        if instructions[x].id != sample[x]
         {
             return false
         }

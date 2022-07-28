@@ -10,7 +10,6 @@ import SceneKit
 
 struct Level1: View{
     
-    @State var codySpeech = false
     @State var openTutorial = true 
     @State var starsCollected = 0
     @State var lineCount = 0
@@ -38,23 +37,17 @@ struct Level1: View{
     
     let choice: [instruction] = [instruction(id: 0, function: .step, direct: .forward), instruction(id: 1, function: .step, direct: .backward), instruction(id: 2, function: .step, direct: .left), instruction(id:3, function: .step, direct: .right)]
     
-    let coinCategory = 2
-    
-    let rockCategory = 4
-    
-    let finishCategory = 16
     
     var scene = SCNScene(named: "Art.scnassets/Level1Scene.scn")!
     
     var cameraNode: SCNNode? {
         scene.rootNode.childNode(withName: "camera", recursively: false)
             }
+    
     var playerNode: SCNNode?
     {
         var node: SCNNode
         node = scene.rootNode.childNode(withName: "adira", recursively: true)!
-        node.physicsBody?.contactTestBitMask = coinCategory | rockCategory | finishCategory
-        
         return node
     }
     
@@ -125,6 +118,7 @@ struct Level1: View{
                                         {
                                             execute(instructions: playerInstruction.instructionList, player: playerNode!)
                                             
+                                            
                                             withAnimation(Animation.linear(duration: 2)) {
                                                 
                                                 coinNode?.isHidden = true
@@ -148,13 +142,6 @@ struct Level1: View{
                                                     
                                                    
                                                 }
-                                            }
-                                        }
-                                        
-                                        else if status.0 == .crash
-                                        {
-                                            withAnimation {
-                                                showAlert.toggle()
                                             }
                                         }
                                         
@@ -422,6 +409,11 @@ struct Level1: View{
                             
                             
                         }
+                        
+                        if nextLevel
+                        {
+                            Level2(setUp: setUp, playerInstruction: givenInstruction())
+                        }
                     }
                 }.edgesIgnoringSafeArea(.all)
                     
@@ -466,6 +458,29 @@ struct ExtractedView: View {
                         Text("Step Right").font(Font.custom("Silom", size: 24)).foregroundColor(Color("mainPurple"))
                     }
                 }
+            
+            else if ins.function == .jump
+            {
+                if ins.direct == .forward
+                    {
+                    Text("Jump Forward").font(Font.custom("Silom", size: 24)).foregroundColor(Color("mainPurple"))
+                    }
+                    
+                    else if ins.direct == .backward
+                    {
+                        Text("Jump Backward").font(Font.custom("Silom", size: 24)).foregroundColor(Color("mainPurple"))
+                    }
+                    
+                    else if ins.direct == .left
+                    {
+                        Text("Jump Left").font(Font.custom("Silom", size: 24)).foregroundColor(Color("mainPurple"))
+                    }
+                    
+                    else
+                    {
+                        Text("Jump Right").font(Font.custom("Silom", size: 24)).foregroundColor(Color("mainPurple"))
+                    }
+            }
             
         }
     }
