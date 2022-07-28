@@ -142,10 +142,11 @@ func setLevelStatus(instructions: [instruction], levelID: Int) -> (levelStat, In
         case 4:
         
         let correct = [16, 17, 18, 19]
+        let correct2 = [16, 18, 19, 17]
         
-        let check = checkInstructions(instructions: instructions, sample: correct)
+        let check : (Bool, Bool) = (checkInstructions(instructions: instructions, sample: correct), checkInstructions(instructions: instructions, sample: correct2))
         
-        if check
+        if check.0 || check.1
         {
             levelStatus = .cleared
             

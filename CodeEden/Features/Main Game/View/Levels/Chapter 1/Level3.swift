@@ -21,6 +21,7 @@ struct Level3: View {
     @State var openCodeEditor = false
     @State var hintUsed = false
     @State var useHint = false
+    @State var showHint = false
     
     @AppStorage("stars") var playerStars: Int = 0
     @AppStorage("playerHint") var hintCount: Int = 0
@@ -88,7 +89,16 @@ struct Level3: View {
                         
                         Button {
                             withAnimation {
-                                useHint.toggle()
+                                
+                                if !hintUsed
+                                {
+                                    useHint.toggle()
+                                }
+                                
+                                else
+                                {
+                                    showHint.toggle()
+                                }
                             }
                         } label: {
                             
@@ -105,7 +115,7 @@ struct Level3: View {
                                 
                                 hintCount -= 1
                                 hintUsed.toggle()
-                               //MARK: Add hint
+                                showHint.toggle()
                                
                             }
 
@@ -463,6 +473,24 @@ struct Level3: View {
                     }.position(x: geo.size.width/2, y: geo.size.height/2)
                     
                     
+                }
+                
+                if showHint
+                {
+                    ZStack
+                    {
+                        RoundedRectangle(cornerRadius: 10).foregroundColor(Color("whiteAccent")).frame(width: geo.size.width * 0.8, height: geo.size.height * 0.6)
+                        
+                        VStack
+                        {
+                            Image("Mascot - Cody").resizable().frame(width: geo.size.width * 0.5, height: geo.size.height * 0.25)
+                            
+                            Text("Imagine these boxes have numbers. Start from the mid, if the box is in lower number search the lower half, and vice versa. Then return the position of the box once found").font(Font.custom("Silom", size: geo.size.width * 0.04)).foregroundColor(Color("mainPurple")).multilineTextAlignment(.center).frame(width: geo.size.width * 0.7)
+                        }
+                        
+                       
+                        
+                    }.position(x: geo.size.width/2, y: geo.size.height/2)
                 }
                 
                 if nextLevel
