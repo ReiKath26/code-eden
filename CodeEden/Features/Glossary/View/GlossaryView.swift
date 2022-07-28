@@ -10,7 +10,7 @@ import SwiftUI
 struct GlossaryView: View {
 
     @State var alertShown = false
-    @State var readGlossary = false
+    @StateObject var readGlossary = presentMode()
     
     @State var index = 0
     
@@ -52,7 +52,7 @@ struct GlossaryView: View {
                                     if savedGlossaries[i].isUnlocked
                                     {
                                         withAnimation {
-                                            readGlossary.toggle()
+                                            readGlossary.isShown.toggle()
                                             index = i
                                         }
                                     }
@@ -86,9 +86,9 @@ struct GlossaryView: View {
                 
             }
             
-            if readGlossary
+            if readGlossary.isShown
             {
-                ReadGlossary(thisGlossary: savedGlossaries[index])
+                ReadGlossary(readGlossary: readGlossary, thisGlossary: savedGlossaries[index])
             }
         }
     }

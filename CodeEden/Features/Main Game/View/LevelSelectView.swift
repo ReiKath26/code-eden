@@ -11,6 +11,7 @@ struct LevelSelectView: View {
     
     
     @ObservedObject var setUp: GamePlayState
+    @ObservedObject var selectLevel: presentMode
     @State var mode = "Normal"
     @State var levelIsLocked = false
     @StateObject var playLevel = levelToBePlayed()
@@ -42,7 +43,10 @@ struct LevelSelectView: View {
                             HStack(spacing: 110)
                             {
                                 Button {
-                                    dismiss()
+                                    withAnimation {
+                                        selectLevel.isShown.toggle()
+                                    }
+                                   
                                 } label: {
                                     Image(systemName: "arrowshape.turn.up.backward.fill").foregroundColor(Color("whiteAccent")).font(.system(size: geo.size.width * 0.07))
                                 }
@@ -156,6 +160,6 @@ struct LevelSelectView: View {
 
 struct LevelSelectView_Previews: PreviewProvider {
     static var previews: some View {
-        LevelSelectView(setUp: GamePlayState())
+        LevelSelectView(setUp: GamePlayState(), selectLevel: presentMode())
     }
 }

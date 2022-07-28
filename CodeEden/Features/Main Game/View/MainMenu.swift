@@ -10,8 +10,8 @@ import SwiftUI
 struct MainMenu: View {
     
     @ObservedObject var gameSetting: GamePlayState
+    @StateObject var selectLevel = presentMode()
     @State var index = 0
-    @State var showLevelSelect = false
     @State var mode = "Normal"
     var modes = ["Normal", "Hard"]
     
@@ -47,7 +47,7 @@ struct MainMenu: View {
                                             
                                             Button {
                                                 withAnimation {
-                                                    showLevelSelect.toggle()
+                                                    selectLevel.isShown.toggle()
                                                     index = i
                                                 }
                                             } label: {
@@ -76,9 +76,9 @@ struct MainMenu: View {
                 }.position(x: geo.size.width/2, y: geo.size.height/2)
             }
           
-            if showLevelSelect
+            if selectLevel.isShown
             {
-                LevelSelectView(setUp: gameSetting, index: index)
+                LevelSelectView(setUp: gameSetting, selectLevel: selectLevel, index: index)
             }
         }
     }

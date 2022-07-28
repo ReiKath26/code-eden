@@ -11,7 +11,7 @@ import AVFoundation
 struct ReadGlossary: View {
     
     @State var isPlaying = false
-    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @ObservedObject var readGlossary: presentMode
     
     var thisGlossary: glossary?
     
@@ -44,7 +44,9 @@ struct ReadGlossary: View {
                         HStack(spacing: 50)
                         {
                             Button {
-                                self.mode.wrappedValue.dismiss()
+                                withAnimation {
+                                    readGlossary.isShown.toggle()
+                                }
                             } label: {
                                 Image(systemName: "arrowshape.turn.up.backward.fill").font(.system(size: 24)).foregroundColor(Color("mainPurple"))
                             }
@@ -98,6 +100,6 @@ struct ReadGlossary: View {
 
 struct ReadGlossary_Previews: PreviewProvider {
     static var previews: some View {
-        ReadGlossary()
+        ReadGlossary(readGlossary: presentMode())
     }
 }

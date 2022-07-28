@@ -24,3 +24,8 @@ class levelToBePlayed: ObservableObject
     @Published var levelID = 0
     @Published var playTime = false
 }
+
+class presentMode: ObservableObject
+{
+    @Published var isShown = false
+}
