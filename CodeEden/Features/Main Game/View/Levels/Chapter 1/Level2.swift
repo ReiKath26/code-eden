@@ -11,7 +11,7 @@ import SceneKit
 struct Level2: View {
     
     
-    @State var openTutorial = true
+    @State var openTutorial = false
     @State var starsCollected = 0
     @State var lineCount = 0
     @State var index = 0
@@ -20,6 +20,7 @@ struct Level2: View {
     @State var goalNotReached = false
     @State var showAlert = false
     @State var openCodeEditor = false
+    @State var useHint = false
     
     @AppStorage("stars") var playerStars: Int = 0
     @AppStorage("playerHint") var hintCount: Int = 0
@@ -68,6 +69,7 @@ struct Level2: View {
     }
     
     var body: some View {
+        
         ZStack
         {
             SceneView(
@@ -79,6 +81,51 @@ struct Level2: View {
             GeometryReader
             {
                 geo in
+                
+                ZStack
+                {
+                    HStack(spacing: 200)
+                    {
+                        Button {
+                            setUp.currentState = .main
+                        } label: {
+                            
+                            ZStack
+                            {
+                                RoundedRectangle(cornerRadius: 10).foregroundColor(Color("mainPurple")).frame(width: geo.size.width * 0.15, height: geo.size.width * 0.15)
+                                
+                                Image(systemName: "house.fill").foregroundColor(Color("whiteAccent")).font(Font.custom("Silom", size: geo.size.width * 0.05))
+                            }
+                         
+                            
+                            
+                        }
+                        
+                        Button {
+                            withAnimation {
+                                useHint.toggle()
+                            }
+                        } label: {
+                            
+                            ZStack
+                            {
+                                RoundedRectangle(cornerRadius: 10).foregroundColor(Color("whiteAccent")).frame(width: geo.size.width * 0.15, height: geo.size.width * 0.15)
+                                Image("loupe").resizable().frame(width: geo.size.width * 0.1, height: geo.size.width * 0.1)
+                            }
+                           
+                        
+                        }.alert("Use hint? (Hint count: \(hintCount))", isPresented: $useHint) {
+                            Button("No", role: .cancel) {}
+                            Button("Yes", role: .destructive) {
+                                
+                                hintCount -= 1
+                               //MARK: Add hint
+                               
+                            }
+
+                        }
+                    }
+                }.frame(width: geo.size.width * 0.8, height: geo.size.height * 0.2).position(x: geo.size.width/2, y: geo.size.height * 0.15)
                 
                 ZStack
                 {
@@ -440,7 +487,7 @@ struct Level2: View {
                 
                 if nextLevel
                 {
-                    Level3()
+                    Level3(setUp: setUp, playerInstruction: givenInstruction())
                 }
             }
         }.edgesIgnoringSafeArea(.all)

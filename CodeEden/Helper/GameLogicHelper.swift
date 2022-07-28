@@ -13,6 +13,7 @@ enum algo
 {
     case step
     case jump
+    case binSearch
 }
 
 enum levelStat
@@ -50,6 +51,15 @@ enum direction
     case backward
     case left
     case right
+    
+    case first
+    case second
+    case third
+    case fourth
+    case fifth
+    case sixth
+    case seventh
+    case eight
 }
 
 func setLevelStatus(instructions: [instruction], levelID: Int) -> (levelStat, Int, Int)
@@ -108,6 +118,26 @@ func setLevelStatus(instructions: [instruction], levelID: Int) -> (levelStat, In
             levelStatus = .goalNotReached
         }
         
+        case 3:
+        
+        let correct = [8, 9, 10, 11, 12, 13, 14, 15]
+        
+        let check = checkInstructions(instructions: instructions, sample: correct)
+        
+        if check
+        {
+            levelStatus = .cleared
+            
+            starCount = 3
+            
+            lineCount = instructions.count
+        }
+        
+        else
+        {
+            levelStatus = .goalNotReached
+        }
+        
             
     default:
         levelStatus = .goalNotReached
@@ -141,9 +171,16 @@ func execute(instructions: [instruction], player: SCNNode)
                 step(direct: instructions[x].direct, player: player)
                 case .jump:
                 jump(direct: instructions[x].direct, player: player)
+                case .binSearch:
+                simulateBinarySearch(player: player)
             }
 
         }
+    
+}
+
+func simulateBinarySearch(player: SCNNode)
+{
     
 }
 
@@ -163,6 +200,7 @@ func step(direct: direction, player: SCNNode)
     let moveLeft = SCNAction.moveBy(x: -4, y: 0, z: 0, duration: 1)
     
     let moveRight = SCNAction.moveBy(x: 4, y: 0, z: 0, duration: 1)
+    
     switch direct
     {
         case .forward:
@@ -176,6 +214,22 @@ func step(direct: direction, player: SCNNode)
             player.runAction(moveLeft)
         case .right:
             player.runAction(moveRight)
+    case .first:
+        print("do nothing")
+    case .second:
+        print("do nothing")
+    case .third:
+        print("do nothing")
+    case .fourth:
+        print("do nothing")
+    case .fifth:
+        print("do nothing")
+    case .sixth:
+        print("do nothing")
+    case .seventh:
+        print("do nothing")
+    case .eight:
+        print("do nothing")
     }
     
 }
@@ -195,5 +249,21 @@ func jump(direct: direction, player: SCNNode)
             player.physicsBody?.applyForce(SCNVector3(x: +2, y: 4, z: 0), asImpulse: true)
         case .right:
             player.physicsBody?.applyForce(SCNVector3(x: -2, y: 4, z: 0), asImpulse: true)
+    case .first:
+        print("do nothing")
+    case .second:
+        print("do nothing")
+    case .third:
+        print("do nothing")
+    case .fourth:
+        print("do nothing")
+    case .fifth:
+        print("do nothing")
+    case .sixth:
+        print("do nothing")
+    case .seventh:
+        print("do nothing")
+    case .eight:
+        print("do nothing")
     }
 }

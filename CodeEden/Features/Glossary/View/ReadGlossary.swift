@@ -11,7 +11,7 @@ import AVFoundation
 struct ReadGlossary: View {
     
     @State var isPlaying = false
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var thisGlossary: glossary?
     
@@ -44,7 +44,7 @@ struct ReadGlossary: View {
                         HStack(spacing: 50)
                         {
                             Button {
-                                dismiss()
+                                self.mode.wrappedValue.dismiss()
                             } label: {
                                 Image(systemName: "arrowshape.turn.up.backward.fill").font(.system(size: 24)).foregroundColor(Color("mainPurple"))
                             }

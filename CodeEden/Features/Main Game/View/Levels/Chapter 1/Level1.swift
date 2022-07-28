@@ -80,6 +80,7 @@ struct Level1: View{
                     {
                         geo in
                         
+                        
                         ZStack
                         {
                             Rectangle().foregroundColor(Color("darkPurpleAccent")).frame(width: geo.size.width, height: geo.size.height * 0.07)
@@ -484,6 +485,49 @@ struct ExtractedView: View {
                     {
                         Text("Jump Right").font(Font.custom("Silom", size: 24)).foregroundColor(Color("mainPurple"))
                     }
+            }
+            
+            else if ins.function == .binSearch
+            {
+                if ins.direct == .first
+                {
+                    Text("repeat until low = high").font(Font.custom("Silom", size: 16)).foregroundColor(Color("mainPurple"))
+                }
+                
+                else if ins.direct == .second
+                {
+                    Text("mid = low + high/2").font(Font.custom("Silom", size: 16)).foregroundColor(Color("mainPurple"))
+                }
+                
+                else if ins.direct == .third
+                {
+                    Text("if mid's box equals searched box").font(Font.custom("Silom", size: 16)).foregroundColor(Color("mainPurple"))
+                }
+                
+                else if ins.direct == .fourth
+                {
+                    Text("return mid").font(Font.custom("Silom", size: 16)).foregroundColor(Color("mainPurple"))
+                }
+                
+                else if ins.direct == .fifth
+                {
+                    Text("else if mid < searched box number").font(Font.custom("Silom", size: 16)).foregroundColor(Color("mainPurple"))
+                }
+                
+                else if ins.direct == .sixth
+                {
+                    Text("set low to mid + 1").font(Font.custom("Silom", size: 16)).foregroundColor(Color("mainPurple"))
+                }
+                
+                else if ins.direct == .seventh
+                {
+                    Text("else set high to mid - 1").font(Font.custom("Silom", size: 16)).foregroundColor(Color("mainPurple"))
+                }
+                
+                else
+                {
+                    Text("if none found return - 1").font(Font.custom("Silom", size: 16)).foregroundColor(Color("mainPurple"))
+                }
             }
             
         }

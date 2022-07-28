@@ -66,7 +66,7 @@ struct GlossaryView: View {
                                 } label: {
                                     if savedGlossaries[i].isUnlocked
                                     {
-                                        GlossaryCardView(title: savedGlossaries[i].title, cover: savedGlossaries[i].cover)
+                                        GlossaryCardView(title: savedGlossaries[i].title, cover: savedGlossaries[i].cover).frame(width: geo.size.width * 0.8, height: geo.size.height * 0.2)
                                     }
                                     
                                     else
