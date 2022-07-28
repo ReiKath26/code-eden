@@ -11,14 +11,18 @@ import SceneKit
 struct Level1: View{
     
     @State var codySpeech = false
-    @State var openTutorial = false
+    @State var openTutorial = true 
+    @State var starsCollected = 0
+    @State var lineCount = 0
     @State var index = 0
     @State var levelCleared = false
+    @State var nextLevel = false
     @State var goalNotReached = false
     @State var showAlert = false
     @State var openCodeEditor = false
     
     @AppStorage("stars") var playerStars: Int = 0
+    @AppStorage("playerHint") var hintCount: Int = 0
     @AppStorage("chapters") var savedChapter: [chapter] = populateChapter()
     @AppStorage("levels") var savedLevel: [level] = populateLevel()
     @AppStorage("achievements") var achievementData: [achievement] = populateAchievement()
@@ -100,7 +104,7 @@ struct Level1: View{
                                         
                                         Image(systemName:   "arrow.clockwise").font(.system(size: geo.size.width * 0.05)).foregroundColor(Color("mainPurple"))
                                     }
-                                }
+                                }.disabled(openTutorial || showAlert || levelCleared ? true : false)
                                 
                                 Button {
                                     
@@ -121,21 +125,28 @@ struct Level1: View{
                                         {
                                             execute(instructions: playerInstruction.instructionList, player: playerNode!)
                                             
+                                            withAnimation(Animation.linear(duration: 2)) {
+                                                
+                                                coinNode?.isHidden = true
+                                            }
+                                            
                                             withAnimation{
                                                 
                                                 DispatchQueue.main.asyncAfter(deadline: .now() + 3)
                                                 {
+                                                    lineCount += status.2
+                                                    starsCollected += status.1
                                                     playerStars += status.1
+                                                    hintCount += 3
                                                     savedLevel[0].starsCount += status.1
                                                     savedLevel[0].cleared = true
                                                     savedChapter[0].levelDone += 1
                                                     achievementData[0].count += status.1
                                                     achievementData[1].count += 1
                                                     savedGlossaries[0].isUnlocked = true
-                                                    setUp.currentState = .main
                                                     levelCleared.toggle()
                                                     
-                                                    print(Float(savedChapter[0].levelDone))
+                                                   
                                                 }
                                             }
                                         }
@@ -167,7 +178,7 @@ struct Level1: View{
                                         
                                         Image(systemName:  "play.square.fill").font(.system(size: geo.size.width * 0.1 )).foregroundColor(Color("whiteAccent" ))
                                     }
-                                }
+                                }.disabled(openTutorial || showAlert || levelCleared ? true : false)
                                 
                                 Button {
                                     withAnimation {
@@ -183,7 +194,7 @@ struct Level1: View{
                                         
                                         Image(systemName:  "chevron.left.forwardslash.chevron.right").font(.system(size: geo.size.width * 0.07)).foregroundColor(Color( "mainPurple"))
                                     }
-                                }
+                                }.disabled(openTutorial || showAlert || levelCleared ? true : false)
                                 
                              
                             }
@@ -294,6 +305,68 @@ struct Level1: View{
                                }
                            }.frame(width: geo.size.width * 0.9 , height: geo.size.height * 0.8).position(x: geo.size.width/2, y: geo.size.height/2)
                        }
+                        
+                        if levelCleared
+                        {
+                            ZStack
+                            {
+                                RoundedRectangle(cornerRadius: 10).foregroundColor(Color("darkPurpleAccent")).frame(width: geo.size.width * 0.8, height: geo.size.height * 0.5)
+                                
+                                VStack
+                                {
+                                    Text("Level cleared in \(lineCount) lines!").font(Font.custom("Silom", size: geo.size.width * 0.07)).foregroundColor(Color("whiteAccent")).multilineTextAlignment(.center).frame(width: geo.size.width * 0.7)
+                                    
+                                    HStack
+                                    {
+                                        Image("star").resizable().frame(width: geo.size.width * 0.15, height: geo.size.width * 0.15).opacity(starsCollected >= 1 ? 1:0.3)
+                                        Image("star").resizable().frame(width: geo.size.width * 0.15, height: geo.size.width * 0.15).opacity(starsCollected >= 2 ? 1:0.3)
+                                        Image("star").resizable().frame(width: geo.size.width * 0.15, height: geo.size.width * 0.15).opacity(starsCollected >= 3 ? 1:0.3)
+                                    }
+                                    
+                                    Text("\(starsCollected)/ 3 stars collected!").font(Font.custom("Silom", size: geo.size.width * 0.07)).foregroundColor(Color("whiteAccent")).multilineTextAlignment(.center).frame(width: geo.size.width * 0.7)
+                                    
+                                    HStack
+                                    {
+                                    
+                                            Button {
+                                                withAnimation
+                                                {
+                                                    setUp.currentState = .main
+                                                }
+                                               
+                                            } label: {
+                                                
+                                                ZStack
+                                                {
+                                                    RoundedRectangle(cornerRadius: 10).foregroundColor(Color("mainPurple")).frame(width: geo.size.width * 0.4, height: geo.size.height * 0.07)
+                                                    
+                                                    Text("Back to Level Selection").font(Font.custom("Silom", size: geo.size.width * 0.04)).foregroundColor(Color("whiteAccent")).frame(width: geo.size.width * 0.3)
+                                                }
+                                                
+                                            }
+                                        
+                                        Button {
+                                            withAnimation {
+                                                nextLevel.toggle()
+                                            }
+                                        } label: {
+                                            
+                                            ZStack
+                                            {
+                                                RoundedRectangle(cornerRadius: 10).foregroundColor(Color("mainPurple")).frame(width: geo.size.width * 0.3, height: geo.size.height * 0.07)
+                                                
+                                                Text("Next Level").font(Font.custom("Silom", size: geo.size.width * 0.04)).foregroundColor(Color("whiteAccent"))
+                                            }
+                                           
+                                        }
+
+    
+                                        
+                                    }
+                                }
+                                
+                            }.position(x: geo.size.width/2, y: geo.size.height/2)
+                        }
                         
                         if showAlert
                         {

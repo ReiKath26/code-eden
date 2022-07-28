@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import GameplayKit
 import SceneKit
 import SwiftUI
 
@@ -54,10 +53,12 @@ enum direction
     case right
 }
 
-func setLevelStatus(instructions: [instruction], levelID: Int) -> (levelStat, Int)
+func setLevelStatus(instructions: [instruction], levelID: Int) -> (levelStat, Int, Int)
 {
     var levelStatus : levelStat = .goalNotReached
     var starCount = 0
+    var lineCount = 0
+    
     switch levelID
     {
         case 1:
@@ -76,6 +77,7 @@ func setLevelStatus(instructions: [instruction], levelID: Int) -> (levelStat, In
         {
             levelStatus = .cleared
             starCount = 3
+            lineCount = instructions.count
             
         }
         
@@ -94,7 +96,7 @@ func setLevelStatus(instructions: [instruction], levelID: Int) -> (levelStat, In
         starCount = 0
     }
     
-    return (levelStatus, starCount)
+    return (levelStatus, starCount, lineCount)
 }
 
 func checkInstructions(instructions: [instruction], sample: [instruction]) -> Bool
