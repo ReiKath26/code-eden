@@ -19,6 +19,7 @@ struct Level3: View {
     @State var goalNotReached = false
     @State var showAlert = false
     @State var openCodeEditor = false
+    @State var hintUsed = false
     @State var useHint = false
     
     @AppStorage("stars") var playerStars: Int = 0
@@ -103,6 +104,7 @@ struct Level3: View {
                             Button("Yes", role: .destructive) {
                                 
                                 hintCount -= 1
+                                hintUsed.toggle()
                                //MARK: Add hint
                                
                             }
@@ -164,7 +166,12 @@ struct Level3: View {
                                                 savedLevel[2].cleared = true
                                                 savedChapter[0].levelDone += 1
                                                 achievementData[0].count += status.1
-                                                achievementData[1].count += 1
+                                                
+                                                if !hintUsed
+                                                {
+                                                    achievementData[1].count += 1
+                                                }
+                                               
                                                 savedGlossaries[2].isUnlocked = true
                                             }
                                             
@@ -460,7 +467,7 @@ struct Level3: View {
                 
                 if nextLevel
                 {
-                    Level4()
+                    Level4(setUp: setUp, playerInstruction: givenInstruction())
                 }
             }
         }.edgesIgnoringSafeArea(.all)

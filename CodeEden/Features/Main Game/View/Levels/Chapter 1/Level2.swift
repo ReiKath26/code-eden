@@ -15,6 +15,7 @@ struct Level2: View {
     @State var starsCollected = 0
     @State var lineCount = 0
     @State var index = 0
+    @State var hintUsed = false
     @State var levelCleared = false
     @State var nextLevel = false
     @State var goalNotReached = false
@@ -119,6 +120,7 @@ struct Level2: View {
                             Button("Yes", role: .destructive) {
                                 
                                 hintCount -= 1
+                                hintUsed.toggle()
                                //MARK: Add hint
                                
                             }
@@ -185,7 +187,12 @@ struct Level2: View {
                                                 savedLevel[1].cleared = true
                                                 savedChapter[0].levelDone += 1
                                                 achievementData[0].count += status.1
-                                                achievementData[1].count += 1
+                                                
+                                                if !hintUsed
+                                                {
+                                                    achievementData[1].count += 1
+                                                }
+                                             
                                                 savedGlossaries[1].isUnlocked = true
                                             }
                                             

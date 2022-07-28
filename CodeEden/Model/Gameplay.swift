@@ -145,7 +145,7 @@ func populateGlossaries() -> [glossary]
                 https://medium.com/@urna.hybesis/pathfinding-algorithms-the-four-pillars-1ebad85d4c6b
                 https://www.khanacademy.org/computing/computer-science/algorithms/intro-to-algorithms/a/route-finding
         
-        """, cover: "Intro Cover", isUnlocked: false),
+        """, cover: "Data Structures in Swift", isUnlocked: false),
         glossary(level_id: 4, title: "Intro to Data Structure", material: """
                 Data structure is a storage that is used to store and organize data. It is a way of arranging data
                 on a computer so that it can be accessed and updated efficiently. Once again, the data structure is

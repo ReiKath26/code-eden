@@ -14,6 +14,7 @@ enum algo
     case step
     case jump
     case binSearch
+    case pathFinding
 }
 
 enum levelStat
@@ -138,6 +139,26 @@ func setLevelStatus(instructions: [instruction], levelID: Int) -> (levelStat, In
             levelStatus = .goalNotReached
         }
         
+        case 4:
+        
+        let correct = [16, 17, 18, 19]
+        
+        let check = checkInstructions(instructions: instructions, sample: correct)
+        
+        if check
+        {
+            levelStatus = .cleared
+            
+            starCount = 3
+            
+            lineCount = instructions.count
+        }
+        
+        else
+        {
+            levelStatus = .goalNotReached
+        }
+        
             
     default:
         levelStatus = .goalNotReached
@@ -173,9 +194,16 @@ func execute(instructions: [instruction], player: SCNNode)
                 jump(direct: instructions[x].direct, player: player)
                 case .binSearch:
                 simulateBinarySearch(player: player)
+                case .pathFinding:
+                simulatePathFinding(player: player)
             }
 
         }
+    
+}
+
+func simulatePathFinding(player: SCNNode)
+{
     
 }
 

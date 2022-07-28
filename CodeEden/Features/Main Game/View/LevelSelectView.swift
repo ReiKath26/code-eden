@@ -140,7 +140,7 @@ struct LevelSelectView: View {
                             case 3:
                                 Level3(setUp: setUp, playerInstruction: givenInstruction())
                             case 4:
-                                Level4()
+                                Level4(setUp: setUp, playerInstruction: givenInstruction())
                         default:
                             Level1(setUp: setUp, playerInstruction: givenInstruction())
                         }

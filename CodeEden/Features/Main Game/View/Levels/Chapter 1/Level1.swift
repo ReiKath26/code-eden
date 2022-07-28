@@ -530,6 +530,29 @@ struct ExtractedView: View {
                 }
             }
             
+            else if ins.function == .pathFinding
+            {
+                if ins.direct == .first
+                {
+                    Text("for every node in maze").font(Font.custom("Silom", size: 16)).foregroundColor(Color("mainPurple"))
+                }
+                
+                else if ins.direct == .second
+                {
+                    Text("if node == goal -> break loop").font(Font.custom("Silom", size: 16)).foregroundColor(Color("mainPurple"))
+                }
+                
+                else if ins.direct == .third
+                {
+                    Text("if !node isVisited and node value < currentNode").font(Font.custom("Silom", size: 16)).foregroundColor(Color("mainPurple"))
+                }
+                
+                else if ins.direct == .fourth
+                {
+                    Text("currentNode = node").font(Font.custom("Silom", size: 16)).foregroundColor(Color("mainPurple"))
+                }
+            }
+            
         }
     }
 }
