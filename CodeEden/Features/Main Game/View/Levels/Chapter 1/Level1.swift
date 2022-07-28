@@ -128,16 +128,20 @@ struct Level1: View{
                                                 
                                                 DispatchQueue.main.asyncAfter(deadline: .now() + 3)
                                                 {
-                                                    lineCount += status.2
-                                                    starsCollected += status.1
-                                                    playerStars += status.1
-                                                    hintCount += 3
-                                                    savedLevel[0].starsCount += status.1
-                                                    savedLevel[0].cleared = true
-                                                    savedChapter[0].levelDone += 1
-                                                    achievementData[0].count += status.1
-                                                    achievementData[1].count += 1
-                                                    savedGlossaries[0].isUnlocked = true
+                                                    if !savedLevel[0].cleared
+                                                    {
+                                                        lineCount += status.2
+                                                        starsCollected += status.1
+                                                        playerStars += status.1
+                                                        hintCount += 3
+                                                        savedLevel[0].starsCount += status.1
+                                                        savedLevel[0].cleared = true
+                                                        savedChapter[0].levelDone += 1
+                                                        achievementData[0].count += status.1
+                                                        achievementData[1].count += 1
+                                                        savedGlossaries[0].isUnlocked = true
+                                                    }
+                                                    
                                                     levelCleared.toggle()
                                                     
                                                    

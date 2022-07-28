@@ -128,16 +128,20 @@ struct Level2: View {
                                         
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 3)
                                         {
-                                            lineCount += status.2
-                                            starsCollected += status.1
-                                            playerStars += status.1
-                                            hintCount += 3
-                                            savedLevel[0].starsCount += status.1
-                                            savedLevel[0].cleared = true
-                                            savedChapter[0].levelDone += 1
-                                            achievementData[0].count += status.1
-                                            achievementData[1].count += 1
-                                            savedGlossaries[0].isUnlocked = true
+                                            if !savedLevel[1].cleared
+                                            {
+                                                lineCount += status.2
+                                                starsCollected += status.1
+                                                playerStars += status.1
+                                                hintCount += 1
+                                                savedLevel[1].starsCount += status.1
+                                                savedLevel[1].cleared = true
+                                                savedChapter[0].levelDone += 1
+                                                achievementData[0].count += status.1
+                                                achievementData[1].count += 1
+                                                savedGlossaries[1].isUnlocked = true
+                                            }
+                                            
                                             levelCleared.toggle()
                                             
                                            
@@ -436,7 +440,7 @@ struct Level2: View {
                 
                 if nextLevel
                 {
-                    Level2(setUp: setUp, playerInstruction: playerInstruction)
+                    Level3()
                 }
             }
         }.edgesIgnoringSafeArea(.all)
