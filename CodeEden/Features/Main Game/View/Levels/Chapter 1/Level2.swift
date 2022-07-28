@@ -116,7 +116,7 @@ struct Level2: View {
                                 
                                 if status.0 == .cleared
                                 {
-                                    execute(instructions: playerInstruction.instructionList, player: playerNode!)
+//                                    execute(instructions: playerInstruction.instructionList, player: playerNode!)
                                     
                                     
                                     withAnimation(Animation.linear(duration: 2)) {
@@ -196,7 +196,7 @@ struct Level2: View {
                         
                         VStack(spacing: 30)
                         {
-                            Image(tut[index].illustration).resizable().frame(width: geo.size.width * 0.5, height: geo.size.height * 0.5)
+                            Image(tut[index].illustration).resizable().frame(width: geo.size.width * 0.5, height: geo.size.height * 0.3)
                             
                             Text(tut[index].instruction).foregroundColor(Color("whiteAccent")).font(Font.custom("Silom", size: geo.size.width * 0.03)).multilineTextAlignment(.center).frame(width: geo.size.width * 0.6)
                             

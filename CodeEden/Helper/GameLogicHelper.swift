@@ -133,14 +133,14 @@ func checkInstructions(instructions: [instruction], sample: [Int]) -> Bool
 func execute(instructions: [instruction], player: SCNNode)
 {
     
-        for instruction in instructions {
+        for x in 0..<instructions.count {
            
-            switch instruction.function
+            switch instructions[x].function
             {
                 case .step:
-                step(direct: instruction.direct, player: player)
+                step(direct: instructions[x].direct, player: player)
                 case .jump:
-                jump(direct: instruction.direct, player: player)
+                jump(direct: instructions[x].direct, player: player)
             }
 
         }
