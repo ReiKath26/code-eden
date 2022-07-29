@@ -41,7 +41,7 @@ struct ReadGlossary: View {
                         }.frame(width: geo.size.width * 0.8, height: geo.size.height * 0.5)
                         
                         
-                        HStack(spacing: 50)
+                        HStack(spacing: 200)
                         {
                             Button {
                                 withAnimation {
@@ -80,11 +80,7 @@ struct ReadGlossary: View {
                                 Image(systemName: isPlaying ? "pause.fill" : "headphones").font(.system(size: 24)).foregroundColor(Color("mainPurple"))
                             }
                             
-                            Button {
-                                
-                            } label: {
-                                Image(systemName: "forward.fill").font(.system(size: 24)).foregroundColor(Color("mainPurple"))
-                            }
+                            
 
                         }
                     }
