@@ -302,41 +302,41 @@ struct Level3: View {
                                        
                                        ZStack
                                        {
-                                           RoundedRectangle(cornerRadius: 10).foregroundColor(Color("mainPurple")).frame(width: geo.size.width * 0.9, height: geo.size.height * 0.05)
+                                           RoundedRectangle(cornerRadius: 10).foregroundColor(Color("mainPurple")).frame(width: geo.size.width * 0.5, height: geo.size.height * 0.1)
                                            
                                            if choice[i].direct == .first
                                            {
-                                               Text("repeat until low = high").font(Font.custom("Silom", size: 16)).foregroundColor(Color("whiteAccent"))
+                                               Text("repeat until low = high").font(Font.custom("Silom", size: 16)).foregroundColor(Color("whiteAccent")).frame(width: geo.size.width * 0.4)
                                            }
                                            
                                            else if choice[i].direct == .second
                                            {
-                                               Text("mid = low + high/2").font(Font.custom("Silom", size: 16)).foregroundColor(Color("whiteAccent"))
+                                               Text("mid = low + high/2").font(Font.custom("Silom", size: 16)).foregroundColor(Color("whiteAccent")).frame(width: geo.size.width * 0.4)
                                            }
                                            
                                            else if choice[i].direct == .third
                                            {
-                                               Text("if mid's box equals searched box").font(Font.custom("Silom", size: 16)).foregroundColor(Color("whiteAccent"))
+                                               Text("if mid's box equals searched box").font(Font.custom("Silom", size: 16)).foregroundColor(Color("whiteAccent")).frame(width: geo.size.width * 0.4)
                                            }
                                            
                                            else if choice[i].direct == .fourth
                                            {
-                                               Text("return mid").font(Font.custom("Silom", size: 16)).foregroundColor(Color("whiteAccent"))
+                                               Text("return mid").font(Font.custom("Silom", size: 16)).foregroundColor(Color("whiteAccent")).frame(width: geo.size.width * 0.4)
                                            }
                                            
                                            else if choice[i].direct == .fifth
                                            {
-                                               Text("else if mid > searched box number").font(Font.custom("Silom", size: 16)).foregroundColor(Color("whiteAccent"))
+                                               Text("else if mid > searched box number").font(Font.custom("Silom", size: 16)).foregroundColor(Color("whiteAccent")).frame(width: geo.size.width * 0.4)
                                            }
                                            
                                            else if choice[i].direct == .sixth
                                            {
-                                               Text("set low to mid + 1").font(Font.custom("Silom", size: 16)).foregroundColor(Color("whiteAccent"))
+                                               Text("set low to mid + 1").font(Font.custom("Silom", size: 16)).foregroundColor(Color("whiteAccent")).frame(width: geo.size.width * 0.4)
                                            }
                                            
                                            else if choice[i].direct == .seventh
                                            {
-                                               Text("else set high to mid - 1").font(Font.custom("Silom", size: 16)).foregroundColor(Color("whiteAccent"))
+                                               Text("else set high to mid - 1").font(Font.custom("Silom", size: 16)).foregroundColor(Color("whiteAccent")).frame(width: geo.size.width * 0.4)
                                            }
                                            
                                            else
