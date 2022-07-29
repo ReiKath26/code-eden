@@ -35,13 +35,15 @@ struct LevelSelectView: View {
                 geo in
                 
                 ZStack {
+                    
+                    
                     ZStack
                     {
-                        RoundedRectangle(cornerRadius: 10).foregroundColor(Color(mode == "Normal" ? "darkPurpleAccent" : "reddishPink")).frame(width: geo.size.width * 0.9, height: geo.size.height * 0.8).opacity(0.7)
+                        RoundedRectangle(cornerRadius: 10).foregroundColor(Color(mode == "Normal" ? "darkPurpleAccent" : "reddishPink")).frame(width: UIDevice.current.userInterfaceIdiom == .phone ? geo.size.width * 0.9 : geo.size.width * 0.8, height: UIDevice.current.userInterfaceIdiom == .phone ? geo.size.height * 0.8 : geo.size.height * 0.6).opacity(0.7)
                         
                         VStack
                         {
-                            HStack(spacing: 110)
+                            HStack(spacing: UIDevice.current.userInterfaceIdiom == .phone ? 110: 250)
                             {
                                 Button {
                                     withAnimation {
@@ -54,12 +56,12 @@ struct LevelSelectView: View {
                                 
                                 ZStack
                                 {
-                                    RoundedRectangle(cornerRadius: 20).frame(width: geo.size.width * 0.3, height: geo.size.height * 0.03).foregroundColor(Color("whiteAccent"))
+                                    RoundedRectangle(cornerRadius: 20).frame(width: UIDevice.current.userInterfaceIdiom == .phone ? geo.size.width * 0.3 : geo.size.width * 0.2, height: geo.size.height * 0.03).foregroundColor(Color("whiteAccent"))
                                     HStack(spacing: 10)
                                     {
                                         Image("loupe").resizable().frame(width: geo.size.width * 0.1, height: geo.size.width * 0.1)
                                         
-                                        Text("\(hintCount)").font(Font.custom("Silom", size: 20)).foregroundColor(Color("mainPurple"))
+                                        Text("\(hintCount)").font(Font.custom("Silom", size: UIDevice.current.userInterfaceIdiom == .phone ? geo.size.width * 0.03 : geo.size.width * 0.04)).foregroundColor(Color("mainPurple"))
                                     }
                                 }
                                 
@@ -135,7 +137,7 @@ struct LevelSelectView: View {
                                     }
 
                                 }
-                            }.frame(width: geo.size.width * 0.8, height: geo.size.height * 0.65)
+                            }.frame(width: UIDevice.current.userInterfaceIdiom == .phone ? geo.size.width * 0.8 : geo.size.width * 0.6, height: UIDevice.current.userInterfaceIdiom == .phone ? geo.size.height * 0.65 : geo.size.height * 0.5)
                         }
                 }.position(x: geo.size.width/2, y: geo.size.height/2)
                     

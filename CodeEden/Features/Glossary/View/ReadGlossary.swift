@@ -28,7 +28,7 @@ struct ReadGlossary: View {
                 
                 ZStack
                 {
-                    RoundedRectangle(cornerRadius: 10).frame(width: geo.size.width * 0.9, height: geo.size.height * 0.8).foregroundColor(Color("whiteAccent"))
+                    RoundedRectangle(cornerRadius: 10).frame(width: UIDevice.current.userInterfaceIdiom == .phone ? geo.size.width * 0.9 : geo.size.width * 0.8, height: UIDevice.current.userInterfaceIdiom == .phone ? geo.size.height * 0.8 : geo.size.height * 0.6).foregroundColor(Color("whiteAccent"))
                     
                     VStack
                     {
@@ -38,7 +38,7 @@ struct ReadGlossary: View {
                         
                         ScrollView(.vertical, showsIndicators: false) {
                             Text(thisGlossary?.material ?? "Loading material...").font(Font.custom("Silom", size: geo.size.width * 0.03)).foregroundColor(Color("mainPurple"))
-                        }.frame(width: geo.size.width * 0.8, height: geo.size.height * 0.5)
+                        }.frame(width: UIDevice.current.userInterfaceIdiom == .phone ? geo.size.width * 0.8 : geo.size.width * 0.7, height: UIDevice.current.userInterfaceIdiom == .phone ? geo.size.height * 0.5 : geo.size.height * 0.3)
                         
                         
                         HStack(spacing: 200)
@@ -48,7 +48,7 @@ struct ReadGlossary: View {
                                     readGlossary.isShown.toggle()
                                 }
                             } label: {
-                                Image(systemName: "arrowshape.turn.up.backward.fill").font(.system(size: 24)).foregroundColor(Color("mainPurple"))
+                                Image(systemName: "arrowshape.turn.up.backward.fill").font(.system(size: UIDevice.current.userInterfaceIdiom == .phone ? 24: 48)).foregroundColor(Color("mainPurple"))
                             }
                             
                             Button {
@@ -77,7 +77,7 @@ struct ReadGlossary: View {
                                 }
                                 
                             } label: {
-                                Image(systemName: isPlaying ? "pause.fill" : "headphones").font(.system(size: 24)).foregroundColor(Color("mainPurple"))
+                                Image(systemName: isPlaying ? "pause.fill" : "headphones").font(.system(size: UIDevice.current.userInterfaceIdiom == .phone ? 24: 48)).foregroundColor(Color("mainPurple"))
                             }
                             
                             
