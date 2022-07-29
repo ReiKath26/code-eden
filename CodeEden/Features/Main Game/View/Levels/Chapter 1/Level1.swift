@@ -511,7 +511,7 @@ struct ExtractedView: View {
                 
                 else if ins.direct == .fifth
                 {
-                    Text("else if mid < searched box number").font(Font.custom("Silom", size: 16)).foregroundColor(Color("mainPurple"))
+                    Text("else if mid > searched box number").font(Font.custom("Silom", size: 16)).foregroundColor(Color("mainPurple"))
                 }
                 
                 else if ins.direct == .sixth

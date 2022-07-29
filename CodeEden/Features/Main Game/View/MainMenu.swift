@@ -11,6 +11,7 @@ struct MainMenu: View {
     
     @ObservedObject var gameSetting: GamePlayState
     @StateObject var selectLevel = presentMode()
+    @State var showAlert = false
     @State var index = 0
     @State var mode = "Normal"
     var modes = ["Normal", "Hard"]
@@ -47,8 +48,18 @@ struct MainMenu: View {
                                             
                                             Button {
                                                 withAnimation {
-                                                    selectLevel.isShown.toggle()
-                                                    index = i
+                                                    
+                                                    if i == 0 || savedChapter[i-1].levelDone/savedChapter[i-1].levelCount == 1
+                                                    {
+                                                        selectLevel.isShown.toggle()
+                                                        index = i
+                                                    }
+                                                    
+                                                    else
+                                                    {
+                                                        showAlert.toggle()
+                                                    }
+                                                    
                                                 }
                                             } label: {
                                                 
@@ -57,6 +68,9 @@ struct MainMenu: View {
                                                    CircularProgressBar(progress: .constant(Float(Float(savedChapter[i].levelDone) / Float(savedChapter[i].levelCount))), icon: savedChapter[i].icon).frame(width: geo.size.width * 0.4, height: geo.size.width * 0.4)
                                                    
                                                    Text(savedChapter[i].title).font(Font.custom("Silom", size: geo.size.width * 0.035)).foregroundColor(Color("whiteAccent"))
+                                                }.alert("Complete previous chapter to unlock!", isPresented: $showAlert) {
+                                                    Button("Okay", role: .cancel) {}
+                                                    
                                                 }
                                             }
 

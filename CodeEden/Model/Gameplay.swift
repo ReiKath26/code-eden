@@ -44,7 +44,7 @@ func populateChapter() -> [chapter]
 {
     let chapters = [
         
-        chapter(id: 1, title: "Introduction", desc: "This chapter will introduce you to basic logic of programming", icon: "Mascot - Cody", levelCount: 4, levelDone: 0),
+        chapter(id: 1, title: "Introduction", desc: "This chapter will introduce you to basic logic of programming & algorithm", icon: "Mascot - Cody", levelCount: 4, levelDone: 0),
         chapter(id: 2, title: "Data Structure", desc: "This chapter will let you learn about data structures, their types, and how to implement them", icon: "loupe", levelCount: 6, levelDone: 0)
     ]
     

@@ -210,6 +210,43 @@ func simulatePathFinding(player: SCNNode)
 
 func simulateBinarySearch(player: SCNNode)
 {
+    let number = Int.random(in: 1...7)
+    
+    switch number
+    {
+        case 1:
+        player.position.x += 4
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            player.position.x += 2
+        }
+        case 2:
+        player.position.x += 4
+        case 3:
+        player.position.x += 4
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            player.position.x -= 2
+        }
+        case 4:
+        player.position = player.position
+        case 5:
+        player.position.x -= 4
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            player.position.x += 2
+        }
+        case 6:
+        player.position.x -= 4
+        case 7:
+        player.position.x -= 4
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            player.position.x -= 2
+        }
+        default:
+        print("Do nothing")
+    }
     
 }
 

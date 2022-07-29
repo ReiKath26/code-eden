@@ -36,7 +36,7 @@ struct Level3: View {
     
     @ObservedObject var playerInstruction: givenInstruction
     
-    let tut: [tutorial] = [tutorial(illustration: "", instruction: "Oh look! Eden has 5 box in front of her! In one of those box, contains 3 stars coin."), tutorial(illustration: "", instruction: "Help Eden find it by simulating the binary search algorithm you have read on the glossary (If you haven't read it, it's advised for you to read it first."), tutorial(illustration: "", instruction: "Arrange the available pieces of algorithm in the Code Editor correctly to find the box with the 3 stars coin inside!")]
+    let tut: [tutorial] = [tutorial(illustration: "", instruction: "Oh look! Eden has 7 box in front of her! In one of those box, contains 3 stars coin."), tutorial(illustration: "", instruction: "Help Eden find it by simulating the binary search algorithm you have read on the glossary (If you haven't read it, it's advised for you to read it first."), tutorial(illustration: "", instruction: "Arrange the available pieces of algorithm in the Code Editor correctly to find the box with the 3 stars coin inside!")]
     
     let choice: [instruction] = [instruction(id: 14, function: .binSearch, direct: .seventh), instruction(id: 12, function: .binSearch, direct: .fifth), instruction(id: 10, function: .binSearch, direct: .third), instruction(id:11, function: .binSearch, direct: .fourth), instruction(id: 15, function: .binSearch, direct: .eight), instruction(id: 8, function: .binSearch, direct: .first),  instruction(id: 13, function: .binSearch, direct: .sixth), instruction(id: 9, function: .binSearch, direct: .second)]
     
@@ -164,7 +164,7 @@ struct Level3: View {
                                     
                                     withAnimation{
                                         
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 7)
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2)
                                         {
                                             if !savedLevel[2].cleared
                                             {
@@ -327,7 +327,7 @@ struct Level3: View {
                                            
                                            else if choice[i].direct == .fifth
                                            {
-                                               Text("else if mid < searched box number").font(Font.custom("Silom", size: 16)).foregroundColor(Color("whiteAccent"))
+                                               Text("else if mid > searched box number").font(Font.custom("Silom", size: 16)).foregroundColor(Color("whiteAccent"))
                                            }
                                            
                                            else if choice[i].direct == .sixth

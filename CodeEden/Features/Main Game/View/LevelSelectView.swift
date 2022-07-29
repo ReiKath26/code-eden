@@ -14,6 +14,7 @@ struct LevelSelectView: View {
     @ObservedObject var selectLevel: presentMode
     @State var mode = "Normal"
     @State var levelIsLocked = false
+    @State var showTips = false
     @StateObject var playLevel = levelToBePlayed()
     @State var index = 0
     
@@ -74,7 +75,9 @@ struct LevelSelectView: View {
                                     Text(savedChapter[index].title).font(Font.custom("Silom", size: geo.size.width * 0.035)).foregroundColor(Color("whiteAccent"))
                                     
                                     Button {
-                                        
+                                        withAnimation {
+                                            showTips.toggle()
+                                        }
                                     } label: {
                                         
                                         ZStack
@@ -84,6 +87,9 @@ struct LevelSelectView: View {
                                             Text("Tips").foregroundColor(Color("whiteAccent")).font(Font.custom("Silom", size: geo.size.width * 0.06))
                                         }
                                      
+                                    }.alert(savedChapter[index].desc, isPresented: $showTips) {
+                                        Button("Okay", role: .cancel) {}
+                                        
                                     }
                                     
                                     
