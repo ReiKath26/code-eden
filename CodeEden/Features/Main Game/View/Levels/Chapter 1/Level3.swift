@@ -160,11 +160,10 @@ struct Level3: View {
                                 if status.0 == .cleared
                                 {
                                     execute(instructions: playerInstruction.instructionList, player: playerNode!)
-
                                     
                                     withAnimation{
                                         
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2)
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 4)
                                         {
                                             if !savedLevel[2].cleared
                                             {

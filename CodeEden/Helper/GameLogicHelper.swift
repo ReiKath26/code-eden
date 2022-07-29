@@ -121,7 +121,7 @@ func setLevelStatus(instructions: [instruction], levelID: Int) -> (levelStat, In
         
         case 3:
         
-        let correct = [8, 9, 10, 11, 12, 13, 14, 15]
+        let correct = [8,9,10,11,12,13,14,15]
         
         let check = checkInstructions(instructions: instructions, sample: correct)
         
@@ -215,28 +215,48 @@ func simulateBinarySearch(player: SCNNode)
     switch number
     {
         case 1:
-        player.runAction(SCNAction.move(by: SCNVector3(4, 0, 0), duration: 1)) {
-            player.runAction(SCNAction.move(by: SCNVector3(2, 0, 0), duration: 1))
-        }
+        player.runAction(SCNAction.move(by: SCNVector3(x: 1.5, y: 0, z: 0), duration: 1), completionHandler: {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2)
+            {
+                player.runAction(SCNAction.move(by: SCNVector3(x: 0.8, y: 0, z: 0), duration: 1))
+            }
+          
+        })
         case 2:
-        player.runAction(SCNAction.move(by: SCNVector3(4, 0, 0), duration: 1))
+        player.runAction(SCNAction.move(by: SCNVector3(1.5, 0, 0), duration: 1))
         case 3:
-        player.runAction(SCNAction.move(by: SCNVector3(4, 0, 0), duration: 1)) {
-            player.runAction(SCNAction.move(by: SCNVector3(-2, 0, 0), duration: 1))
-        }
+        player.runAction(SCNAction.move(by: SCNVector3(x: 1.5, y: 0, z: 0), duration: 1), completionHandler: {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2)
+            {
+                player.runAction(SCNAction.move(by: SCNVector3(x: -0.8, y: 0, z: 0), duration: 1))
+            }
+          
+        })
         
         case 4:
         player.position = player.position
         case 5:
-        player.runAction(SCNAction.move(by: SCNVector3(-4, 0, 0), duration: 1)) {
-            player.runAction(SCNAction.move(by: SCNVector3(2, 0, 0), duration: 1))
-        }
+        player.runAction(SCNAction.move(by: SCNVector3(x: -1.5, y: 0, z: 0), duration: 1), completionHandler: {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2)
+            {
+                player.runAction(SCNAction.move(by: SCNVector3(x: 0.8, y: 0, z: 0), duration: 1))
+            }
+          
+        })
         case 6:
-        player.runAction(SCNAction.move(by: SCNVector3(-4, 0, 0), duration: 1))
+        player.runAction(SCNAction.move(by: SCNVector3(-1.5, 0, 0), duration: 1))
         case 7:
-        player.runAction(SCNAction.move(by: SCNVector3(-4, 0, 0), duration: 1)) {
-            player.runAction(SCNAction.move(by: SCNVector3(-2, 0, 0), duration: 1))
-        }
+        player.runAction(SCNAction.move(by: SCNVector3(x: -1.5, y: 0, z: 0), duration: 1), completionHandler: {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2)
+            {
+                player.runAction(SCNAction.move(by: SCNVector3(x: -0.8, y: 0, z: 0), duration: 1))
+            }
+          
+        })
         default:
         print("Do nothing")
     }

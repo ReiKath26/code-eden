@@ -26,6 +26,7 @@ struct ProfileView: View {
                 
                 ZStack
                 {
+                    
                     VStack
                     {
                         Image(avatarName).resizable().frame(width: geo.size.width * 0.4, height: geo.size.width * 0.4)
