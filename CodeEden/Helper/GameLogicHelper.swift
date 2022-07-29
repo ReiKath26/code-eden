@@ -215,34 +215,27 @@ func simulateBinarySearch(player: SCNNode)
     switch number
     {
         case 1:
-        player.position.x += 4
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            player.position.x += 2
+        player.runAction(SCNAction.move(by: SCNVector3(4, 0, 0), duration: 1)) {
+            player.runAction(SCNAction.move(by: SCNVector3(2, 0, 0), duration: 1))
         }
         case 2:
-        player.position.x += 4
+        player.runAction(SCNAction.move(by: SCNVector3(4, 0, 0), duration: 1))
         case 3:
-        player.position.x += 4
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            player.position.x -= 2
+        player.runAction(SCNAction.move(by: SCNVector3(4, 0, 0), duration: 1)) {
+            player.runAction(SCNAction.move(by: SCNVector3(-2, 0, 0), duration: 1))
         }
+        
         case 4:
         player.position = player.position
         case 5:
-        player.position.x -= 4
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            player.position.x += 2
+        player.runAction(SCNAction.move(by: SCNVector3(-4, 0, 0), duration: 1)) {
+            player.runAction(SCNAction.move(by: SCNVector3(2, 0, 0), duration: 1))
         }
         case 6:
-        player.position.x -= 4
+        player.runAction(SCNAction.move(by: SCNVector3(-4, 0, 0), duration: 1))
         case 7:
-        player.position.x -= 4
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            player.position.x -= 2
+        player.runAction(SCNAction.move(by: SCNVector3(-4, 0, 0), duration: 1)) {
+            player.runAction(SCNAction.move(by: SCNVector3(-2, 0, 0), duration: 1))
         }
         default:
         print("Do nothing")
